@@ -1,0 +1,130 @@
+@import "src/GlobalStyle/Variables.scss";
+
+$color-border: #e8e8e8;
+
+.header {
+  background-color: $bg-primary;
+}
+
+.wrapper {
+  overflow: hidden;
+  transition: height ease 0.2s;
+  height: 103px;
+}
+
+.wrapper.fixHeight {
+  height: 43px;
+}
+
+.header__navbar-icon {
+  color: $color-text-primary;
+}
+
+.header__navbar__item + .header__navbar__item {
+  padding-left: 16px;
+}
+
+.icon {
+  color: $color-text-primary;
+  cursor: pointer;
+}
+
+.header__input-search {
+  background-color: $color-text-primary;
+  border: 1px solid $color-emphasize;
+  border-radius: $br-rad-md;
+  margin-top: 10px;
+  .input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: $font-sm;
+    padding: 11px 8px;
+    border-top-left-radius: $br-rad-md;
+    border-bottom-left-radius: $br-rad-md;
+  }
+
+  .icon {
+    color: $color-text-dark;
+    padding: 0 8px;
+  }
+}
+
+//phần history
+.history {
+  background-color: $color-text-primary;
+  color: $color-text-dark;
+  &__title {
+    display: inline-block;
+    margin-bottom: 12px;
+    border-bottom: 1px solid $color-text-dark;
+    font-size: $font-sm;
+    font-weight: 700;
+    padding: 2px 0;
+  }
+}
+
+.history__body {
+  max-height: 50vh;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+/* Define the scrollbar track */
+.history__body::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.history__body::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+.history__body::-webkit-scrollbar-thumb {
+  background: $color-primary;
+  border-radius: 10px;
+}
+
+.history__body__item {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.history__body__item {
+  border-bottom: 0.5px solid $color-border;
+}
+
+.item__img {
+  min-width: 60px;
+  margin-right: 12px;
+}
+
+.item__inf {
+  h3 {
+    font-size: $font-sm;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .inf__price {
+    color: $color-emphasize;
+    font-weight: 500;
+  }
+}
+
+.history__foot {
+  padding-top: 8px;
+  font-weight: 500;
+  font-size: $font-sm;
+  text-align: center;
+  cursor: pointer;
+  transition: color ease 0.2s;
+  border-top: 0.5px solid $color-border;
+  &:hover {
+    color: $color-primary;
+  }
+}

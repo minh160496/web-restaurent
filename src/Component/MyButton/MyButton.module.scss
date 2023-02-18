@@ -1,0 +1,37 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.btn {
+  cursor: pointer;
+  background-color: $color-primary;
+  display: grid;
+  place-content: center;
+  box-shadow: 0 3px #a37b44;
+  color: $color-text-primary;
+  font-size: $font-sm;
+  font-weight: 500;
+  border-radius: $br-rad-xl;
+  transition: background-color ease 0.2s;
+  display: inline-block;
+  &:hover {
+    background-color: $color-primary-bold;
+  }
+}
+
+.btn.sizeXL {
+  font-size: $font-lg;
+  padding: 8px 20px;
+  box-shadow: none;
+}
+
+.btn.sizeMD {
+  font-size: $font-md;
+  padding: 10px 15px;
+  box-shadow: none;
+}
+
+.btn.transparent {
+  background-color: transparent;
+  border-radius: none;
+  padding: 8px;
+  box-shadow: none;
+}

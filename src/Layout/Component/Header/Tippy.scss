@@ -1,0 +1,24 @@
+@import "src/GlobalStyle/Variables.scss";
+
+body div#tippy-2 {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+body #tippy-2 .tippy-box {
+  background-color: $color-text-primary;
+  top: -9px;
+  margin-right: 0;
+  max-width: 100% !important;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding-bottom: 0;
+}
+
+.tippy-content {
+  padding-bottom: 0;
+}
+
+.tippy-arrow {
+  display: none;
+}

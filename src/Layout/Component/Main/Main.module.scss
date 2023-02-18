@@ -1,0 +1,13 @@
+.navbar {
+  display: none;
+}
+
+.navbar.navbar-right {
+  order: 1;
+}
+
+@media (min-width: 998px) {
+  .navbar {
+    display: block;
+  }
+}
