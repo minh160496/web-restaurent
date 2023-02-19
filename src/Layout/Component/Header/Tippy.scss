@@ -1,24 +1,26 @@
 @import "src/GlobalStyle/Variables.scss";
 
-body div#tippy-2 {
-  width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.tippy-history div[data-tippy-root] {
+  right: 15px !important;
+  top: -9px !important;
 }
 
-body #tippy-2 .tippy-box {
-  background-color: $color-text-primary;
-  top: -9px;
-  margin-right: 0;
+.tippy-history div[data-tippy-root] .tippy-box {
   max-width: 100% !important;
-  margin-left: 3px;
-  margin-right: 3px;
-  padding-bottom: 0;
 }
 
-.tippy-content {
-  padding-bottom: 0;
+.tippy-toolip div[data-tippy-root] {
+  border-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border: 0.5px solid $color-text-dark;
+  background-color: $color-text-primary;
 }
 
-.tippy-arrow {
-  display: none;
+.tippy-toolip div[data-tippy-root] .tippy-content {
+  border-radius: 0;
+}
+
+body .toolip-order.tippy-toolip div[data-tippy-root] {
+  top: -8px !important;
 }

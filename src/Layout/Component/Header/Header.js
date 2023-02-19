@@ -3,14 +3,18 @@ import classnames from "classnames/bind";
 import { Container, Row } from "react-bootstrap";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
 import "./Tippy.scss";
-import { Offcanvas, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Offcanvas } from "react-bootstrap";
 
 import MyButton from "Component/MyButton";
+import BagNumber from "./BagNumber";
 import styles from "./Header.module.scss";
+import "./Tippy.scss";
 import { useDebounce } from "hook";
 import History from "./History";
+import Toolip from "Component/Toolip";
+import OfCanvas from "src/Layout/Component/OfCanvas";
 import { ReactComponent as IconMenu } from "assets/icon/menu.svg";
 import { ReactComponent as IconSearch } from "assets/icon/search.svg";
 import { ReactComponent as IconBag } from "assets/icon/bag.svg";
@@ -55,6 +59,16 @@ export default function Header() {
     }
   }, 500);
 
+  //xu lý ẩn propper khi click ra ngoài và input về value rỗng
+  const [valuePrompInput, setValuePrompInput] = useState("");
+  const handleHiddenPropper = () => {
+    setResult([]);
+    setValuePrompInput("");
+  };
+
+  //ham xu ly logic khi click vao o search di den trang chi tiet san pham tim kiem
+  const handleToResult = () => {};
+
   return (
     <header className={cl("header")}>
       <Container>
@@ -66,18 +80,17 @@ export default function Header() {
           >
             <div className={cl("header__navbar") + " flex justify-between"}>
               <div className={cl("header__navbar-text")}>
-                <MyButton transparent onClick={handleShow}>
+                <MyButton
+                  transparent
+                  onClick={handleShow}
+                  floatLeft
+                  className={cl("menu")}
+                >
                   <IconMenu fill="currentcolor" width={20} height={20} />
                 </MyButton>
 
                 <Offcanvas show={show} onHide={handleClose}>
-                  <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-                  </Offcanvas.Header>
-                  <Offcanvas.Body>
-                    Some text as placeholder. In real life you can have the
-                    elements you have chosen. Like, text, images, lists, etc.
-                  </Offcanvas.Body>
+                  <OfCanvas />
                 </Offcanvas>
               </div>
               <div className={cl("header__navbar-icon") + " flex align-center"}>
@@ -90,46 +103,78 @@ export default function Header() {
                   </div>
                 </div>
 
-                <div className={cl("bag", "header__navbar__item")}>
-                  <div className={cl("icon")}>
-                    <IconBag fill="currentcolor" width={20} height={20} />
+                <Toolip content="Giỏ hàng">
+                  <div
+                    className={
+                      cl("bag", "header__navbar__item") + " pos-relative"
+                    }
+                  >
+                    <div className={cl("icon")}>
+                      <IconBag fill="currentcolor" width={20} height={20} />
+                    </div>
+                    <BagNumber number={2} />
                   </div>
-                </div>
+                </Toolip>
 
-                <div className={cl("map", "header__navbar__item")}>
-                  <div className={cl("icon")}>
-                    <IconMap fill="currentcolor" width={20} height={20} />
+                <Toolip content="Hệ thống cửa hàng">
+                  <div className={cl("map", "header__navbar__item")}>
+                    <div className={cl("icon")}>
+                      <IconMap fill="currentcolor" width={20} height={20} />
+                    </div>
                   </div>
-                </div>
-
-                <div className={cl("header__button", "header__navbar__item")}>
-                  <MyButton sizeXL>Đặt bàn</MyButton>
-                </div>
+                </Toolip>
+                <Toolip
+                  content="Đặt bàn"
+                  place="bottom-end"
+                  className="toolip-order"
+                >
+                  <div className={cl("header__button", "header__navbar__item")}>
+                    <MyButton sizeXL>Đặt bàn</MyButton>
+                  </div>
+                </Toolip>
               </div>
             </div>
 
-            <Tippy
-              visible={result.length > 0}
-              interactive //cho phép select nội dung bên trong
-              placement="bottom-start"
-              content={<History data={result} />}
-            >
-              <div
-                className={
-                  cl("header__input-search") + " width-full flex align-center"
-                }
+            <div className="tippy-history">
+              <Tippy
+                visible={result.length > 0}
+                interactive //cho phép select nội dung bên trong
+                placement="auto-start"
+                content={<History data={result} />}
+                arrow={false}
+                theme="light"
+                onClickOutside={handleHiddenPropper}
               >
-                <input
-                  type="text"
-                  className={cl("input")}
-                  placeholder="Nhập tên món ăn"
-                  onChange={handleSearch}
-                />
-                <div className={cl("icon") + " flex"}>
-                  <IconSearch fill="currentcolor" width={20} height={20} />
+                <div
+                  className={
+                    cl("header__input-search") + " width-full flex align-center"
+                  }
+                >
+                  <input
+                    value={valuePrompInput}
+                    type="text"
+                    className={cl("input")}
+                    placeholder="Nhập tên món ăn..."
+                    onChange={(e) => {
+                      handleSearch(e);
+                      setValuePrompInput(e.target.value);
+                    }}
+                  />
+                  <Toolip
+                    place="bottom-end"
+                    content="Tìm kiếm"
+                    className="tippy-search"
+                  >
+                    <div
+                      className={cl("icon") + " flex"}
+                      onClick={handleToResult}
+                    >
+                      <IconSearch fill="currentcolor" width={20} height={20} />
+                    </div>
+                  </Toolip>
                 </div>
-              </div>
-            </Tippy>
+              </Tippy>
+            </div>
           </div>
         </Row>
       </Container>

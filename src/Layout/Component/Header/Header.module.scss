@@ -20,13 +20,20 @@ $color-border: #e8e8e8;
   color: $color-text-primary;
 }
 
-.header__navbar__item + .header__navbar__item {
+.menu {
+  padding-left: 0;
+}
+
+.header__navbar__item {
   padding-left: 16px;
 }
 
 .icon {
   color: $color-text-primary;
   cursor: pointer;
+  &:hover {
+    color: $color-primary;
+  }
 }
 
 .header__input-search {
@@ -48,6 +55,19 @@ $color-border: #e8e8e8;
     color: $color-text-dark;
     padding: 0 8px;
   }
+}
+
+.bag-number {
+  background-color: $color-primary;
+  display: grid;
+  place-content: center;
+  color: $color-text-primary;
+  font-size: $font-min;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  top: -3px;
+  left: 28px;
 }
 
 //phần history
@@ -91,8 +111,8 @@ $color-border: #e8e8e8;
   padding-bottom: 8px;
 }
 
-.history__body__item {
-  border-bottom: 0.5px solid $color-border;
+.history__body__item:hover {
+  background-color: #f6f6f6;
 }
 
 .item__img {
@@ -113,6 +133,15 @@ $color-border: #e8e8e8;
   .inf__price {
     color: $color-emphasize;
     font-weight: 500;
+  }
+
+  .price {
+    margin-right: 6px;
+  }
+
+  .old-price {
+    color: #818080;
+    text-decoration: line-through;
   }
 }
 

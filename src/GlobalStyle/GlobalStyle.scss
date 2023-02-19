@@ -34,3 +34,7 @@ ul li,
 ol li {
   list-style: none;
 }
+
+a:hover {
+  color: $color-primary;
+}

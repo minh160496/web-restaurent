@@ -9,6 +9,7 @@ export default function MyButton({
   sizeXL,
   sizeMD,
   transparent,
+  floatLeft,
   children,
   onClick = () => {},
 }) {
@@ -18,6 +19,7 @@ export default function MyButton({
         sizeXL: !!sizeXL,
         sizeMD: !!sizeMD,
         transparent: !!transparent,
+        floatLeft: !!floatLeft,
       })}
       onClick={onClick}
     >
