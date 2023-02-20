@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 import classNames from "classnames/bind";
 import styles from "./Navigator.module.scss";
@@ -15,3 +16,7 @@ export default function Navigator({ children }) {
     </nav>
   );
 }
+
+Navigator.propTypes = {
+  children: PropTypes.node,
+};

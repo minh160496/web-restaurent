@@ -3,13 +3,14 @@
 $color-border: #e8e8e8;
 
 .header {
-  background-color: $bg-primary;
+  background-color: $bg-primary-blur;
 }
 
 .wrapper {
   overflow: hidden;
   transition: height ease 0.2s;
   height: 103px;
+  background-color: $bg-primary;
 }
 
 .wrapper.fixHeight {
@@ -34,6 +35,11 @@ $color-border: #e8e8e8;
   &:hover {
     color: $color-primary;
   }
+}
+
+.header__navbar__item.menu-list-pc,
+.header__navbar__item.logo {
+  display: none;
 }
 
 .header__input-search {
@@ -68,6 +74,11 @@ $color-border: #e8e8e8;
   border-radius: 50%;
   top: -3px;
   left: 28px;
+}
+
+//offcanvas
+.ofcanvas {
+  max-width: 250px;
 }
 
 //phần history
@@ -155,5 +166,88 @@ $color-border: #e8e8e8;
   border-top: 0.5px solid $color-border;
   &:hover {
     color: $color-primary;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .header .wrapper {
+    background-color: transparent;
+    display: flex;
+    height: 83px;
+  }
+
+  .navbar-wrapper-text-PC {
+    display: block;
+  }
+
+  .navbar-wrapper-menu {
+    display: none;
+  }
+
+  .header__navbar {
+    flex: 1;
+  }
+
+  .header__navbar__item.logo {
+    width: 130px;
+    padding-left: 0;
+  }
+
+  .header__navbar-text {
+    display: flex;
+    align-items: center;
+  }
+
+  .header__navbar__item.menu-list-pc,
+  .header__navbar__item.logo {
+    display: flex;
+  }
+
+  .header__navbar__item.menu-list-pc {
+    color: $color-text-primary;
+    font-size: $font-sm;
+    h3 {
+      font-size: inherit;
+      font-weight: 600;
+    }
+
+    a {
+      display: inline-block;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+
+  .header__input-search {
+    display: none;
+  }
+
+  .navbar__item__arrow {
+    top: 0;
+    left: calc(100% + 14px);
+    .arrow {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .arrow.arrow-left {
+    }
+    .arrow.arrow-right {
+    }
+  }
+}
+
+@media (min-width: $breakpoint-lg) and (max-width: $breakpoint-xl) {
+  .wrapper-navbarPC {
+    width: 500px;
+    overflow: hidden;
+    ul {
+      width: 900px;
+      transition: margin ease 0.4s;
+    }
+  }
+
+  .header__navbar__item.menu-list-pc {
+    position: relative;
   }
 }

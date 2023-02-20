@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames/bind";
+import PropTypes from "prop-types";
 
 import styles from "./MyButton.module.scss";
 
@@ -27,3 +28,8 @@ export default function MyButton({
     </div>
   );
 }
+
+MyButton.propTypes = {
+  children: PropTypes.node,
+  onclick: PropTypes.func,
+};

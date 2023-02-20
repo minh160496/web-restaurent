@@ -9,3 +9,9 @@
 .image-logo {
   width: 143px;
 }
+
+@media (min-width: $breakpoint-lg) {
+  .Logo {
+    display: none;
+  }
+}

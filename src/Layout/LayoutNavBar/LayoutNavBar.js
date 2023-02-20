@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import classNames from "classnames/bind";
+import PropTypes from "prop-types";
 
 import styles from "./LayoutNavBar.mudule.scss";
 import Header from "Layout/Component/Header";
@@ -21,3 +22,8 @@ export default function LayoutNavBar({ navBarRight, children }) {
     </LayoutContext.Provider>
   );
 }
+
+LayoutNavBar.propTypes = {
+  navBarRight: PropTypes.bool,
+  children: PropTypes.node,
+};

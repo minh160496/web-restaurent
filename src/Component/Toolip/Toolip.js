@@ -1,5 +1,6 @@
 import React from "react";
 import Tippy from "@tippyjs/react";
+import PropTypes from "prop-types";
 import "tippy.js/themes/light.css";
 
 export default function Toolip({
@@ -28,3 +29,11 @@ export default function Toolip({
     </div>
   );
 }
+
+Toolip.propTypes = {
+  content: PropTypes.node,
+  children: PropTypes.node,
+  place: PropTypes.string,
+  visible: PropTypes.bool,
+  className: PropTypes.string,
+};

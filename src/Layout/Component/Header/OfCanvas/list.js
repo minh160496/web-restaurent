@@ -30,7 +30,7 @@ export const listBodyItem = [
 ];
 
 export const listFootItem = [
-  { file: "Đăng Nhập", path: "/login" },
-  { file: "Đăng Ký", path: "/signin" },
-  { file: "Món ăn yêu thích", path: "/favorite" },
+  { fiel: "Đăng Nhập", path: "/login" },
+  { fiel: "Đăng Ký", path: "/signin" },
+  { fiel: "Món ăn yêu thích", path: "/favorite" },
 ];

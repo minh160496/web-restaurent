@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import classnames from "classnames/bind";
 import { Container, Row } from "react-bootstrap";
-import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "./Tippy.scss";
@@ -11,14 +10,19 @@ import MyButton from "Component/MyButton";
 import BagNumber from "./BagNumber";
 import styles from "./Header.module.scss";
 import "./Tippy.scss";
-import { useDebounce } from "hook";
-import History from "./History";
 import Toolip from "Component/Toolip";
-import OfCanvas from "src/Layout/Component/OfCanvas";
+import OfCanvas from "./OfCanvas";
 import { ReactComponent as IconMenu } from "assets/icon/menu.svg";
 import { ReactComponent as IconSearch } from "assets/icon/search.svg";
 import { ReactComponent as IconBag } from "assets/icon/bag.svg";
 import { ReactComponent as IconMap } from "assets/icon/map.svg";
+import Search from "./Search";
+import Img from "Component/Img";
+import logo from "@/assets/img/logo.webp";
+import { listBodyItem } from "./OfCanvas";
+import { Link } from "react-router-dom";
+import { ReactComponent as IconArrowRight } from "src/assets/icon/arrowRight.svg";
+import { ReactComponent as IconArrowLeft } from "src/assets/icon/arrowLeft.svg";
 
 const cl = classnames.bind(styles);
 export default function Header() {
@@ -27,48 +31,53 @@ export default function Header() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const searchRef = useRef();
 
   //logic ẩn hiện ô search
   const [fixHeight, setFixHeight] = useState(true);
 
-  //getApi
-  const [data, setData] = useState([]);
   useEffect(() => {
-    async function fetchData() {
-      const api = "https://api-his.vercel.app/history";
-      const data = await fetch(api).then((res) => res.json());
-      setData(data);
-    }
-
-    fetchData();
+    window.addEventListener("resize", handleRemoveClickIconSearch);
+    searchRef.current.addEventListener("click", handleToggerInputSearch);
   }, []);
-
-  //logic tim kiem
-  const [result, setResult] = useState([]);
-
-  const handleSearch = useDebounce((e) => {
-    //dùng kỹ thuật debounce
-    const text = e.target.value.trim().toLowerCase();
-    if (text) {
-      const result = data.filter((item, index) =>
-        item.name.toLowerCase().includes(text)
-      );
-      setResult(result);
-    } else {
-      setResult([]);
+  const handleToggerInputSearch = () => {
+    if (window.innerWidth <= 992) {
+      setFixHeight((prevFixHeight) => !prevFixHeight);
+      headerWrapperRef.current.style.overflow = "hidden";
     }
-  }, 500);
-
-  //xu lý ẩn propper khi click ra ngoài và input về value rỗng
-  const [valuePrompInput, setValuePrompInput] = useState("");
-  const handleHiddenPropper = () => {
-    setResult([]);
-    setValuePrompInput("");
   };
 
-  //ham xu ly logic khi click vao o search di den trang chi tiet san pham tim kiem
-  const handleToResult = () => {};
+  //xử lý remove onclick vào icon search hiện ô input
+  const handleRemoveClickIconSearch = () => {
+    if (window.innerWidth <= 992) {
+      searchRef.current.addEventListener("click", handleToggerInputSearch);
+    } else {
+      searchRef.current.removeEventListener("click", handleToggerInputSearch);
+      setMarginUl(0);
+    }
+  };
 
+  useEffect(() => {
+    if (window.innerWidth >= 992) {
+      searchRef.current.removeEventListener("click", handleToggerInputSearch);
+    }
+  }, []);
+
+  //logic xử lý trượt menu-pc item
+  const [marginUl, setMarginUl] = useState(0);
+  const handleFadeLeft = () => {
+    if (marginUl < 0) {
+      setMarginUl((prev) => prev + 102);
+    }
+  };
+  const handleFadeRight = () => {
+    if (marginUl > -204) {
+      setMarginUl((prev) => prev - 102);
+    }
+  };
+
+  //gan elementDOM heaer-wrapper và truyền cho component search để xử lý thêm overflow cho nó
+  const headerWrapperRef = useRef();
   return (
     <header className={cl("header")}>
       <Container>
@@ -77,26 +86,85 @@ export default function Header() {
             className={cl("wrapper", {
               fixHeight: fixHeight ? true : false,
             })}
+            ref={headerWrapperRef}
           >
             <div className={cl("header__navbar") + " flex justify-between"}>
               <div className={cl("header__navbar-text")}>
-                <MyButton
-                  transparent
-                  onClick={handleShow}
-                  floatLeft
-                  className={cl("menu")}
-                >
-                  <IconMenu fill="currentcolor" width={20} height={20} />
-                </MyButton>
+                <div className={cl("navbar-wrapper-menu")}>
+                  <MyButton
+                    transparent
+                    onClick={handleShow}
+                    floatLeft
+                    className={cl("menu")}
+                  >
+                    <IconMenu fill="currentcolor" width={20} height={20} />
+                  </MyButton>
 
-                <Offcanvas show={show} onHide={handleClose}>
-                  <OfCanvas />
-                </Offcanvas>
+                  <Offcanvas
+                    show={show}
+                    onHide={handleClose}
+                    className={cl("ofcanvas")}
+                  >
+                    <OfCanvas />
+                  </Offcanvas>
+                </div>
+                <div className={cl("header__navbar__item", "logo")}>
+                  <Img src={logo} width="100%" heigh="auto" minWidth="130px" />
+                </div>
+                <div
+                  className={
+                    cl("header__navbar__item", "menu-list-pc") +
+                    " flex align-center"
+                  }
+                >
+                  <div className={cl("wrapper-navbarPC")}>
+                    <ul
+                      className="flex align-center"
+                      style={{ marginLeft: marginUl }}
+                    >
+                      {listBodyItem.map((item, index) => (
+                        <li key={index}>
+                          <Link to="/">
+                            <h3 className={cl("navbar__item__title")}>
+                              {item.fiel}
+                            </h3>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <div
+                      className={
+                        cl("navbar__item__arrow") + " flex pos-absolute"
+                      }
+                    >
+                      <div
+                        className={cl("arrow", "arrow-left", "icon")}
+                        onClick={handleFadeLeft}
+                      >
+                        <IconArrowLeft
+                          fill="currentcolor"
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                      <div
+                        className={cl("arrow", "arrow-right", "icon")}
+                        onClick={handleFadeRight}
+                      >
+                        <IconArrowRight
+                          fill="currentcolor"
+                          with={20}
+                          heigh={20}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className={cl("header__navbar-icon") + " flex align-center"}>
                 <div
+                  ref={searchRef}
                   className={cl("search", "header__navbar__item")}
-                  onClick={() => setFixHeight(!fixHeight)}
                 >
                   <div className={cl("icon")}>
                     <IconSearch fill="currentcolor" width={20} height={20} />
@@ -135,46 +203,7 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="tippy-history">
-              <Tippy
-                visible={result.length > 0}
-                interactive //cho phép select nội dung bên trong
-                placement="auto-start"
-                content={<History data={result} />}
-                arrow={false}
-                theme="light"
-                onClickOutside={handleHiddenPropper}
-              >
-                <div
-                  className={
-                    cl("header__input-search") + " width-full flex align-center"
-                  }
-                >
-                  <input
-                    value={valuePrompInput}
-                    type="text"
-                    className={cl("input")}
-                    placeholder="Nhập tên món ăn..."
-                    onChange={(e) => {
-                      handleSearch(e);
-                      setValuePrompInput(e.target.value);
-                    }}
-                  />
-                  <Toolip
-                    place="bottom-end"
-                    content="Tìm kiếm"
-                    className="tippy-search"
-                  >
-                    <div
-                      className={cl("icon") + " flex"}
-                      onClick={handleToResult}
-                    >
-                      <IconSearch fill="currentcolor" width={20} height={20} />
-                    </div>
-                  </Toolip>
-                </div>
-              </Tippy>
-            </div>
+            <Search headerWrapperElement={headerWrapperRef.current} />
           </div>
         </Row>
       </Container>

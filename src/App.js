@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import styles from "App.module.scss";
 import GlobalStyle from "GlobalStyle";
-import LayoutDefault from "Layout/LayoutDefault";
+// import LayoutDefault from "Layout/LayoutDefault";
 import { routes } from "Routers";
 
 const cl = classNames.bind(styles);

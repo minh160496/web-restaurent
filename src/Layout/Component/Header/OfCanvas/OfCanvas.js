@@ -6,6 +6,7 @@ import styles from "./OfCanvas.module.scss";
 import { listBodyItem, listFootItem } from "./list";
 import logo from "src/assets/img/logo.webp";
 import Img from "Component/Img";
+import { ReactComponent as IconPlus } from "@/assets/icon/plus.svg";
 
 const cl = classNames.bind(styles);
 export default function OfCanvas() {
@@ -20,10 +21,17 @@ export default function OfCanvas() {
       <div className={cl("ofcanvas__body")}>
         <ul>
           {listBodyItem.map((item, index) => (
-            <li>
-              <Link key={index}>
-                <div className={cl("ofcanvas__body__item")}>
+            <li key={index}>
+              <Link className="block">
+                <div
+                  className={
+                    cl("ofcanvas__body__item") + " flex justify-between"
+                  }
+                >
                   <h2 className={cl("item__title")}>{item.fiel}</h2>
+                  <div className={cl("item__icon")}>
+                    <IconPlus fill="currentcolor" />
+                  </div>
                 </div>
               </Link>
             </li>
@@ -33,15 +41,15 @@ export default function OfCanvas() {
 
       <div className={cl("ofcanvas__footer")}>
         <ul>
-          <li>
-            {listFootItem.map((item, index) => (
-              <Link key={index}>
+          {listFootItem.map((item, index) => (
+            <li key={index}>
+              <Link key={index} className="block">
                 <div className={cl("ofcanvas__footer__item")}>
                   <h2 className={cl("item__title")}>{item.fiel}</h2>
                 </div>
               </Link>
-            ))}
-          </li>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

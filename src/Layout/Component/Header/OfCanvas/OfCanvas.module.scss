@@ -1,0 +1,51 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.ofcanvas {
+  max-width: 250px;
+  height: 100%;
+  background-color: $bg-primary-blur;
+  color: $color-text-primary;
+  font-size: $font-sm;
+  h2 {
+    font-size: inherit;
+    line-height: 35px;
+    margin-bottom: 0;
+  }
+}
+
+.ofcanvas__header {
+  padding: 20px 0;
+  border-bottom: 1px solid $color-text-primary;
+}
+
+.ofcanvas-logo {
+  width: 172px;
+}
+
+.ofcanvas__body,
+.ofcanvas__footer {
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      padding-right: 12px;
+      padding-left: 12px;
+    }
+  }
+}
+
+.ofcanvas__footer {
+  h2 {
+    color: $color-primary;
+    font-weight: 700;
+  }
+}
+
+.ofcanvas__body__item {
+}
+
+.ofcanvas__footer {
+}
+
+.ofcanvas__footer__item {
+}

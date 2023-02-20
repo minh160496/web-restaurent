@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import img from "assets/img/default.png";
 
 export default function Img({
@@ -6,6 +8,7 @@ export default function Img({
   alt = "image",
   className,
   width = 20,
+  minWidth = "auto",
   heigh = 20,
   color = "#fff",
   fit = "cover",
@@ -17,7 +20,13 @@ export default function Img({
   return (
     <img
       className={className}
-      style={{ width: width, height: heigh, color: color, objectFit: fit }}
+      style={{
+        width: width,
+        minWidth: minWidth,
+        height: heigh,
+        color: color,
+        objectFit: fit,
+      }}
       src={src}
       alt={alt}
       onError={handleFix}
@@ -25,3 +34,10 @@ export default function Img({
     />
   );
 }
+
+Img.propTypes = {
+  src: PropTypes.string,
+  className: PropTypes.string,
+  color: PropTypes.string,
+  fit: PropTypes.string,
+};

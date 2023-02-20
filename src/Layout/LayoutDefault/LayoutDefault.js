@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Header from "Layout/Component/Header";
 import Footer from "Layout/Component/Footer";
@@ -16,3 +17,8 @@ export default function LayoutDefault({ children, navigator }) {
     </div>
   );
 }
+
+Navigator.propTypes = {
+  children: PropTypes.node,
+  navigator: PropTypes.bool,
+};
