@@ -1,9 +1,11 @@
 import React from "react";
 import classNames from "classnames/bind";
-
-import styles from "./Header.module.scss";
-import Img from "Component/Img";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
+import Img from "Component/Img";
+
+import styles from "@/Layout/Component/Header/History/History.module.scss";
 
 const cl = classNames.bind(styles);
 export default function History({ data }) {
@@ -42,8 +44,13 @@ export default function History({ data }) {
         ))}
       </div>
       <div className={cl("history__foot")}>
-        <span>Xem tất cả</span>
+        {data.length > 0 && <span>Xem tất cả</span>}
+        {data.length === 0 && <span>Không có kết quả nào</span>}
       </div>
     </div>
   );
 }
+
+History.propTypes = {
+  data: PropTypes.array,
+};

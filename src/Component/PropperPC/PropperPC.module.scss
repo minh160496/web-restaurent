@@ -1,0 +1,21 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.tippy-PC {
+  div[data-state] {
+    border-radius: $br-rad-xl;
+  }
+}
+
+.hiddenOnMobile {
+  div[data-tippy-root] {
+    display: none;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .hiddenOnMobile {
+    div[data-tippy-root] {
+      display: block;
+    }
+  }
+}

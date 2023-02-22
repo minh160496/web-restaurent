@@ -1,0 +1,53 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.header__navbar__item {
+  padding-left: 16px;
+}
+
+.bag-number {
+  background-color: $color-primary;
+  display: grid;
+  place-content: center;
+  color: $color-text-primary;
+  font-size: $font-min;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  top: -3px;
+  left: 28px;
+}
+
+.icon {
+  color: $color-text-primary;
+  cursor: pointer;
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.icon-user::after {
+  @extend %pseudo-element;
+}
+
+.form-user {
+  padding-top: 8px;
+  padding-bottom: 10px;
+}
+
+.btn-user {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 10px 0;
+  & + .btn-user {
+    margin-top: 12px;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .hidden-on-PC {
+    div[data-tippy-root] {
+      display: none;
+    }
+  }
+}

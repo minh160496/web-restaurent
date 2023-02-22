@@ -10,18 +10,23 @@ export default function MyButton({
   sizeXL,
   sizeMD,
   transparent,
+  className = "",
   floatLeft,
   children,
   onClick = () => {},
 }) {
   return (
     <div
-      className={cl("btn", {
-        sizeXL: !!sizeXL,
-        sizeMD: !!sizeMD,
-        transparent: !!transparent,
-        floatLeft: !!floatLeft,
-      })}
+      className={
+        cl("btn", {
+          sizeXL: !!sizeXL,
+          sizeMD: !!sizeMD,
+          transparent: !!transparent,
+          floatLeft: !!floatLeft,
+        }) +
+        " " +
+        className
+      }
       onClick={onClick}
     >
       {children}
@@ -30,6 +35,11 @@ export default function MyButton({
 }
 
 MyButton.propTypes = {
+  sizeXL: PropTypes.bool,
+  sizeMD: PropTypes.bool,
+  transparent: PropTypes.bool,
   children: PropTypes.node,
+  className: PropTypes.string,
+  floatLeft: PropTypes.bool,
   onclick: PropTypes.func,
 };

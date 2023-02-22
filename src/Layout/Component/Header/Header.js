@@ -1,28 +1,29 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import classnames from "classnames/bind";
 import { Container, Row } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
-import "./Tippy.scss";
-import { Offcanvas } from "react-bootstrap";
 
-import MyButton from "Component/MyButton";
-import BagNumber from "./BagNumber";
-import styles from "./Header.module.scss";
-import "./Tippy.scss";
 import Toolip from "Component/Toolip";
+import MyButton from "Component/MyButton";
 import OfCanvas from "./OfCanvas";
-import { ReactComponent as IconMenu } from "assets/icon/menu.svg";
-import { ReactComponent as IconSearch } from "assets/icon/search.svg";
-import { ReactComponent as IconBag } from "assets/icon/bag.svg";
-import { ReactComponent as IconMap } from "assets/icon/map.svg";
-import Search from "./Search";
-import Img from "Component/Img";
+import SearchMobile from "./SearchMobile/SearchMobile";
 import logo from "@/assets/img/logo.webp";
-import { listBodyItem } from "./OfCanvas";
-import { Link } from "react-router-dom";
+import Img from "Component/Img";
+import SearchPC from "./SearchPC/SearchPC";
+import Bag from "./Bag";
+import User from "./User";
 import { ReactComponent as IconArrowRight } from "src/assets/icon/arrowRight.svg";
 import { ReactComponent as IconArrowLeft } from "src/assets/icon/arrowLeft.svg";
+import { ReactComponent as IconMenu } from "assets/icon/menu.svg";
+import { ReactComponent as IconMap } from "assets/icon/map.svg";
+
+import { listBodyItem } from "./OfCanvas";
+
+import styles from "./Header.module.scss";
+import "./Tippy.scss";
 
 const cl = classnames.bind(styles);
 export default function Header() {
@@ -31,35 +32,63 @@ export default function Header() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const searchRef = useRef();
 
-  //logic ẩn hiện ô search
+  //gan elementDOM heaer-wrapper và truyền cho component search để xử lý thêm overflow cho nó
+  const headerWrapperRef = useRef();
+  const searchRef = useRef();
+  const [isMobile, setIsMobile] = useState(true);
   const [fixHeight, setFixHeight] = useState(true);
 
-  useEffect(() => {
-    window.addEventListener("resize", handleRemoveClickIconSearch);
-    searchRef.current.addEventListener("click", handleToggerInputSearch);
-  }, []);
-  const handleToggerInputSearch = () => {
+  //logic ẩn hiện ô search
+
+  const handleToggerInputSearchMobile = () => {
     if (window.innerWidth <= 992) {
       setFixHeight((prevFixHeight) => !prevFixHeight);
-      headerWrapperRef.current.style.overflow = "hidden";
     }
   };
+
+  //logic không hiện ô inout trước khi height header dãn ra
+  useEffect(() => {
+    let timeOut;
+    if (!fixHeight) {
+      timeOut = setTimeout(() => {
+        headerWrapperRef.current.style.overflow = "visible";
+      }, 100);
+    } else {
+      headerWrapperRef.current.style.overflow = "hidden";
+      window.clearTimeout(timeOut);
+    }
+  }, [fixHeight]);
 
   //xử lý remove onclick vào icon search hiện ô input
   const handleRemoveClickIconSearch = () => {
     if (window.innerWidth <= 992) {
-      searchRef.current.addEventListener("click", handleToggerInputSearch);
+      searchRef.current.addEventListener(
+        "click",
+        handleToggerInputSearchMobile
+      );
+      setIsMobile(true);
     } else {
-      searchRef.current.removeEventListener("click", handleToggerInputSearch);
+      searchRef.current.removeEventListener(
+        "click",
+        handleToggerInputSearchMobile
+      );
       setMarginUl(0);
+      setIsMobile(false);
     }
   };
 
   useEffect(() => {
+    window.addEventListener("resize", handleRemoveClickIconSearch);
+    searchRef.current.addEventListener("click", handleToggerInputSearchMobile);
+  }, []);
+
+  useEffect(() => {
     if (window.innerWidth >= 992) {
-      searchRef.current.removeEventListener("click", handleToggerInputSearch);
+      searchRef.current.removeEventListener(
+        "click",
+        handleToggerInputSearchMobile
+      );
     }
   }, []);
 
@@ -76,16 +105,18 @@ export default function Header() {
     }
   };
 
-  //gan elementDOM heaer-wrapper và truyền cho component search để xử lý thêm overflow cho nó
-  const headerWrapperRef = useRef();
   return (
     <header className={cl("header")}>
       <Container>
         <Row>
           <div
-            className={cl("wrapper", {
-              fixHeight: fixHeight ? true : false,
-            })}
+            className={cl(
+              "wrapper",
+              {
+                fixHeight: fixHeight ? true : false,
+              },
+              "visible-PC"
+            )}
             ref={headerWrapperRef}
           >
             <div className={cl("header__navbar") + " flex justify-between"}>
@@ -164,25 +195,21 @@ export default function Header() {
               <div className={cl("header__navbar-icon") + " flex align-center"}>
                 <div
                   ref={searchRef}
-                  className={cl("search", "header__navbar__item")}
+                  className={cl(
+                    "search",
+                    "header__navbar__item",
+                    "item__search"
+                  )}
                 >
-                  <div className={cl("icon")}>
-                    <IconSearch fill="currentcolor" width={20} height={20} />
-                  </div>
+                  <SearchPC />
                 </div>
 
-                <Toolip content="Giỏ hàng">
-                  <div
-                    className={
-                      cl("bag", "header__navbar__item") + " pos-relative"
-                    }
-                  >
-                    <div className={cl("icon")}>
-                      <IconBag fill="currentcolor" width={20} height={20} />
-                    </div>
-                    <BagNumber number={2} />
-                  </div>
-                </Toolip>
+                <div className={cl("item__bag")}>
+                  <Bag />
+                </div>
+                <div className={cl("item__user")}>
+                  <User />
+                </div>
 
                 <Toolip content="Hệ thống cửa hàng">
                   <div className={cl("map", "header__navbar__item")}>
@@ -203,7 +230,10 @@ export default function Header() {
               </div>
             </div>
 
-            <Search headerWrapperElement={headerWrapperRef.current} />
+            <SearchMobile
+              headerWrapperElement={headerWrapperRef.current}
+              isMobile={isMobile}
+            />
           </div>
         </Row>
       </Container>

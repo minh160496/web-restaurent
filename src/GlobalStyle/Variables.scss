@@ -26,3 +26,27 @@ $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
+
+%limited-line-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+%limited-line-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+%pseudo-element {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: -5px;
+  right: 0;
+  height: 60px;
+  background-color: transparent;
+}

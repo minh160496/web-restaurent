@@ -1,0 +1,89 @@
+@import "src/GlobalStyle/Variables.scss";
+$color-border: #e8e8e8;
+
+.history {
+  background-color: $color-text-primary;
+  color: $color-text-dark;
+  &__title {
+    display: inline-block;
+    margin-bottom: 12px;
+    border-bottom: 1px solid $color-text-dark;
+    font-size: $font-sm;
+    font-weight: 700;
+    padding: 2px 0;
+  }
+}
+
+.history__body {
+  max-height: 50vh;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+/* Define the scrollbar track */
+.history__body::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.history__body::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+.history__body::-webkit-scrollbar-thumb {
+  background: $color-primary;
+  border-radius: 10px;
+}
+
+.history__body__item {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.history__body__item:hover {
+  background-color: #f6f6f6;
+}
+
+.item__img {
+  min-width: 60px;
+  margin-right: 12px;
+}
+
+.item__inf {
+  h3 {
+    font-size: $font-sm;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .inf__price {
+    color: $color-emphasize;
+    font-weight: 500;
+  }
+
+  .price {
+    margin-right: 6px;
+  }
+
+  .old-price {
+    color: #818080;
+    text-decoration: line-through;
+  }
+}
+
+.history__foot {
+  padding-top: 8px;
+  font-weight: 500;
+  font-size: $font-sm;
+  text-align: center;
+  cursor: pointer;
+  transition: color ease 0.2s;
+  border-top: 0.5px solid $color-border;
+  &:hover {
+    color: $color-primary;
+  }
+}

@@ -1,9 +1,10 @@
 import React from "react";
 import classNames from "classnames/bind";
 
-import styles from "./Logo.module.scss";
 import Img from "Component/Img";
 import logo from "src/assets/img/logo.webp";
+
+import styles from "./Logo.module.scss";
 
 const cl = classNames.bind(styles);
 export default function Logo() {

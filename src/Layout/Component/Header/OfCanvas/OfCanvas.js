@@ -2,11 +2,12 @@ import React from "react";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 
-import styles from "./OfCanvas.module.scss";
 import { listBodyItem, listFootItem } from "./list";
 import logo from "src/assets/img/logo.webp";
 import Img from "Component/Img";
 import { ReactComponent as IconPlus } from "@/assets/icon/plus.svg";
+
+import styles from "./OfCanvas.module.scss";
 
 const cl = classNames.bind(styles);
 export default function OfCanvas() {

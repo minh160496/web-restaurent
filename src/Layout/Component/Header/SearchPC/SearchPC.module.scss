@@ -1,0 +1,33 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.form-search-pc {
+  padding: 6px 8px;
+
+  div[data-tippy-root] {
+    position: relative !important;
+    // transform: unset !important;
+    transform: translate(-17px, 10px) !important;
+    & > div {
+      box-shadow: none;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+}
+
+.form-search__title {
+  border-bottom: 0.5px solid #e3e3e3;
+}
+
+.icon {
+  cursor: pointer;
+  transition: color ease 0.2s;
+  position: relative;
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.icon-search::after {
+  @extend %pseudo-element;
+}

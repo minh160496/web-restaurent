@@ -1,22 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
 import classnames from "classnames/bind";
 import Tippy from "@tippyjs/react";
+import PropTypes from "prop-types";
 
-import Toolip from "Component/Toolip";
-import { useDebounce } from "hook";
-import History from "./History";
-import { ReactComponent as IconSearch } from "assets/icon/search.svg";
-import styles from "./Header.module.scss";
+import History from "../History/History";
+import InputSearch from "Component/Input/Input";
+
 import { getAPIHistory } from "apiServices/apiHistory";
+import { useDebounce } from "hook";
+
+import styles from "@/Layout/Component/Header/Header.module.scss";
 
 const cl = classnames.bind(styles);
-export default function Search({ headerWrapperElement }) {
-  useEffect(() => {
-    window.addEventListener("resize", handleSearhHistoryMobile);
-  }, []);
+export default function SearchMobile({ headerWrapperElement, isMobile }) {
+  const [data, setData] = useState([]);
+  const [isPromted, setIsPromted] = useState(false);
 
   //getApi
-  const [data, setData] = useState([]);
   useEffect(() => {
     async function fetchData() {
       const data = await getAPIHistory();
@@ -28,30 +28,26 @@ export default function Search({ headerWrapperElement }) {
 
   //logic khi promptInput search
   const handlePromtInput = (e) => {
-    handleSearch(e);
-    setValuePrompInput(e.target.value);
-    e.target.value === " " && setValuePrompInput("");
+    handleSearchMobile(e);
+    const valueInput = e.target.value;
+    setValuePrompInput(valueInput);
+    valueInput === " " && setValuePrompInput("");
     headerWrapperElement.style.overflow = "visible";
+    if (valueInput.trim()) {
+      setIsPromted(true);
+    } else {
+      setIsPromted(false);
+    }
   };
 
   //logic tim kiem
   const [result, setResult] = useState([]);
 
-  const tippyHistoryRef = useRef();
-
-  const handleSearhHistoryMobile = () => {
-    if (window.innerWidth >= 992 && tippyHistoryRef.current) {
-      tippyHistoryRef.current.style.display = "none";
-    } else {
-      tippyHistoryRef.current.style.display = "block";
-    }
-  };
-
-  const handleSearch = useDebounce((e) => {
+  const handleSearchMobile = useDebounce((e) => {
     //dùng kỹ thuật debounce
     const text = e.target.value.trim().toLowerCase();
     if (text) {
-      const result = data.filter((item, index) =>
+      const result = data.filter((item) =>
         item.name.toLowerCase().includes(text)
       );
       setResult(result);
@@ -64,15 +60,16 @@ export default function Search({ headerWrapperElement }) {
   const [valuePrompInput, setValuePrompInput] = useState("");
   const handleHiddenPropper = () => {
     setResult([]);
+    setIsPromted(false);
     setValuePrompInput("");
   };
 
   //ham xu ly logic khi click vao o search di den trang chi tiet san pham tim kiem
   const handleToResult = () => {};
   return (
-    <div className="tippy-history pos-relative" ref={tippyHistoryRef}>
+    <div className="tippy-history pos-relative">
       <Tippy
-        visible={result.length > 0}
+        visible={isPromted && isMobile}
         interactive //cho phép select nội dung bên trong
         placement="auto-start"
         content={<History data={result} />}
@@ -81,29 +78,20 @@ export default function Search({ headerWrapperElement }) {
         offset={[0, 10]}
         onClickOutside={handleHiddenPropper}
       >
-        <div
+        <InputSearch
           className={
             cl("header__input-search") + " width-full flex align-center"
           }
-        >
-          <input
-            value={valuePrompInput}
-            type="text"
-            className={cl("input")}
-            placeholder="Nhập tên món ăn..."
-            onChange={handlePromtInput}
-          />
-          <Toolip
-            place="bottom-end"
-            content="Tìm kiếm"
-            className="tippy-search"
-          >
-            <div className={cl("icon") + " flex"} onClick={handleToResult}>
-              <IconSearch fill="currentcolor" width={20} height={20} />
-            </div>
-          </Toolip>
-        </div>
+          value={valuePrompInput}
+          placeholder="Nhập tên món ăn..."
+          onChange={handlePromtInput}
+          onClick={handleToResult}
+        />
       </Tippy>
     </div>
   );
 }
+
+SearchMobile.propTypes = {
+  headerWrapperElement: PropTypes.object,
+};

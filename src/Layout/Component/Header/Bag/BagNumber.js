@@ -1,7 +1,8 @@
 import React from "react";
 import classNames from "classnames/bind";
+import PropTypes from "prop-types";
 
-import styles from "./Header.module.scss";
+import styles from "@/Layout/Component/Header/Bag/Bag.module.scss";
 
 const cl = classNames.bind(styles);
 export default function BagNumber({ number }) {
@@ -11,3 +12,7 @@ export default function BagNumber({ number }) {
     </div>
   );
 }
+
+BagNumber.propTypes = {
+  number: PropTypes.number,
+};

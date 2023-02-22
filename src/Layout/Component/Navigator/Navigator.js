@@ -1,8 +1,8 @@
 import React from "react";
+import classNames from "classnames/bind";
 import { Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-import classNames from "classnames/bind";
 import styles from "./Navigator.module.scss";
 
 const cl = classNames.bind(styles);

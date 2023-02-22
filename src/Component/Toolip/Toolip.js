@@ -1,6 +1,7 @@
 import React from "react";
 import Tippy from "@tippyjs/react";
 import PropTypes from "prop-types";
+
 import "tippy.js/themes/light.css";
 
 export default function Toolip({
