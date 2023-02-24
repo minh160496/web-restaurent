@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import classnames from "classnames/bind";
 import Tippy from "@tippyjs/react";
 import PropTypes from "prop-types";
@@ -14,12 +14,22 @@ export default function PropperPC({
   isMobileHidden,
   onClickOutSide = () => {},
 }) {
+  const timeOutShow = useRef(null);
+  const timeOutHidden = useRef(null);
   const [hasMouseOver, setHasMouseOver] = useState(false);
   const handleShowPropper = () => {
-    setHasMouseOver(true);
+    window.clearTimeout(timeOutHidden.current);
+    //xủ lý delay thời gian ẩn, hiện proper để ngừời dùng đẽ dang thao tác
+    timeOutShow.current = setTimeout(() => {
+      setHasMouseOver(true);
+    }, 300);
   };
   const handleHiddenPropper = () => {
-    setHasMouseOver(false);
+    window.clearTimeout(timeOutShow);
+    //xủ lý delay thời gian ẩn, hiện proper để ngừời dùng đẽ dang thao tác
+    timeOutHidden.current = setTimeout(() => {
+      setHasMouseOver(false);
+    }, 300);
   };
 
   return (

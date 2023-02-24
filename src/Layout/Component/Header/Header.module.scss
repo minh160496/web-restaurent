@@ -79,6 +79,15 @@
     height: 83px;
   }
 
+  .header.opacity-PC {
+    background-color: #143b368f;
+  }
+
+  .header.relative-z2-PC {
+    position: relative;
+    z-index: 2;
+  }
+
   .navbar-wrapper-text-PC {
     display: block;
   }

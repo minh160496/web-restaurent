@@ -106,7 +106,7 @@ export default function Header() {
   };
 
   return (
-    <header className={cl("header")}>
+    <header className={cl("header", "opacity-PC", "relative-z2-PC")}>
       <Container>
         <Row>
           <div
