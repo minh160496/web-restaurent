@@ -4,7 +4,7 @@
   max-width: 100%;
   background-color: $bg-primary-blur;
   position: relative;
-  transform: translatey(0);
+  transform: translateY(0);
 }
 
 .slider__img {
@@ -92,6 +92,6 @@
 
 @media (min-width: $breakpoint-lg) {
   .section-slider {
-    transform: translatey(-83px);
+    margin-top: -83px;
   }
 }

@@ -1,0 +1,42 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.group-address {
+  margin-top: 10px;
+}
+
+.group-address__title {
+  h3 {
+    font-size: $font-md;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+}
+
+.group-address__body {
+  margin-bottom: 16px;
+}
+
+.body__item {
+  .title {
+    font-weight: 600;
+  }
+  .detail {
+    color: $color-primary;
+    cursor: pointer;
+  }
+}
+
+.body__item {
+  font-size: $font-sm;
+  margin-bottom: 5px;
+}
+
+.group-address__button {
+  .btn {
+    display: grid;
+    place-content: center;
+    width: 150px;
+    height: 40px;
+  }
+  margin-bottom: 20px;
+}

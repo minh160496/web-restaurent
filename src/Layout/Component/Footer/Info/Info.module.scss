@@ -1,0 +1,19 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.logo {
+  width: 172px;
+  height: 77px;
+}
+
+.description {
+  margin-top: 10px;
+  color: $color-text-primary;
+  font-size: $font-sm;
+  text-align: justify;
+}
+
+@media (min-width: $breakpoint-md) {
+  .description {
+    padding-right: 24px;
+  }
+}

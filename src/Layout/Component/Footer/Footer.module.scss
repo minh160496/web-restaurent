@@ -1,7 +1,17 @@
-// .footer {
-//   background-color: rgb(108, 108, 247);
-// }
+@import "src/GlobalStyle/Variables.scss";
 
-// .footer div {
-//   background-color: rgb(229, 145, 145);
-// }
+.footer__mid {
+  background-color: $bg-primary-blur;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: $color-text-primary;
+}
+
+.footer__end {
+  background-color: $bg-primary;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: $color-text-primary;
+  font-size: $font-sm;
+  text-align: center;
+}

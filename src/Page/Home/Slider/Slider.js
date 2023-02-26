@@ -39,7 +39,7 @@ export default function Slider() {
         <div className={cl("desc-wrapper")}>
           <motion.div
             className={cl("box") + " box"}
-            initial={{ opacity: 0, translateX: "-300%" }}
+            initial={{ opacity: 0, translateX: "-100vw" }}
             animate={{ opacity: 1, translateX: 0 }}
             transition={{
               default: {
@@ -55,7 +55,7 @@ export default function Slider() {
 
           <motion.div
             className="box"
-            initial={{ opacity: 0, translateX: "300%" }}
+            initial={{ opacity: 0, translateX: "100vw" }}
             animate={{ opacity: 1, translateX: 0 }}
             transition={{
               default: {
