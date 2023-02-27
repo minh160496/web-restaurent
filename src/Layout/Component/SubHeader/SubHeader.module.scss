@@ -1,0 +1,23 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.sub-header {
+  background-color: $color-dark;
+  margin-bottom: 40px;
+}
+
+.sub-header-content {
+  color: $color-text-primary;
+  font-size: $font-sm;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  li:last-child {
+    color: $color-primary;
+  }
+}
+
+.icon {
+  color: $color-text-primary;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+}

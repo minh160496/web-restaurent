@@ -35,3 +35,5 @@
 6. Tạo file apiServices để lấy các api của từng component sử dụng các method từ request
 
 7. Responsive: Lắng nghe sự kiện onsize của window nếu window.innerWidth >= 992 thì hủy sự kiện click vào iconsearch đã gán trước đó nếu <= 992 thì lại lắng nghe lại
+
+8. Tạo Component dropdown trong menu để làm menu đa cấp

@@ -9,7 +9,7 @@ const cl = classNames.bind(styles);
 export default function Home() {
   return (
     <div className={cl("home")}>
-      <LayoutDefault>
+      <LayoutDefault homePage>
         <main className="home">
           <Slider />
         </main>

@@ -12,6 +12,8 @@ export default function PropperPC({
   visible = true,
   mouseOver,
   isMobileHidden,
+  dropDown = false,
+  theme = "light",
   onClickOutSide = () => {},
 }) {
   const timeOutShow = useRef(null);
@@ -42,12 +44,12 @@ export default function PropperPC({
     >
       <Tippy
         visible={mouseOver ? hasMouseOver : visible}
-        placement="top-end"
+        placement={!dropDown ? "top-end" : "auto"}
         interactive //cho phép select nội dung bên trong
         content={content}
         arrow={false}
-        theme="light"
-        offset={[10, 20]}
+        theme={theme}
+        offset={!dropDown ? [10, 20] : [0, 0]}
         onClickOutside={onClickOutSide}
       >
         <div className={cl("propper-PC-wrapper")}>{children}</div>
@@ -62,5 +64,7 @@ PropperPC.propTypes = {
   visible: PropTypes.bool,
   mouseOver: PropTypes.bool,
   isMobileHidden: PropTypes.bool,
+  dropDown: PropTypes.bool,
+  theme: PropTypes.string,
   onClickOutSide: PropTypes.func,
 };

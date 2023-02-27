@@ -3,6 +3,7 @@ import classnames from "classnames/bind";
 import { Container, Row } from "react-bootstrap";
 import { Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 
@@ -15,18 +16,18 @@ import Img from "Component/Img";
 import SearchPC from "./SearchPC/SearchPC";
 import Bag from "./Bag";
 import User from "./User";
+import DropDown from "./DropDown/DropDown";
 import { ReactComponent as IconArrowRight } from "src/assets/icon/arrowRight.svg";
 import { ReactComponent as IconArrowLeft } from "src/assets/icon/arrowLeft.svg";
 import { ReactComponent as IconMenu } from "assets/icon/menu.svg";
 import { ReactComponent as IconMap } from "assets/icon/map.svg";
-
 import { listBodyItem } from "./OfCanvas";
 
 import styles from "./Header.module.scss";
 import "./Tippy.scss";
 
 const cl = classnames.bind(styles);
-export default function Header() {
+export default function Header({ homePage }) {
   //logic của offcanvas
   const [show, setShow] = useState(false);
 
@@ -63,16 +64,20 @@ export default function Header() {
   //xử lý remove onclick vào icon search hiện ô input
   const handleRemoveClickIconSearch = () => {
     if (window.innerWidth <= 992) {
-      searchRef.current.addEventListener(
-        "click",
-        handleToggerInputSearchMobile
-      );
+      if (searchRef.current) {
+        searchRef.current.addEventListener(
+          "click",
+          handleToggerInputSearchMobile
+        );
+      }
       setIsMobile(true);
     } else {
-      searchRef.current.removeEventListener(
-        "click",
-        handleToggerInputSearchMobile
-      );
+      if (searchRef.current) {
+        searchRef.current.removeEventListener(
+          "click",
+          handleToggerInputSearchMobile
+        );
+      }
       setMarginUl(0);
       setIsMobile(false);
     }
@@ -106,7 +111,13 @@ export default function Header() {
   };
 
   return (
-    <header className={cl("header", "opacity-PC", "relative-z2-PC")}>
+    <header
+      className={cl(
+        "header",
+        { opacityPC: homePage ? true : false },
+        "relative-z2-PC"
+      )}
+    >
       <Container>
         <Row>
           <div
@@ -155,11 +166,16 @@ export default function Header() {
                     >
                       {listBodyItem.map((item, index) => (
                         <li key={index}>
-                          <Link to="/">
-                            <h3 className={cl("navbar__item__title")}>
-                              {item.fiel}
-                            </h3>
-                          </Link>
+                          {!item.child && (
+                            <Link to="/list">
+                              <h3 className={cl("navbar__item__title")}>
+                                {item.fiel}
+                              </h3>
+                            </Link>
+                          )}
+                          {item.child && (
+                            <DropDown name={item.fiel} childList={item.child} />
+                          )}
                         </li>
                       ))}
                     </ul>
@@ -240,3 +256,7 @@ export default function Header() {
     </header>
   );
 }
+
+Header.propTypes = {
+  homePage: PropTypes.bool,
+};

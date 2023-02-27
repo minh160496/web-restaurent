@@ -1,0 +1,14 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.dropdown {
+  cursor: pointer;
+}
+
+.dropdown-1 {
+  &:hover {
+    color: $color-primary;
+  }
+  h3 {
+    padding-right: 4px;
+  }
+}

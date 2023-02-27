@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 
 import Header from "Layout/Component/Header";
 import Footer from "Layout/Component/Footer";
-import Navigator from "Layout/Component/Navigator";
+import Navigator from "Layout/Component/SubHeader";
 import Logo from "Layout/Component/Logo";
 
-export default function LayoutDefault({ children, navigator }) {
+export default function LayoutDefault({ children, navigator, homePage }) {
   return (
     <div>
       <Logo />
-      <Header />
+      <Header homePage={homePage} />
       {navigator && <Navigator>detail</Navigator>}
       {children}
       <Footer />

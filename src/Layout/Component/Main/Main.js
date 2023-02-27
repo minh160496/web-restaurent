@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import classNames from "classnames/bind";
 import { Container, Row } from "react-bootstrap";
 
-import styles from "./Main.module.scss";
 import { LayoutContext } from "Layout/LayoutNavBar";
+import Navigator from "@/Layout/Component/Navigator";
+
+import styles from "./Main.module.scss";
 
 const cl = classNames.bind(styles);
 export default function Main({ children }) {
@@ -20,7 +22,7 @@ export default function Main({ children }) {
                   : cl("navbar") + " col-3"
               }
             >
-              Navbar
+              <Navigator />
             </div>
             <div className={cl("content") + " col-9"}>{children}</div>
           </Row>
