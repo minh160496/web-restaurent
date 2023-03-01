@@ -9,6 +9,7 @@
   transition: height ease 0.2s;
   height: 103px;
   background-color: $bg-primary;
+  position: relative;
 }
 
 .wrapper.fixHeight {
@@ -43,11 +44,6 @@
   display: none;
 }
 
-//offcanvas
-.ofcanvas {
-  max-width: 250px;
-}
-
 //phần search
 .item__search {
   div[data-tippy-root] {
@@ -75,7 +71,20 @@
   }
 }
 
+//phần dropdown
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
 @media (min-width: $breakpoint-lg) {
+  .visible-PC {
+    overflow: visible !important;
+  }
+
   .header .wrapper {
     background-color: transparent;
     display: flex;
@@ -124,12 +133,13 @@
     h3 {
       font-size: inherit;
       font-weight: 600;
+      white-space: nowrap;
     }
 
     a {
       display: inline-block;
-      padding-left: 12px;
-      padding-right: 12px;
+      padding-left: 16px;
+      padding-right: 16px;
     }
   }
 
@@ -137,32 +147,19 @@
     display: none;
   }
 
-  .navbar__item__arrow {
-    top: 0;
-    left: calc(100% + 14px);
-    .arrow {
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-    }
+  .header__navbar__item.menu-list-pc {
+    position: relative;
   }
 }
 
 @media (min-width: $breakpoint-lg) and (max-width: $breakpoint-xl) {
   .wrapper-navbarPC {
     width: 465px;
-    overflow: hidden;
+    overflow-x: clip;
+    line-height: 100%;
     ul {
       width: 900px;
       transition: margin ease 0.4s;
     }
-  }
-
-  .header__navbar__item.menu-list-pc {
-    position: relative;
-  }
-
-  .visible-PC {
-    overflow: visible !important;
   }
 }

@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import NavigatorItemWrapper from "./NavigatorItemWrapper";
 import { ReactComponent as IconPlus } from "@/assets/icon/plus.svg";
 
-import { listBodyItem } from "@/Layout/Component/Header/OfCanvas";
+import { listBodyItem } from "Layout/Component/Header/OffCanvas";
 
 import styles from "./Navigator.module.scss";
 import { Link } from "react-router-dom";

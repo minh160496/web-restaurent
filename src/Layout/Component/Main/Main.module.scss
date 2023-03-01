@@ -1,13 +1,65 @@
+@import "src/GlobalStyle/Variables.scss";
+
 .navbar {
   display: none;
+  margin-right: 10px;
 }
 
 .navbar.navbar-right {
   order: 1;
 }
 
+.main-fixed {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  transform: translateX(260px);
+  transition: all ease 0.4s;
+  .navbar-fixed {
+    width: 260px;
+    opacity: 0;
+    height: 100%;
+    transition: opacity ease 0.4s;
+  }
+}
+
+.main-fixed.show {
+  display: block;
+  transform: translateX(0);
+  .navbar-fixed {
+    opacity: 1;
+  }
+}
+
+//iconfilter
+.icon-filter-wrapper {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 40px;
+  width: 40px;
+  color: $color-text-primary;
+  background-color: $color-primary;
+  box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+  border-radius: $br-rad-md;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
 @media (min-width: 998px) {
   .navbar {
     display: block;
+  }
+
+  .main-fixed {
+    display: none;
+  }
+
+  .main-fixed.show {
+    display: none;
   }
 }

@@ -37,3 +37,5 @@
 7. Responsive: Lắng nghe sự kiện onsize của window nếu window.innerWidth >= 992 thì hủy sự kiện click vào iconsearch đã gán trước đó nếu <= 992 thì lại lắng nghe lại
 
 8. Tạo Component dropdown trong menu để làm menu đa cấp
+
+9. overflow-x:clip (chỉ set overflow cho chiều ngang, chiều dọc bình thường)

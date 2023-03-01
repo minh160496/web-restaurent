@@ -1,44 +1,41 @@
 import React, { useState, useRef, useEffect } from "react";
 import classnames from "classnames/bind";
-import { Container, Row } from "react-bootstrap";
-import { Offcanvas } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { Container, Row } from "react-bootstrap";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 
 import Toolip from "Component/Toolip";
 import MyButton from "Component/MyButton";
-import OfCanvas from "./OfCanvas";
+import OffCanvas from "./OffCanvas";
 import SearchMobile from "./SearchMobile/SearchMobile";
 import logo from "@/assets/img/logo.webp";
 import Img from "Component/Img";
 import SearchPC from "./SearchPC/SearchPC";
 import Bag from "./Bag";
 import User from "./User";
-import DropDown from "./DropDown/DropDown";
-import { ReactComponent as IconArrowRight } from "src/assets/icon/arrowRight.svg";
-import { ReactComponent as IconArrowLeft } from "src/assets/icon/arrowLeft.svg";
-import { ReactComponent as IconMenu } from "assets/icon/menu.svg";
+import NavBarItemHasDrop from "./NavBarItemHasDrop";
+import ScrollX from "./ScrollX";
 import { ReactComponent as IconMap } from "assets/icon/map.svg";
-import { listBodyItem } from "./OfCanvas";
+import { listBodyItem } from "./OffCanvas";
+import DropDown from "./DropDown";
 
 import styles from "./Header.module.scss";
 import "./Tippy.scss";
 
 const cl = classnames.bind(styles);
 export default function Header({ homePage }) {
-  //logic của offcanvas
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   //gan elementDOM heaer-wrapper và truyền cho component search để xử lý thêm overflow cho nó
   const headerWrapperRef = useRef();
   const searchRef = useRef();
   const [isMobile, setIsMobile] = useState(true);
   const [fixHeight, setFixHeight] = useState(true);
+  const [arrowFade, setArrowFade] = useState(false);
+  const [hasDrop, setHasDrop] = useState(false);
+  const [drop, setDrop] = useState(null);
+  const ulRef = useRef(null);
+  const wrapperNavBarPCRef = useRef(null);
 
   //logic ẩn hiện ô search
 
@@ -105,9 +102,27 @@ export default function Header({ homePage }) {
     }
   };
   const handleFadeRight = () => {
-    if (marginUl > -204) {
+    if (marginUl > -250) {
       setMarginUl((prev) => prev - 102);
     }
+  };
+
+  const handleArrowHeader = () => {
+    if (wrapperNavBarPCRef.current.clientWidth >= ulRef.current.clientWidth) {
+      setArrowFade(false);
+    } else {
+      setArrowFade(true);
+    }
+  };
+
+  useEffect(() => {
+    handleArrowHeader();
+    window.addEventListener("resize", handleArrowHeader);
+    return () => window.removeEventListener("resize", handleArrowHeader);
+  }, []);
+
+  const handeFadeDrop = (id) => {
+    setDrop(id);
   };
 
   return (
@@ -132,24 +147,8 @@ export default function Header({ homePage }) {
           >
             <div className={cl("header__navbar") + " flex justify-between"}>
               <div className={cl("header__navbar-text")}>
-                <div className={cl("navbar-wrapper-menu")}>
-                  <MyButton
-                    transparent
-                    onClick={handleShow}
-                    floatLeft
-                    className={cl("menu")}
-                  >
-                    <IconMenu fill="currentcolor" width={20} height={20} />
-                  </MyButton>
+                <OffCanvas />
 
-                  <Offcanvas
-                    show={show}
-                    onHide={handleClose}
-                    className={cl("ofcanvas")}
-                  >
-                    <OfCanvas />
-                  </Offcanvas>
-                </div>
                 <div className={cl("header__navbar__item", "logo")}>
                   <Img src={logo} width="100%" heigh="auto" minWidth="130px" />
                 </div>
@@ -159,8 +158,12 @@ export default function Header({ homePage }) {
                     " flex align-center"
                   }
                 >
-                  <div className={cl("wrapper-navbarPC")}>
+                  <div
+                    className={cl("wrapper-navbarPC")}
+                    ref={wrapperNavBarPCRef}
+                  >
                     <ul
+                      ref={ulRef}
                       className="flex align-center"
                       style={{ marginLeft: marginUl }}
                     >
@@ -174,37 +177,26 @@ export default function Header({ homePage }) {
                             </Link>
                           )}
                           {item.child && (
-                            <DropDown name={item.fiel} childList={item.child} />
+                            <NavBarItemHasDrop
+                              name={item.fiel}
+                              hasMouseOver={hasDrop}
+                              onMouseOver={() => {
+                                setHasDrop(true);
+                                handeFadeDrop(item.id);
+                              }}
+                              onMouseOut={() => setHasDrop(false)}
+                            />
                           )}
                         </li>
                       ))}
                     </ul>
-                    <div
-                      className={
-                        cl("navbar__item__arrow") + " flex pos-absolute"
-                      }
-                    >
-                      <div
-                        className={cl("arrow", "arrow-left", "icon")}
-                        onClick={handleFadeLeft}
-                      >
-                        <IconArrowLeft
-                          fill="currentcolor"
-                          width={20}
-                          height={20}
-                        />
-                      </div>
-                      <div
-                        className={cl("arrow", "arrow-right", "icon")}
-                        onClick={handleFadeRight}
-                      >
-                        <IconArrowRight
-                          fill="currentcolor"
-                          with={20}
-                          heigh={20}
-                        />
-                      </div>
-                    </div>
+
+                    {arrowFade && (
+                      <ScrollX
+                        onClickRight={handleFadeRight}
+                        onClickLeft={handleFadeLeft}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -245,6 +237,23 @@ export default function Header({ homePage }) {
                 </Toolip>
               </div>
             </div>
+
+            {hasDrop &&
+              listBodyItem
+                .filter((item) => item.child && item.id == drop)
+                .map((item, index) => (
+                  <div
+                    className={cl("dropdown")}
+                    key={index}
+                    onMouseOver={() => {
+                      setHasDrop(true);
+                      setDrop(item.id);
+                    }}
+                    onMouseOut={() => setHasDrop(false)}
+                  >
+                    <DropDown ID={item.id} />
+                  </div>
+                ))}
 
             <SearchMobile
               headerWrapperElement={headerWrapperRef.current}

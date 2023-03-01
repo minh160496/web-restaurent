@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 
 import MyButton from "Component/MyButton";
 
-import { listFootItem } from "@/Layout/Component/Header/OfCanvas";
+import { listFootItem } from "Layout/Component/Header/OffCanvas";
 
 import styles from "./User.module.scss";
 

@@ -1,0 +1,11 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.navbar__item__arrow {
+  top: 0;
+  left: calc(100% + 14px);
+  .arrow {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}

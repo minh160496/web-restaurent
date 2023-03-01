@@ -1,6 +1,6 @@
 @import "src/GlobalStyle/Variables.scss";
 
-.ofcanvas {
+.offcanvas {
   max-width: 250px;
   height: 100%;
   background-color: $bg-primary-blur;
@@ -41,11 +41,8 @@
   }
 }
 
-.ofcanvas__body__item {
-}
-
-.ofcanvas__footer {
-}
-
-.ofcanvas__footer__item {
+@media (min-width: $breakpoint-lg) {
+  .navbar-wrapper-offcanvas {
+    display: none;
+  }
 }

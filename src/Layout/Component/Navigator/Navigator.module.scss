@@ -1,7 +1,10 @@
 @import "src/GlobalStyle/Variables.scss";
 
 .navigator {
-  margin-right: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: $bg-primary-blur;
 }
 
 .nav__item + .nav__item {
