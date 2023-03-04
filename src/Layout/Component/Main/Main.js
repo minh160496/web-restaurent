@@ -4,6 +4,7 @@ import { Container, Row } from "react-bootstrap";
 
 import { LayoutContext } from "Layout/LayoutNavBar";
 import Navigator from "@/Layout/Component/Navigator";
+import NavOffCanvas from "Layout/Component/NavOffCanvas";
 import { ReactComponent as IconFilter } from "@/assets/icon/filter.svg";
 
 import styles from "./Main.module.scss";
@@ -29,20 +30,8 @@ export default function Main({ children }) {
             <div className={cl("content") + " col-9"}>{children}</div>
           </Row>
         </Container>
-        <div
-          className={cl("main-fixed", {
-            show: hasNavBarFix,
-          })}
-        >
-          <div
-            className={cl("icon-filter-wrapper")}
-            onClick={() => setHasNavBarFix(!hasNavBarFix)}
-          >
-            <IconFilter fill="currentcolor" />
-          </div>
-          <div className={cl("navbar-fixed")}>
-            <Navigator />
-          </div>
+        <div className={cl("main-fixed")}>
+          <NavOffCanvas />
         </div>
       </div>
     </main>

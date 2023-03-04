@@ -16,6 +16,11 @@
   height: 43px;
 }
 
+.header__navbar-text {
+  display: flex;
+  align-items: center;
+}
+
 .header__navbar-icon {
   color: $color-text-primary;
 }

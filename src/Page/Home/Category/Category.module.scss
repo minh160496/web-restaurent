@@ -1,0 +1,17 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.section-category {
+  background-color: $bg-primary;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.category__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category__content {
+  margin-top: 32px;
+}
