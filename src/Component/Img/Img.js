@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import img from "assets/img/default.png";
 
 export default function Img({
-  src = "https://bizweb.dktcdn.net/thumb/large/100/469/097/products/1bb2a25291b5542968dba015b4be31.jpg?v=1667882207000",
+  src = "https://bizweb.dktcdn.net/thumb/large/100/469/097/products/17ad3f36d9db047aa93f83dc10abc6.jpg?v=1667882482000",
   alt = "image",
   className,
   width = 20,

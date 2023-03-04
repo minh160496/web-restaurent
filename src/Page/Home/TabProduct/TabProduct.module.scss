@@ -1,0 +1,40 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.tab-product {
+  background-color: $bg-primary-blur;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  color: $color-text-primary;
+}
+
+.tab-product__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.tab-product__filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: $font-md;
+  font-weight: 500;
+  margin-bottom: 16px;
+  .filter__item {
+    border-radius: $br-rad-md;
+    border: 1px solid $color-text-primary;
+    padding: 6px 6px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    &.active {
+      background-color: $color-primary;
+      border-color: $color-primary;
+    }
+  }
+}
+
+.cart-wrapper {
+  margin-bottom: 30px;
+}

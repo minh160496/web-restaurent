@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useContext } from "react";
 import classnames from "classnames/bind";
 import Tippy from "@tippyjs/react";
 import PropTypes from "prop-types";
@@ -6,25 +6,15 @@ import PropTypes from "prop-types";
 import History from "../History/History";
 import InputSearch from "Component/Input/Input";
 
-import { getAPIHistory } from "apiServices/apiHistory";
+import { contextProducts } from "App";
 import { useDebounce } from "hook";
 
 import styles from "@/Layout/Component/Header/Header.module.scss";
 
 const cl = classnames.bind(styles);
 export default function SearchMobile({ headerWrapperElement, isMobile }) {
-  const [data, setData] = useState([]);
+  const data = useContext(contextProducts);
   const [isPromted, setIsPromted] = useState(false);
-
-  //getApi
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getAPIHistory();
-      setData(data);
-    }
-
-    fetchData();
-  }, []);
 
   //logic khi promptInput search
   const handlePromtInput = (e) => {
@@ -67,7 +57,7 @@ export default function SearchMobile({ headerWrapperElement, isMobile }) {
   //ham xu ly logic khi click vao o search di den trang chi tiet san pham tim kiem
   const handleToResult = () => {};
   return (
-    <div className="tippy-history pos-relative">
+    <div className="tippy-history pos-relative pc-none">
       <Tippy
         visible={isPromted && isMobile}
         interactive //cho phép select nội dung bên trong

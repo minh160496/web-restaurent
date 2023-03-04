@@ -25,7 +25,7 @@ import styles from "./Header.module.scss";
 import "./Tippy.scss";
 
 const cl = classnames.bind(styles);
-export default function Header({ homePage }) {
+export default function Header({ isHomePage }) {
   //gan elementDOM heaer-wrapper và truyền cho component search để xử lý thêm overflow cho nó
   const headerWrapperRef = useRef();
   const searchRef = useRef();
@@ -129,7 +129,7 @@ export default function Header({ homePage }) {
     <header
       className={cl(
         "header",
-        { opacityPC: homePage ? true : false },
+        { opacityPC: isHomePage ? true : false },
         "relative-z2-PC"
       )}
     >
@@ -267,5 +267,5 @@ export default function Header({ homePage }) {
 }
 
 Header.propTypes = {
-  homePage: PropTypes.bool,
+  isHomePage: PropTypes.bool,
 };
