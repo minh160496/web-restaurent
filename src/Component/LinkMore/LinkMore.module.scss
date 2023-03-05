@@ -1,0 +1,43 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.link {
+  color: $color-primary;
+  width: 150px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: $font-lg;
+  font-weight: 400;
+  overflow: hidden;
+
+  .link-text span {
+    position: relative;
+    display: inline-block;
+    transition: transform ease 0.7s;
+
+    &::after {
+      position: absolute;
+      content: "";
+      top: 50%;
+      left: calc(100% + 12px);
+      transform: translateY(-50%);
+      width: 30px;
+      height: 1px;
+      background-color: $color-primary;
+    }
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: 50%;
+      right: calc(100% + 12px);
+      transform: translateY(-50%);
+      width: 60px;
+      height: 1px;
+      background-color: $color-primary;
+    }
+
+    &:hover {
+      transform: translateX(55px);
+    }
+  }
+}

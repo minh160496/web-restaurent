@@ -1,52 +1,24 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames/bind";
 import { Row, Col, Container } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { SwiperSlide } from "swiper/react";
 
 import Cart from "./Cart";
+import Slide from "Component/Slide";
 
 import getAPICategory from "apiServices/apiCategory";
 
-import "swiper/css";
-import "swiper/css/pagination";
-
 import styles from "./Category.module.scss";
-import "./Swiper.scss";
 
 const cl = classnames.bind(styles);
 export default function Category() {
   const [data, setData] = useState([]);
-  const [slidesPerView, setSlidesPerView] = useState(null);
   useEffect(() => {
     async function getAPI() {
       const data = await getAPICategory();
       setData(data);
     }
     getAPI();
-  }, []);
-
-  const handleChangeSlidesPerView = () => {
-    if (window.innerWidth <= 350) {
-      setSlidesPerView(1);
-    }
-    if (window.innerWidth > 350 && window.innerWidth <= 576) {
-      setSlidesPerView(2);
-    }
-    if (window.innerWidth > 576 && window.innerWidth <= 998) {
-      setSlidesPerView(3);
-    }
-    if (window.innerWidth > 998) {
-      setSlidesPerView(4);
-    }
-    if (window.innerWidth > 1400) {
-      setSlidesPerView(5);
-    }
-  };
-
-  useEffect(() => {
-    handleChangeSlidesPerView();
-    window.addEventListener("resize", handleChangeSlidesPerView);
   }, []);
 
   return (
@@ -61,23 +33,13 @@ export default function Category() {
             </div>
 
             <div className={cl("category__content")}>
-              <>
-                <Swiper
-                  slidesPerView={slidesPerView}
-                  spaceBetween={30}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  modules={[Pagination]}
-                  className="mySwiper"
-                >
-                  {data.map((categoryItem) => (
-                    <SwiperSlide key={categoryItem.id}>
-                      <Cart data={categoryItem} />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </>
+              <Slide>
+                {data.map((categoryItem) => (
+                  <SwiperSlide key={categoryItem.id}>
+                    <Cart data={categoryItem} />
+                  </SwiperSlide>
+                ))}
+              </Slide>
             </div>
           </Col>
         </Row>

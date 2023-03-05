@@ -6,6 +6,10 @@ import Slider from "./Slider";
 import About from "./About";
 import Category from "./Category";
 import TabProduct from "./TabProduct";
+import ProductNew from "./ProductNew";
+import Baner from "./Baner";
+import CountUps from "./CountUp";
+import Blog from "./Blog";
 
 import styles from "./Home.module.scss";
 
@@ -19,6 +23,10 @@ export default function Home() {
           <About />
           <Category />
           <TabProduct />
+          <ProductNew />
+          <Baner />
+          <CountUps />
+          <Blog />
         </main>
       </LayoutDefault>
     </div>

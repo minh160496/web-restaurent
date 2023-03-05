@@ -1,0 +1,42 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.count-up {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  background-color: $bg-primary;
+  .title {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+//item
+.count__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $color-text-primary;
+  margin-bottom: 30px;
+}
+
+.item__img {
+  width: 64px;
+  height: 64px;
+}
+
+.item__num {
+  font-size: $font-max;
+}
+
+.item__type {
+  font-size: $font-md;
+  font-weight: 500;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .item__num {
+    font-size: $font-pro-max;
+  }
+}

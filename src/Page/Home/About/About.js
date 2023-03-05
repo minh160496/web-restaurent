@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import classnames from "classnames/bind";
 import { Col, Container, Row } from "react-bootstrap";
 
-import styles from "./About.module.scss";
 import Img from "Component/Img";
+import LinkMore from "Component/LinkMore";
+
+import styles from "./About.module.scss";
 
 const cl = classnames.bind(styles);
 export default function About() {
@@ -31,11 +33,7 @@ export default function About() {
                   ơn.
                 </span>
               </div>
-              <div className={cl("link")}>
-                <Link to="/" className={cl("link-text")}>
-                  <span>Xem thêm</span>
-                </Link>
-              </div>
+              <LinkMore />
             </div>
           </Col>
           <Col className="col-12 col-lg-6">

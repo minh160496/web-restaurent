@@ -6,6 +6,7 @@
   padding: 7px 7px 45px 7px;
   box-shadow: 4px 4px #acacac;
   background-color: $color-text-primary;
+  margin-bottom: 40px;
 }
 
 .cart-thumbnail {
@@ -124,10 +125,12 @@
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
+  min-width: 100%;
   .btn {
-    padding: 8px 15px;
-    font-size: $font-min;
-    min-width: 96px;
+    padding: 12px 15px;
+    font-size: $font-md;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -154,6 +157,26 @@
     .icon-like {
       width: 28px;
       height: 28px;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .cart-product {
+    max-width: 300px;
+    position: relative;
+    padding: 7px 7px 45px 7px;
+    box-shadow: 4px 4px #acacac;
+    background-color: $color-text-primary;
+    margin-bottom: 32px;
+  }
+
+  .cart-button {
+    min-width: auto;
+    .btn {
+      padding: 8px 15px;
+      font-size: $font-sm;
+      min-width: 110px;
     }
   }
 }

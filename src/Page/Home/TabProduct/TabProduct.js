@@ -60,7 +60,10 @@ export default function TabProduct() {
         <div className={cl("tab-product__content")}>
           <Row>
             {ProductsFilter.map((product) => (
-              <Col className="col-6 col-md-4 col-lg-2" key={product.id}>
+              <Col
+                className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2"
+                key={product.id}
+              >
                 <div className={cl("cart-wrapper")}>
                   <Cart product={product} />
                 </div>
