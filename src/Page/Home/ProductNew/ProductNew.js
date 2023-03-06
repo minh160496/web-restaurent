@@ -36,7 +36,10 @@ export default function ProductNew() {
         <div className={cl("content")}>
           <Slide>
             {productNews.map((productNew) => (
-              <SwiperSlide key={productNew.id}>
+              <SwiperSlide
+                key={productNew.id}
+                className="style-bottom-distance"
+              >
                 <Cart product={productNew} />
               </SwiperSlide>
             ))}

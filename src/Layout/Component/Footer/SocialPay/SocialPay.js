@@ -45,7 +45,7 @@ export default function SocialPay() {
       </div>
       <div className={cl("pay")}>
         <div className={cl("pay__title")}>
-          <h3>MẠNG XÃ HỘI</h3>
+          <h3>THANH TOÁN</h3>
         </div>
         <div className={cl("pay__body") + " flex"}>
           <a href="#">

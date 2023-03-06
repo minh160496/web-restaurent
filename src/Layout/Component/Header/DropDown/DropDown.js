@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import classnames from "classnames/bind";
 import { motion } from "framer-motion";
+import { Container, Row } from "react-bootstrap";
 
 import { listBodyItem } from "../OffCanvas";
-import styles from "./DropDown.module.scss";
 import Img from "Component/Img";
+
+import styles from "./DropDown.module.scss";
 
 const cl = classnames.bind(styles);
 export default function DropDown({ ID }) {
-  const data = listBodyItem[ID - 1];
-  const [child, setChild] = useState(1);
+  const itemDropObj = listBodyItem[ID - 1];
+  const [childItemID, setChildItemID] = useState(1);
   return (
     <motion.div
       className="box"
@@ -31,11 +32,11 @@ export default function DropDown({ ID }) {
               <div className={cl("dropdown-text")}>
                 <Container>
                   <Row>
-                    {data.child.map((item, index) => (
+                    {itemDropObj.child.map((item, index) => (
                       <div
                         className="col-4 p-0"
                         key={index}
-                        onMouseOver={() => setChild(item.id)}
+                        onMouseOver={() => setChildItemID(item.id)}
                       >
                         <div className={cl("dropdown__item")}>
                           <div className={cl("item__title")}>
@@ -66,7 +67,11 @@ export default function DropDown({ ID }) {
 
             <div className="col-3">
               <div className={cl("dropdown__img")}>
-                <Img src={child.src} width="100%" heigh="auto" />
+                <Img
+                  src={itemDropObj.child[childItemID - 1].src}
+                  width="100%"
+                  heigh="auto"
+                />
               </div>
             </div>
           </Row>
@@ -77,5 +82,5 @@ export default function DropDown({ ID }) {
 }
 
 DropDown.propTypes = {
-  childList: PropTypes.array,
+  ID: PropTypes.number,
 };

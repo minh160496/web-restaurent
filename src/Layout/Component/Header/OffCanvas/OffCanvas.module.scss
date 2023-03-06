@@ -32,6 +32,22 @@
       padding-left: 12px;
     }
   }
+  a {
+    display: block;
+    .ofcanvas__body__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .item__icon {
+        display: none;
+      }
+      &:hover {
+        .item__icon {
+          display: flex;
+        }
+      }
+    }
+  }
 }
 
 .ofcanvas__footer {
@@ -39,6 +55,12 @@
     color: $color-primary;
     font-weight: 700;
   }
+}
+
+//navlink
+.active {
+  color: $color-primary;
+  transition: color ease 0.3s;
 }
 
 @media (min-width: $breakpoint-lg) {

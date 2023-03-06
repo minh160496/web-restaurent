@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Swiper } from "swiper/react";
-import { Pagination } from "swiper";
+import classnames from "classnames/bind";
 import PropTypes from "prop-types";
+import { Pagination } from "swiper";
+import { Swiper } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
-import "./Swiper.scss";
+import styles from "./Slide.module.scss";
 
+const cl = classnames.bind(styles);
 export default function Slide({
   children,
-  sliPerViewSm = 2,
-  sliPerViewMd = 3,
+  sliPerViewSm = 1.5,
+  sliPerViewMd = 2.5,
   sliPerViewLg = 4,
   sliPerViewXl = 5,
 }) {
@@ -19,7 +21,7 @@ export default function Slide({
 
   const handleChangeSlidesPerView = () => {
     if (window.innerWidth <= 350) {
-      setSlidesPerView(1);
+      setSlidesPerView(1.5);
     }
     if (window.innerWidth > 350 && window.innerWidth <= 576) {
       setSlidesPerView(sliPerViewSm);
@@ -48,8 +50,10 @@ export default function Slide({
         pagination={{
           clickable: true,
         }}
+        scrollbar={{ draggable: true }}
+        touchRatio={2}
         modules={[Pagination]}
-        className="mySwiper"
+        className={cl("swiper")}
       >
         {children}
       </Swiper>

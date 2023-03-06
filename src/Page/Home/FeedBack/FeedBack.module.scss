@@ -1,0 +1,88 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.feed-back {
+  background-color: $color-bg-dark;
+}
+
+.content {
+  background-image: url("https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/background_danhgia.jpg?1677815705833");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100%;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.item {
+  background-color: $bg-primary-blur;
+  color: $color-primary;
+  border-radius: $br-rad-xl;
+  padding: 32px 16px;
+}
+
+.item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user__img {
+  width: 80px;
+  height: 80px;
+  margin-right: 12px;
+  img {
+    border-radius: 50%;
+  }
+}
+
+.user__inf {
+  .name {
+    color: $color-text-primary;
+    font-size: $font-lg;
+    font-weight: 600;
+  }
+
+  .job {
+    color: $color-primary;
+    font-size: $font-md;
+  }
+}
+
+.item-bottom {
+  font-size: $font-min;
+  color: $color-text-primary;
+  text-align: justify;
+}
+
+@media (min-width: $breakpoint-sm) {
+  .item {
+    padding: 32px 32px;
+  }
+
+  .user__inf {
+    .name {
+      font-size: $font-xxl;
+    }
+
+    .job {
+      font-size: $font-xl;
+    }
+  }
+
+  .item-bottom {
+    font-size: $font-min;
+    font-size: $font-md;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .item {
+    padding: 48px 48px;
+  }
+}

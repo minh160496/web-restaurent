@@ -35,7 +35,10 @@ export default function Category() {
             <div className={cl("category__content")}>
               <Slide>
                 {data.map((categoryItem) => (
-                  <SwiperSlide key={categoryItem.id}>
+                  <SwiperSlide
+                    key={categoryItem.id}
+                    className="style-bottom-distance"
+                  >
                     <Cart data={categoryItem} />
                   </SwiperSlide>
                 ))}

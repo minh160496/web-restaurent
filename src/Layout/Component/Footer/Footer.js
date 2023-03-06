@@ -26,7 +26,7 @@ export default function Footer() {
                   <div className="col-12 col-md-9 p-0">
                     <LinkList />
                   </div>
-                  <div className="col-12 col-md-3 p-0">
+                  <div className="col-12 col-md-3 p-md-0">
                     <SocialPay />
                   </div>
                 </Row>

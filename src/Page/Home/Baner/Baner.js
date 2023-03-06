@@ -41,7 +41,7 @@ export default function Baner() {
       <Container>
         <Slide sliPerViewXl={4}>
           {banerData.map((item) => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide key={item.id} className="style-bottom-distance">
               <BanerItem data={item} />
             </SwiperSlide>
           ))}

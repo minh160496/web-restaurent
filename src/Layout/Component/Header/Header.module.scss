@@ -85,6 +85,12 @@
   width: 100%;
 }
 
+//thẻ navlink
+.active {
+  color: $color-primary;
+  transition: color ease 0.3s;
+}
+
 @media (min-width: $breakpoint-lg) {
   .visible-PC {
     overflow: visible !important;

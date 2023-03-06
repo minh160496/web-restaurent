@@ -1,0 +1,16 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.back-top {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  color: $color-text-primary;
+  border-radius: $br-rad-xl;
+  background-color: $color-primary;
+  display: grid;
+  place-content: center;
+  position: fixed;
+  z-index: 10000;
+  bottom: 50px;
+  right: 30px;
+}

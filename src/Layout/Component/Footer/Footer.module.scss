@@ -1,5 +1,9 @@
 @import "src/GlobalStyle/Variables.scss";
 
+.footer {
+  border-top: 1px solid $color-text-primary;
+}
+
 .footer__mid {
   background-color: $bg-primary-blur;
   padding-top: 50px;

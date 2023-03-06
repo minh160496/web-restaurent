@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import classnames from "classnames/bind";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -170,22 +170,32 @@ export default function Header({ isHomePage }) {
                       {listBodyItem.map((item, index) => (
                         <li key={index}>
                           {!item.child && (
-                            <Link to="/list">
+                            <NavLink
+                              className={({ isActive }) =>
+                                isActive ? cl("active") : cl('"inactive"')
+                              }
+                              to={item.path}
+                            >
                               <h3 className={cl("navbar__item__title")}>
                                 {item.fiel}
                               </h3>
-                            </Link>
+                            </NavLink>
                           )}
                           {item.child && (
-                            <NavBarItemHasDrop
-                              name={item.fiel}
-                              hasMouseOver={hasDrop}
+                            <div
                               onMouseOver={() => {
                                 setHasDrop(true);
                                 handeFadeDrop(item.id);
                               }}
                               onMouseOut={() => setHasDrop(false)}
-                            />
+                            >
+                              <NavLink to="/">
+                                <NavBarItemHasDrop
+                                  name={item.fiel}
+                                  hasMouseOverDrop={hasDrop}
+                                />
+                              </NavLink>
+                            </div>
                           )}
                         </li>
                       ))}

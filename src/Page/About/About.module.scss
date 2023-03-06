@@ -1,0 +1,42 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.about {
+  background-color: $bg-primary-blur;
+  color: $color-text-primary;
+  padding-top: 60px;
+  padding-bottom: 60px;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.about__title {
+  font-size: $font-md;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.about__desc {
+  font-size: $font-sm;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+.img-alt {
+  margin-top: 24px;
+  h2 {
+    font-size: $font-md;
+    text-align: center;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .about__title {
+    font-size: $font-xl;
+  }
+}

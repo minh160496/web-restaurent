@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
 
 import MyButton from "Component/MyButton";
@@ -49,7 +49,12 @@ export default function OffCanvas() {
               <ul>
                 {listBodyItem.map((item, index) => (
                   <li key={index}>
-                    <Link className="block">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? cl("active") : cl('"inactive"')
+                      }
+                      to={item.path}
+                    >
                       <div
                         className={
                           cl("ofcanvas__body__item") + " flex justify-between"
@@ -60,7 +65,7 @@ export default function OffCanvas() {
                           <IconPlus fill="currentcolor" />
                         </div>
                       </div>
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
@@ -70,11 +75,11 @@ export default function OffCanvas() {
               <ul>
                 {listFootItem.map((item, index) => (
                   <li key={index}>
-                    <Link key={index} className="block">
+                    <NavLink key={index} className="block" to={item.path}>
                       <div className={cl("ofcanvas__footer__item")}>
                         <h2 className={cl("item__title")}>{item.fiel}</h2>
                       </div>
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>

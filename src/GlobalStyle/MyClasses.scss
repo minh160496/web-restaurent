@@ -155,6 +155,21 @@ button.btn-hover:hover {
   }
 }
 
+//for slide swiper
+.style-bottom-distance {
+  padding-bottom: 60px;
+}
+
+span.swiper-pagination-bullet {
+  border: 1px solid $color-primary;
+  width: 13px;
+  height: 13px;
+}
+
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: $color-primary;
+}
+
 @media (min-width: $breakpoint-lg) {
   .stylized.title-big {
     font-size: $font-pro-max;

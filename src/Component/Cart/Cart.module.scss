@@ -103,7 +103,8 @@
     font-size: $font-md;
     font-weight: 700;
     margin: 0;
-    line-height: 40px;
+    margin-top: 14px;
+    margin-bottom: 6px;
     @extend %limited-line-1;
   }
 }

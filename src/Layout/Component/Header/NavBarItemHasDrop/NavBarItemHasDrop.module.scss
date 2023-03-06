@@ -19,7 +19,7 @@
 
 .navbarHasDrop,
 .dropdown-1 {
-  &:hover {
+  &.hovering {
     color: $color-primary;
   }
   h3 {
