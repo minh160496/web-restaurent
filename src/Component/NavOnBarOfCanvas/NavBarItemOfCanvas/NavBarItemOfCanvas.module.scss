@@ -1,0 +1,52 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.navbar-item-ofcanvas {
+  h2 {
+    font-size: $font-sm;
+  }
+}
+
+div.actived {
+  color: $color-primary;
+}
+
+.hover-change-color:hover {
+  color: $color-primary;
+}
+
+.item__icon {
+  width: 50px;
+  text-align: end;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.child {
+  margin-left: 12px;
+}
+
+.icon {
+  display: inline;
+}
+
+.rotate-animation {
+  animation: fadeIcon 0.3s forwards;
+  transition: all ease 0.3s;
+}
+
+//khi hover thẻ navlink set cho color thay đổi mình thằng cha thôi
+a {
+  &:hover > div > div > div:nth-child(2) {
+    color: $color-text-primary;
+  }
+}
+
+@keyframes fadeIcon {
+  from {
+    transform: rotate(-90deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}

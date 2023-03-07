@@ -12,6 +12,7 @@ const cl = classNames.bind(styles);
 export default function SubHeader({ path }) {
   const pathObj = {
     about: "Giới thiệu",
+    list: "Tất cả món ăn",
     like: "Món ăn yêu thích",
   };
   return (
@@ -25,26 +26,29 @@ export default function SubHeader({ path }) {
                   <span className={cl("content__item")}>Trang chủ</span>
                 </Link>
               </li>
-              {path.split("/").map((item, index) => (
-                <React.Fragment key={index}>
-                  <li>
-                    <div className={cl("icon")}>
-                      <IconArrowRight
-                        fill="currentcolor"
-                        width={10}
-                        height={10}
-                      />
-                    </div>
-                  </li>
-                  <li>
-                    <Link to={"/" + item}>
-                      <span className={cl("content__item")}>
-                        {pathObj[item]}
-                      </span>
-                    </Link>
-                  </li>
-                </React.Fragment>
-              ))}
+              {path
+                .split("/")
+                .filter((item) => item.length > 0)
+                .map((item, index) => (
+                  <React.Fragment key={index}>
+                    <li>
+                      <div className={cl("icon")}>
+                        <IconArrowRight
+                          fill="currentcolor"
+                          width={10}
+                          height={10}
+                        />
+                      </div>
+                    </li>
+                    <li>
+                      <Link to={"/" + item}>
+                        <span className={cl("content__item")}>
+                          {pathObj[item]}
+                        </span>
+                      </Link>
+                    </li>
+                  </React.Fragment>
+                ))}
             </ul>
           </div>
         </Container>

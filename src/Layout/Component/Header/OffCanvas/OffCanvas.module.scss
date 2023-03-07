@@ -3,9 +3,16 @@
 .offcanvas {
   max-width: 250px;
   height: 100%;
+  overflow-y: auto;
   background-color: $bg-primary-blur;
   color: $color-text-primary;
   font-size: $font-sm;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   h2 {
     font-size: inherit;
     line-height: 35px;
@@ -22,7 +29,11 @@
   width: 172px;
 }
 
-.ofcanvas__body,
+.ofcanvas__body {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 .ofcanvas__footer {
   ul {
     padding: 0;
@@ -32,22 +43,6 @@
       padding-left: 12px;
     }
   }
-  a {
-    display: block;
-    .ofcanvas__body__item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .item__icon {
-        display: none;
-      }
-      &:hover {
-        .item__icon {
-          display: flex;
-        }
-      }
-    }
-  }
 }
 
 .ofcanvas__footer {
@@ -55,12 +50,6 @@
     color: $color-primary;
     font-weight: 700;
   }
-}
-
-//navlink
-.active {
-  color: $color-primary;
-  transition: color ease 0.3s;
 }
 
 @media (min-width: $breakpoint-lg) {

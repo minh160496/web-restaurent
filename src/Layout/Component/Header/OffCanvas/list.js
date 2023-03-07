@@ -4,7 +4,7 @@ export const listBodyItem = [
   {
     id: 3,
     fiel: "Menu",
-    path: "/menu",
+    path: "/list",
     child: [
       {
         id: 1,

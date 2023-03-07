@@ -1,5 +1,8 @@
 @import "src/GlobalStyle/Variables.scss";
 
+.main {
+  background-color: $bg-primary-blur;
+}
 .navbar {
   display: none;
   margin-right: 10px;

@@ -9,20 +9,21 @@ import "tippy.js/themes/light.css";
 import Toolip from "Component/Toolip";
 import MyButton from "Component/MyButton";
 import OffCanvas from "./OffCanvas";
-import SearchMobile from "./SearchMobile/SearchMobile";
+import SearchMobile from "./SearchMobile";
 import logo from "@/assets/img/logo.webp";
 import Img from "Component/Img";
 import SearchPC from "./SearchPC/SearchPC";
 import Bag from "./Bag";
 import User from "./User";
-import NavBarItemHasDrop from "./NavBarItemHasDrop";
+import NavBarItemHasDrop from "./NavBarItemHasDropPC";
 import ScrollX from "./ScrollX";
+import DropDown from "./DropDown";
 import { ReactComponent as IconMap } from "assets/icon/map.svg";
 import { listBodyItem } from "./OffCanvas";
-import DropDown from "./DropDown";
+
+import "./Tippy.scss";
 
 import styles from "./Header.module.scss";
-import "./Tippy.scss";
 
 const cl = classnames.bind(styles);
 export default function Header({ isHomePage }) {
@@ -189,7 +190,7 @@ export default function Header({ isHomePage }) {
                               }}
                               onMouseOut={() => setHasDrop(false)}
                             >
-                              <NavLink to="/">
+                              <NavLink to={item.path}>
                                 <NavBarItemHasDrop
                                   name={item.fiel}
                                   hasMouseOverDrop={hasDrop}

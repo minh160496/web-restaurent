@@ -1,0 +1,27 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.navbar-on-ofcanvas {
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    display: block;
+  }
+}
+
+//navlink
+.active {
+  color: $color-primary;
+  transition: color ease 0.3s;
+  & > div > div > div:nth-child(2) {
+    color: $color-text-primary;
+  }
+}
+
+//khi hover thẻ navlink set cho color thay đổi mình thằng cha thôi
+a {
+  &:hover > div > div > div:nth-child(2) {
+    color: $color-text-primary;
+  }
+}

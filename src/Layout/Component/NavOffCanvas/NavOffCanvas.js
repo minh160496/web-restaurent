@@ -19,7 +19,6 @@ export default function NavOffCanvas() {
     setShow(true);
   };
 
-  console.log(hasTranslateX);
   return (
     <div className={cl("navbar-offcanvas")}>
       <div className={cl("icon-filter-wrapper")} onClick={handleShow}>

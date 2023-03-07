@@ -1,6 +1,6 @@
 import Home from "Page/Home";
-import List from "Page/List";
 import About from "Page/About";
+import List from "Page/List";
 
 export const routes = [
   {

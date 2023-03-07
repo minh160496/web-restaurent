@@ -11,12 +11,16 @@ import styles from "./LayoutNavBar.mudule.scss";
 
 const cl = classNames.bind(styles);
 export const LayoutContext = createContext();
-export default function LayoutNavBar({ navBarRight, children }) {
+export default function LayoutNavBar({
+  navBarRight,
+  path = "/list",
+  children,
+}) {
   return (
     <LayoutContext.Provider value={navBarRight}>
       <div className={cl("layout-navbar")}>
         <Header />
-        <SubHeader />
+        <SubHeader path={path} />
         <Main>{children}</Main>
         <Footer />
       </div>

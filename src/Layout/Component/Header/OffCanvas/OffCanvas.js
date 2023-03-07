@@ -6,10 +6,10 @@ import { Offcanvas } from "react-bootstrap";
 import MyButton from "Component/MyButton";
 import logo from "src/assets/img/logo.webp";
 import Img from "Component/Img";
+import NavBarOnOfCanvas from "Component/NavOnBarOfCanvas";
 import { ReactComponent as IconMenu } from "assets/icon/menu.svg";
-import { ReactComponent as IconPlus } from "@/assets/icon/plus.svg";
 
-import { listBodyItem, listFootItem } from "./list";
+import { listFootItem } from "./list";
 
 import styles from "./OffCanvas.module.scss";
 
@@ -46,29 +46,7 @@ export default function OffCanvas() {
             </div>
 
             <div className={cl("ofcanvas__body")}>
-              <ul>
-                {listBodyItem.map((item, index) => (
-                  <li key={index}>
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive ? cl("active") : cl('"inactive"')
-                      }
-                      to={item.path}
-                    >
-                      <div
-                        className={
-                          cl("ofcanvas__body__item") + " flex justify-between"
-                        }
-                      >
-                        <h2 className={cl("item__title")}>{item.fiel}</h2>
-                        <div className={cl("item__icon")}>
-                          <IconPlus fill="currentcolor" />
-                        </div>
-                      </div>
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
+              <NavBarOnOfCanvas />
             </div>
 
             <div className={cl("ofcanvas__footer")}>
