@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames/bind";
 
 import NavigatorItemWrapper from "./NavigatorItemWrapper";
-import NavBarOnOfCanvas from "Component/NavOnBarOfCanvas";
+import NavBarOnOfCanvas from "Component/NavBarOnOfCanvas";
 
 import styles from "./Navigator.module.scss";
 

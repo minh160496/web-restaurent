@@ -48,18 +48,12 @@
 
 /* Define the scrollbar track */
 .navbar-fixed::-webkit-scrollbar {
-  width: 6px;
+  width: 0;
 }
 
 /* Track */
 .navbar-fixed::-webkit-scrollbar-track {
-  border-radius: 20px;
-}
-
-/* Handle */
-.navbar-fixed::-webkit-scrollbar-thumb {
-  background: $color-primary;
-  border-radius: 10px;
+  display: none;
 }
 
 @media (min-width: $breakpoint-lg) {

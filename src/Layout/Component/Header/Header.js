@@ -190,7 +190,12 @@ export default function Header({ isHomePage }) {
                               }}
                               onMouseOut={() => setHasDrop(false)}
                             >
-                              <NavLink to={item.path}>
+                              <NavLink
+                                className={({ isActive }) =>
+                                  isActive ? cl("active") : cl('"inactive"')
+                                }
+                                to={item.path}
+                              >
                                 <NavBarItemHasDrop
                                   name={item.fiel}
                                   hasMouseOverDrop={hasDrop}

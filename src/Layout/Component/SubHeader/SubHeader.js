@@ -13,7 +13,8 @@ export default function SubHeader({ path }) {
   const pathObj = {
     about: "Giới thiệu",
     list: "Tất cả món ăn",
-    like: "Món ăn yêu thích",
+    outStanding: "Món ăn nổi bật",
+    every: "Món ngon mỗi ngày",
   };
   return (
     <nav className={cl("sub-header")}>

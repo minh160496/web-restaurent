@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import { Container, Row, Col } from "react-bootstrap";
 
-import Cart from "Component/Cart";
+import Card from "Component/Card/index";
 
 import { getAPIMenu } from "apiServices/apiMenu";
 import { contextProducts } from "App";
@@ -65,7 +65,7 @@ export default function TabProduct() {
                 key={product.id}
               >
                 <div className={cl("cart-wrapper")}>
-                  <Cart product={product} />
+                  <Card product={product} />
                 </div>
               </Col>
             ))}

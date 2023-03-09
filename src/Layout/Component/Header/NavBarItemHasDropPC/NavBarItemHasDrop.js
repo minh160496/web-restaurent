@@ -25,7 +25,7 @@ export default function DropDown({ name, hasMouseOverDrop }) {
           </div>
         )}
         {hasMouseOverDrop && (
-          <div className={cl("icon")}>
+          <div className={cl("icon", "icon-up")}>
             <IconUp fill="currentcolor" width={15} height={15} />
           </div>
         )}

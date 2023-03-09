@@ -1,3 +1,7 @@
+export const CURRENT_PAGE = "currentPage";
+
+export const SORT_CODE = "SortCode";
+
 export const sortTypes = [
   {
     id: 1,

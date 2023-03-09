@@ -3,7 +3,7 @@ import classnames from "classnames/bind";
 import { Row, Col, Container } from "react-bootstrap";
 import { SwiperSlide } from "swiper/react";
 
-import Cart from "./Cart";
+import Card from "./Card";
 import Slide from "Component/Slide";
 
 import getAPICategory from "apiServices/apiCategory";
@@ -39,7 +39,7 @@ export default function Category() {
                     key={categoryItem.id}
                     className="style-bottom-distance"
                   >
-                    <Cart data={categoryItem} />
+                    <Card data={categoryItem} />
                   </SwiperSlide>
                 ))}
               </Slide>

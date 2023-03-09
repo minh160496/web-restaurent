@@ -7,10 +7,10 @@ import { EffectCards } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-cards";
 
-import styles from "./EffectCart.module.scss";
+import styles from "./EffectCard.module.scss";
 
 const cl = classnames.bind(styles);
-export default function EffectCart({ children }) {
+export default function EffectCard({ children }) {
   return (
     <>
       <Swiper

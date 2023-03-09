@@ -11,10 +11,10 @@ import { ReactComponent as IconEye } from "assets/icon/eye.svg";
 import { ReactComponent as IconBag } from "assets/icon/bagFill.svg";
 import { ReactComponent as IconHeart } from "assets/icon/heart.svg";
 
-import styles from "./Cart.module.scss";
+import styles from "./Card.module.scss";
 
 const cl = classNames.bind(styles);
-export default function Cart({ product }) {
+export default function Card({ product }) {
   const perSales = Math.floor(
     (1 - product.price / product.oldPrice).toFixed(2) * 100
   );
@@ -73,6 +73,6 @@ export default function Cart({ product }) {
   );
 }
 
-Cart.propTypes = {
+Card.propTypes = {
   product: PropTypes.object,
 };

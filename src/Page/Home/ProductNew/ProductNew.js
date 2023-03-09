@@ -3,11 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { SwiperSlide } from "swiper/react";
 
-import Cart from "Component/Cart";
+import Card from "Component/Card/index";
 import Slide from "Component/Slide";
 
 import { contextProducts } from "App";
-import { getAPINew } from "apiServices/apiNew";
 
 import styles from "./ProductNew.module.scss";
 
@@ -17,14 +16,8 @@ export default function ProductNew() {
   const [productNews, setProductNews] = useState([]);
 
   useEffect(() => {
-    async function getProductNewsFromAPI() {
-      const ids = await getAPINew();
-      const productNews = products.filter((product) =>
-        ids.includes(product.id)
-      );
-      setProductNews(productNews);
-    }
-    getProductNewsFromAPI();
+    const productNews = products.filter((product) => product.isOutStanding);
+    setProductNews(productNews);
   }, [products]);
 
   return (
@@ -40,7 +33,7 @@ export default function ProductNew() {
                 key={productNew.id}
                 className="style-bottom-distance"
               >
-                <Cart product={productNew} />
+                <Card product={productNew} />
               </SwiperSlide>
             ))}
           </Slide>

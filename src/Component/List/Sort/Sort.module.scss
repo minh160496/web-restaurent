@@ -1,0 +1,63 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.sort {
+  width: 100%;
+  padding: 0 0 0 4px;
+  background-color: $color-primary;
+  color: $color-text-primary;
+  border-radius: $br-rad-md;
+  width: 100%;
+  min-width: 230px;
+  &__title {
+    flex: 1;
+    h4 {
+      font-size: $font-sm;
+      font-weight: 600;
+    }
+  }
+  &__select {
+    flex: 1;
+  }
+
+  .select-control {
+    background-color: $color-primary;
+    border-color: transparent;
+    box-shadow: none;
+    color: $color-text-primary;
+    font-size: $font-min;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    min-width: 150px;
+    &:hover {
+      border-color: transparent;
+      box-shadow: none;
+    }
+    * {
+      color: $color-text-primary;
+    }
+    & + div[id] {
+      z-index: 10000;
+    }
+  }
+
+  .select-focus {
+    background-color: $color-primary;
+  }
+
+  .select-option {
+    color: $color-text-dark;
+    font-size: $font-sm;
+    font-weight: 500;
+    color: $color-text-dark;
+    cursor: pointer;
+    &:hover {
+      background-color: $color-primary;
+      color: $color-text-primary;
+    }
+  }
+
+  .option-selected {
+    background-color: $color-text-primary;
+  }
+}

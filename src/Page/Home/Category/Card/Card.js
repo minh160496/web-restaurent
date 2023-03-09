@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 
 import Img from "Component/Img";
 
-import styles from "./Cart.module.scss";
+import styles from "./Card.module.scss";
 
 const cl = classNames.bind(styles);
-export default function Cart({ data }) {
+export default function Card({ data }) {
   return (
     <Link to="/">
       <div className={cl("cart")}>
@@ -28,6 +28,6 @@ export default function Cart({ data }) {
   );
 }
 
-Cart.propTypes = {
+Card.propTypes = {
   data: PropTypes.object,
 };

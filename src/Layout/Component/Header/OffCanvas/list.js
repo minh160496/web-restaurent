@@ -114,8 +114,8 @@ export const listBodyItem = [
       },
     ],
   },
-  { id: 4, fiel: "Món ăn nổi bật", path: "/hightlight" },
-  { id: 5, fiel: "Món ngon mỗi ngày", path: "/delicous" },
+  { id: 4, fiel: "Món ăn nổi bật", path: "/outStanding" },
+  { id: 5, fiel: "Món ngon mỗi ngày", path: "/every" },
   { id: 6, fiel: "Tin tức", path: "/news" },
   { id: 7, fiel: "Liên hệ", path: "/contact" },
 ];

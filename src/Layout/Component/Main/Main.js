@@ -12,7 +12,6 @@ import styles from "./Main.module.scss";
 const cl = classNames.bind(styles);
 export default function Main({ children }) {
   const navBarRight = useContext(LayoutContext);
-  const [hasNavBarFix, setHasNavBarFix] = useState(false);
   return (
     <main className={cl("main")}>
       <div className={cl("main-wrap")}>
@@ -21,13 +20,13 @@ export default function Main({ children }) {
             <div
               className={
                 navBarRight
-                  ? cl("navbar", "navbar-right") + " col-3"
-                  : cl("navbar") + " col-3"
+                  ? cl("navbar", "navbar-right") + " col-0 col-lg-3"
+                  : cl("navbar") + " col-0 col-lg-3"
               }
             >
               <Navigator />
             </div>
-            <div className={cl("content") + " col-9"}>{children}</div>
+            <div className={cl("content") + " col-12 col-lg-9"}>{children}</div>
           </Row>
         </Container>
         <div className={cl("main-fixed")}>
