@@ -45,6 +45,13 @@ $breakpoint-xl: 1200px;
   overflow: hidden;
 }
 
+%limited-line-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 %pseudo-element {
   position: absolute;
   content: "";

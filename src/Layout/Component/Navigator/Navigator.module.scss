@@ -78,6 +78,36 @@
   }
 }
 
+//phan blogs
+.item {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  cursor: pointer;
+  & + .item {
+    border-top: 1px solid $color-text-primary;
+  }
+  &:hover {
+    .item-text {
+      color: $color-primary;
+    }
+  }
+}
+
+.item-text {
+  transition: ease 0.3s;
+  span {
+    @extend %limited-line-3;
+  }
+}
+
+.item__img {
+  padding-right: 8px;
+  .image {
+    aspect-ratio: 3/2;
+    border-radius: $br-rad-md;
+  }
+}
+
 @media (min-width: $breakpoint-lg) {
   .navigator {
     padding-top: 40px;

@@ -116,7 +116,7 @@ export const listBodyItem = [
   },
   { id: 4, fiel: "Món ăn nổi bật", path: "/outStanding" },
   { id: 5, fiel: "Món ngon mỗi ngày", path: "/every" },
-  { id: 6, fiel: "Tin tức", path: "/news" },
+  { id: 6, fiel: "Tin tức", path: "/blogs" },
   { id: 7, fiel: "Liên hệ", path: "/contact" },
 ];
 

@@ -1,0 +1,13 @@
+@import "src/GlobalStyle/Variables.scss";
+.map {
+  margin-top: 32px;
+  border-radius: $br-rad-xl;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+}
+
+@media (min-width: $breakpoint-md) {
+  .map {
+    aspect-ratio: 3/1;
+  }
+}

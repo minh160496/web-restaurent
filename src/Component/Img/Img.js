@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import img from "assets/img/default.png";
@@ -14,24 +14,35 @@ export default function Img({
   fit = "cover",
   onClick = () => {},
 }) {
-  const handleFix = () => {
-    src = img;
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgErr, setImgErr] = useState(false);
+
+  const placeholderStyles = {
+    width: width,
+    minWidth: minWidth,
+    heigh: heigh,
+    backgroundColor: "transparent",
+    borderRadius: 8,
+    color: color,
+  };
+
+  const imgStyles = {
+    width: width,
+    minWidth: minWidth,
+    height: heigh,
+    objectFit: fit,
   };
   return (
-    <img
-      className={className}
-      style={{
-        width: width,
-        minWidth: minWidth,
-        height: heigh,
-        color: color,
-        objectFit: fit,
-      }}
-      src={src}
-      alt={alt}
-      onError={handleFix}
-      onClick={onClick}
-    />
+    <div className={className} style={placeholderStyles}>
+      <img
+        style={imgStyles}
+        src={src}
+        alt={alt}
+        onLoad={() => setImgLoaded(true)}
+        onError={() => setImgErr(true)}
+        onClick={onClick}
+      />
+    </div>
   );
 }
 

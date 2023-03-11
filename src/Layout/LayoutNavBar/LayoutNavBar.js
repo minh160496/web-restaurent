@@ -13,6 +13,7 @@ const cl = classNames.bind(styles);
 export const LayoutContext = createContext();
 export default function LayoutNavBar({
   navBarRight,
+  isBlog = false,
   path = "/list",
   children,
 }) {
@@ -21,7 +22,7 @@ export default function LayoutNavBar({
       <div className={cl("layout-navbar")}>
         <Header />
         <SubHeader path={path} />
-        <Main>{children}</Main>
+        <Main isBlog={isBlog}>{children}</Main>
         <Footer />
       </div>
     </LayoutContext.Provider>
@@ -30,5 +31,6 @@ export default function LayoutNavBar({
 
 LayoutNavBar.propTypes = {
   navBarRight: PropTypes.bool,
+  isBlog: PropTypes.bool,
   children: PropTypes.node,
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Select from "react-select";
 import classNames from "classnames/bind";
 
-import { SORT_CODE, sortTypes } from "Component/List/Content/CONST";
+import { SORT_CODE, sortTypes } from "CONST";
 
 import styles from "./Sort.module.scss";
 

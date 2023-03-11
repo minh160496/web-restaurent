@@ -1,0 +1,59 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.form-inf {
+  color: $color-text-primary;
+  border-radius: $br-rad-xl;
+  overflow: hidden;
+  margin-top: 32px;
+  h1,
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.form__head {
+  background-color: $color-primary;
+  margin-bottom: 8px;
+  padding: 12px 10px;
+  display: flex;
+  h2 {
+    font-size: $font-md;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+.form__content {
+  border: 1px solid $color-primary;
+  border-radius: $br-rad-xl;
+  background-color: $bg-primary-blur;
+  padding: 10px;
+  height: 298px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $color-primary-bold;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.desc {
+  font-size: $font-sm;
+  text-align: justify;
+}

@@ -34,14 +34,15 @@ export default function Category() {
 
             <div className={cl("category__content")}>
               <Slide>
-                {data.map((categoryItem) => (
-                  <SwiperSlide
-                    key={categoryItem.id}
-                    className="style-bottom-distance"
-                  >
-                    <Card data={categoryItem} />
-                  </SwiperSlide>
-                ))}
+                {data &&
+                  data.map((categoryItem) => (
+                    <SwiperSlide
+                      key={categoryItem.id}
+                      className="style-bottom-distance"
+                    >
+                      <Card data={categoryItem} />
+                    </SwiperSlide>
+                  ))}
               </Slide>
             </div>
           </Col>

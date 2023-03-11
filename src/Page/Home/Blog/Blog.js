@@ -7,6 +7,7 @@ import Slide from "Component/Slide";
 import BlogItem from "./BlogItem";
 
 import getAPIBlogs from "apiServices/apiBlogs";
+import { BLOGS } from "CONST";
 
 import styles from "./Blog.module.scss";
 
@@ -16,6 +17,8 @@ export default function Blog() {
   useEffect(() => {
     async function getBlogsFromAPI() {
       const blogs = await getAPIBlogs();
+      const blogsJson = JSON.stringify(blogs);
+      localStorage.setItem(BLOGS, blogsJson);
       setBlogs(blogs);
     }
 

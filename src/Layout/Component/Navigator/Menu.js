@@ -9,7 +9,7 @@ import styles from "./Navigator.module.scss";
 const cl = classNames.bind(styles);
 export default function Menu() {
   return (
-    <NavigatorItemWrapper filterName="Danh mục sản phẩm">
+    <NavigatorItemWrapper filterName="Danh mục">
       <NavBarOnOfCanvas />
     </NavigatorItemWrapper>
   );

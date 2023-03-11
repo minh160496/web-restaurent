@@ -1,0 +1,43 @@
+@import "src/GlobalStyle/Variables.scss";
+$color-warning: #ff5400;
+
+.form__input {
+  font-size: $font-sm;
+  font-weight: 400;
+  margin-bottom: 12px;
+
+  input,
+  textarea {
+    padding: 8px 8px;
+    outline: none;
+    border-color: transparent;
+    width: 100%;
+    border-radius: $br-rad-md;
+  }
+}
+
+.form-err {
+  color: $color-warning;
+}
+
+.button {
+  button {
+    border: none;
+    outline: none;
+    background-color: $color-primary;
+    min-width: 120px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $br-rad-xl;
+    box-shadow: 0 3px $color-primary-bold;
+    color: $color-text-primary;
+    font-size: $font-sm;
+    transition: ease 0.3s;
+    &:hover {
+      background-color: $color-primary-bold;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.form-contact {
+  color: $color-text-primary;
+  border-radius: $br-rad-xl;
+  overflow: hidden;
+  margin-top: 32px;
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.form__title {
+  background-color: $color-primary;
+  margin-bottom: 8px;
+  padding: 12px 10px;
+  display: flex;
+  h2 {
+    font-size: $font-md;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+.form__main {
+  border: 1px solid $color-primary;
+  border-radius: $br-rad-xl;
+  background-color: $bg-primary-blur;
+  padding: 14px 10px;
+}

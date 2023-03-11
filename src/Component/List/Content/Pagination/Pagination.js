@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 
-import { CURRENT_PAGE } from "Component/List/Content/CONST";
+import { CURRENT_PAGE } from "CONST";
 
 import styles from "./Pagination.module.scss";
 

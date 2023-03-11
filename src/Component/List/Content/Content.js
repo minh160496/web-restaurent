@@ -6,29 +6,12 @@ import { Container, Row } from "react-bootstrap";
 import Pagination from "./Pagination";
 import CurrentPage from "./CurrentPage";
 
-import { SORT_CODE, CURRENT_PAGE } from "Component/List/Content/CONST";
+import { SORT_CODE, CURRENT_PAGE, cardNumOfContent } from "CONST";
 
 import styles from "./Content.module.scss";
 
 const cl = classNames.bind(styles);
-export default function Content({ products }) {
-  const cardNumOfContent = [
-    {
-      id: 1,
-      maxBrowserWidth: 768,
-      num: 12,
-    },
-    {
-      id: 2,
-      maxBrowserWidth: 1199,
-      num: 9,
-    },
-    {
-      id: 3,
-      maxBrowserWidth: Infinity,
-      num: 12,
-    },
-  ];
+export default function Content({ products, blogs }) {
   const [productsAll, setProductsAll] = useState([]);
   const [SortCode, setSortCode] = useState("AZ");
   const [fromIndex, setFromIndex] = useState(0);
@@ -79,6 +62,7 @@ export default function Content({ products }) {
         <Row>
           <CurrentPage
             productsAll={productsAll}
+            blogs={blogs}
             cardNum={cardNum}
             fromIndex={fromIndex}
           />
@@ -98,4 +82,5 @@ export default function Content({ products }) {
 
 Content.propTypes = {
   products: PropTypes.array,
+  blogs: PropTypes.array,
 };

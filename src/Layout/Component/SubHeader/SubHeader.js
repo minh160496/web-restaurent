@@ -15,6 +15,8 @@ export default function SubHeader({ path }) {
     list: "Tất cả món ăn",
     outStanding: "Món ăn nổi bật",
     every: "Món ngon mỗi ngày",
+    blogs: "Tin tức",
+    contact: "Liên hệ",
   };
   return (
     <nav className={cl("sub-header")}>

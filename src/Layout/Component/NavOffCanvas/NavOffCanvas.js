@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
+import PropTypes from "prop-types";
 import { Offcanvas } from "react-bootstrap";
 
 import Navigator from "Layout/Component/Navigator";
@@ -9,7 +10,7 @@ import { ReactComponent as IconFilter } from "@/assets/icon/filter.svg";
 import styles from "./NavOffCanvas.module.scss";
 
 const cl = classNames.bind(styles);
-export default function NavOffCanvas() {
+export default function NavOffCanvas({ isBlog }) {
   const [show, setShow] = useState(false);
   const [hasTranslateX, setHasTranslateX] = useState(false);
 
@@ -36,9 +37,13 @@ export default function NavOffCanvas() {
           <div className={cl("icon-filter")} onClick={handleClose}>
             <IconClose fill="currentcolor" width={25} height={25} />
           </div>
-          <Navigator />
+          <Navigator isBlog={isBlog} />
         </div>
       </Offcanvas>
     </div>
   );
 }
+
+NavOffCanvas.propTypes = {
+  isBlog: PropTypes.bool,
+};
