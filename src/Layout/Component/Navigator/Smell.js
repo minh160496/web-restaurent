@@ -4,19 +4,23 @@ import PropTypes from "prop-types";
 
 import NavigatorItemWrapper from "./NavigatorItemWrapper";
 
-import { FILTER_FIEL, conditionsFilterSmells } from "CONST";
+import { FILTER_FIEL, conditionsFilterSmells, FILTER_SMELLS } from "CONST";
 
 import styles from "./Navigator.module.scss";
 
 const cl = classNames.bind(styles);
-export default function Smells({ onChangeFiel }) {
+export default function Smells({
+  isReset,
+  onChangeFiel = () => {},
+  handleSetIsResetFiel = () => {},
+}) {
   const [inputChecks, setInputChecks] = useState([]);
 
+  let init = {};
+  for (let i in conditionsFilterSmells) {
+    init = { ...init, [conditionsFilterSmells[i].id]: false };
+  }
   const [filterSmells, setFilterSmells] = useState(() => {
-    let init = {};
-    for (let i in conditionsFilterSmells) {
-      init = { ...init, [conditionsFilterSmells[i].id]: false };
-    }
     return init;
   });
 
@@ -31,9 +35,12 @@ export default function Smells({ onChangeFiel }) {
       }
       return [...prev, index];
     });
+
     setFilterSmells((prev) => {
       return { ...prev, [index + 1]: !prev[index + 1] };
     });
+
+    handleSetIsResetFiel(FILTER_SMELLS, false);
   };
 
   useEffect(() => {
@@ -47,12 +54,19 @@ export default function Smells({ onChangeFiel }) {
 
     const filterFielOld = JSON.parse(localStorage.getItem(FILTER_FIEL)) || {};
     const filterFielNew = Object.assign(filterFielOld, {
-      filterSmells: filterSmellArr.length > 0 ? filterSmellArr : undefined,
+      [FILTER_SMELLS]: filterSmellArr.length > 0 ? filterSmellArr : undefined,
     });
 
     localStorage.setItem(FILTER_FIEL, JSON.stringify(filterFielNew));
     onChangeFiel();
   }, [inputChecks]);
+
+  useEffect(() => {
+    if (isReset) {
+      setInputChecks([]);
+      setFilterSmells({ ...init });
+    }
+  }, [isReset]);
 
   return (
     <NavigatorItemWrapper filterName="Hương vị">
@@ -85,5 +99,7 @@ export default function Smells({ onChangeFiel }) {
 }
 
 Smells.propTypes = {
+  isReset: PropTypes.bool,
+  handleSetIsResetFiel: PropTypes.func,
   onChangeFiel: PropTypes.func,
 };

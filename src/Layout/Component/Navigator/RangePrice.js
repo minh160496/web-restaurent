@@ -4,18 +4,23 @@ import PropTypes from "prop-types";
 
 import NavigatorItemWrapper from "./NavigatorItemWrapper";
 
-import { FILTER_FIEL, conditionsFilterPrice } from "CONST";
+import { FILTER_FIEL, conditionsFilterPrice, RANGE_PRICE } from "CONST";
 
 import styles from "./Navigator.module.scss";
 
 const cl = classNames.bind(styles);
-export default function RangePrice({ onChangeFiel }) {
+export default function RangePrice({
+  isReset,
+  onChangeFiel = () => {},
+  handleSetIsResetFiel = () => {},
+}) {
   const [inputCheck, setInputCheck] = useState(undefined);
   const [filterRangePrice, setFilterRangePrice] = useState(undefined);
 
   const handleChangeRadio = (index) => {
     setInputCheck(index);
     setFilterRangePrice(conditionsFilterPrice[index]);
+    handleSetIsResetFiel(RANGE_PRICE, false);
   };
 
   useEffect(() => {
@@ -23,10 +28,17 @@ export default function RangePrice({ onChangeFiel }) {
       ? JSON.parse(localStorage.getItem(FILTER_FIEL))
       : {};
 
-    const filterFielNew = { ...filterFielOld, rangePrice: filterRangePrice };
+    const filterFielNew = { ...filterFielOld, [RANGE_PRICE]: filterRangePrice };
     localStorage.setItem(FILTER_FIEL, JSON.stringify(filterFielNew));
     onChangeFiel();
   }, [inputCheck]);
+
+  useEffect(() => {
+    if (isReset) {
+      setInputCheck(null);
+      setFilterRangePrice(undefined);
+    }
+  }, [isReset]);
   return (
     <NavigatorItemWrapper filterName="Mức giá">
       <ul>
@@ -44,9 +56,9 @@ export default function RangePrice({ onChangeFiel }) {
               </div>
               <label htmlFor={"range-price-" + index}>
                 <h4 className={cl("filter__item__name")}>
-                  {(!item.end && "Dưới " + item.top) ||
-                    (!item.top && "Trên " + item.end) ||
-                    "Từ " + item.end + " - " + item.top}
+                  {(!item.end && "Dưới " + item.top + ".000") ||
+                    (!item.top && "Trên " + item.end + ".000") ||
+                    "Từ " + item.end + ".000" + " - " + item.top + ".000"}
                 </h4>
               </label>
             </div>
@@ -58,5 +70,7 @@ export default function RangePrice({ onChangeFiel }) {
 }
 
 RangePrice.propTypes = {
+  isReset: PropTypes.bool,
+  handleSetIsResetFiel: PropTypes.func,
   onChangeFiel: PropTypes.func,
 };

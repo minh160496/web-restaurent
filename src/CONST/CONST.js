@@ -8,6 +8,10 @@ export const CONTACT = "contact";
 
 export const FILTER_FIEL = "filterFiel";
 
+export const RANGE_PRICE = "rangePrice";
+export const FILTER_SMELLS = "filterSmells";
+export const FILTER_SIZES = "filterSizes";
+
 export const cardNumOfContent = [
   {
     id: 1,

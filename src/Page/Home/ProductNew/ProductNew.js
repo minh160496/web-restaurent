@@ -28,14 +28,15 @@ export default function ProductNew() {
         </div>
         <div className={cl("content")}>
           <Slide>
-            {productNews.map((productNew) => (
-              <SwiperSlide
-                key={productNew.id}
-                className="style-bottom-distance"
-              >
-                <Card product={productNew} />
-              </SwiperSlide>
-            ))}
+            {productNews &&
+              productNews.map((productNew) => (
+                <SwiperSlide
+                  key={productNew.id}
+                  className="style-bottom-distance"
+                >
+                  <Card product={productNew} />
+                </SwiperSlide>
+              ))}
           </Slide>
         </div>
       </Container>

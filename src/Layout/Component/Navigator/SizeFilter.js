@@ -4,18 +4,22 @@ import PropTypes from "prop-types";
 
 import NavigatorItemWrapper from "./NavigatorItemWrapper";
 
-import { FILTER_FIEL, conditionsFilterSizes } from "CONST";
+import { FILTER_FIEL, conditionsFilterSizes, FILTER_SIZES } from "CONST";
 
 import styles from "./Navigator.module.scss";
 
 const cl = classNames.bind(styles);
-export default function SizeFilter({ onChangeFiel }) {
+export default function SizeFilter({
+  isReset,
+  onChangeFiel = () => {},
+  handleSetIsResetFiel = () => {},
+}) {
+  let init = {};
+  for (let i in conditionsFilterSizes) {
+    init = { ...init, [conditionsFilterSizes[i].id]: false };
+  }
   const [inputChecks, setInputChecks] = useState([]);
   const [filterSizes, setFilterSizes] = useState(() => {
-    let init = {};
-    for (let i in conditionsFilterSizes) {
-      init = { ...init, [conditionsFilterSizes[i].id]: false };
-    }
     return init;
   });
 
@@ -38,6 +42,8 @@ export default function SizeFilter({ onChangeFiel }) {
       };
       return filterSizesNext;
     });
+
+    handleSetIsResetFiel(FILTER_SIZES, false);
   };
 
   useEffect(() => {
@@ -52,11 +58,19 @@ export default function SizeFilter({ onChangeFiel }) {
     const filterFielOld = JSON.parse(localStorage.getItem(FILTER_FIEL)) || {};
     const filterFielNew = {
       ...filterFielOld,
-      filterSizes: filterSizeArr.length > 0 ? filterSizeArr : undefined,
+      [FILTER_SIZES]: filterSizeArr.length > 0 ? filterSizeArr : undefined,
     };
     localStorage.setItem(FILTER_FIEL, JSON.stringify(filterFielNew));
     onChangeFiel();
   }, [inputChecks]);
+
+  useEffect(() => {
+    if (isReset) {
+      setInputChecks([]);
+      setFilterSizes({ ...init });
+    }
+  }, [isReset]);
+
   return (
     <NavigatorItemWrapper filterName="Kích cỡ">
       <ul>
@@ -66,13 +80,13 @@ export default function SizeFilter({ onChangeFiel }) {
               <div className={cl("check")}>
                 <input
                   type="checkbox"
-                  name="smell"
-                  id={"smell-" + index}
+                  name="size"
+                  id={"size-" + index}
                   checked={inputChecks.includes(index)}
                   onChange={() => handleChangeCheckBox(index)}
                 />
               </div>
-              <label htmlFor={"smell-" + index}>
+              <label htmlFor={"size-" + index}>
                 <h4 className={cl("filter__item__name")}>
                   {item.fiel[0].toUpperCase() + item.fiel.substring(1)}
                 </h4>
@@ -86,5 +100,7 @@ export default function SizeFilter({ onChangeFiel }) {
 }
 
 SizeFilter.propTypes = {
+  isReset: PropTypes.bool,
   onChangeFiel: PropTypes.func,
+  handleSetIsResetFiel: PropTypes.func,
 };

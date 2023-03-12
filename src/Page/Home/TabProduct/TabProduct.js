@@ -14,7 +14,7 @@ export default function TabProduct() {
   const products = useContext(contextProducts);
   const [menuProducts, setMenuProducts] = useState([]);
   const [IDsProduct, setIDsProduct] = useState([]);
-  const [ProductsFilter, setProductsFilter] = useState([]);
+  const [productsFilter, setProductsFilter] = useState([]);
   const [filterTypeID, setFilterTypeID] = useState(1);
 
   useEffect(() => {
@@ -26,13 +26,13 @@ export default function TabProduct() {
   }, []);
 
   useEffect(() => {
-    if (menuProducts[filterTypeID - 1]) {
+    if (menuProducts && menuProducts[filterTypeID - 1]) {
       setIDsProduct(menuProducts[filterTypeID - 1].listIdProducts);
     }
-    const ProductsFilter = products.filter((item) =>
+    const productsFilter = products.filter((item) =>
       IDsProduct.includes(item.id)
     );
-    setProductsFilter(ProductsFilter);
+    setProductsFilter(productsFilter);
   }, [filterTypeID, menuProducts, IDsProduct]);
 
   return (
@@ -44,31 +44,33 @@ export default function TabProduct() {
           </h1>
         </div>
         <div className={cl("tab-product__filter")}>
-          {menuProducts.map((currentMenuProduct) => (
-            <div
-              className={cl("filter__item", {
-                active: filterTypeID === currentMenuProduct.id,
-              })}
-              key={currentMenuProduct.id}
-              onClick={() => setFilterTypeID(currentMenuProduct.id)}
-            >
-              <span>{currentMenuProduct.type}</span>
-            </div>
-          ))}
+          {menuProducts &&
+            menuProducts.map((currentMenuProduct) => (
+              <div
+                className={cl("filter__item", {
+                  active: filterTypeID === currentMenuProduct.id,
+                })}
+                key={currentMenuProduct.id}
+                onClick={() => setFilterTypeID(currentMenuProduct.id)}
+              >
+                <span>{currentMenuProduct.type}</span>
+              </div>
+            ))}
         </div>
 
         <div className={cl("tab-product__content")}>
           <Row>
-            {ProductsFilter.map((product) => (
-              <Col
-                className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2"
-                key={product.id}
-              >
-                <div className={cl("cart-wrapper")}>
-                  <Card product={product} />
-                </div>
-              </Col>
-            ))}
+            {productsFilter &&
+              productsFilter.map((product) => (
+                <Col
+                  className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2"
+                  key={product.id}
+                >
+                  <div className={cl("cart-wrapper")}>
+                    <Card product={product} />
+                  </div>
+                </Col>
+              ))}
           </Row>
         </div>
       </Container>
