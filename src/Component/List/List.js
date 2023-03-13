@@ -22,9 +22,9 @@ export default function List({ path = "/list", isBlog = false }) {
   useEffect(() => {
     if (!isBlog) {
       if (path === "/outStanding") {
-        const productsCurrent = products.filter(
-          (product) => product.isOutStanding
-        );
+        const productsCurrent = products
+          ? products.filter((product) => product.isOutStanding)
+          : [];
         setProductsCurrent(productsCurrent);
       }
 
