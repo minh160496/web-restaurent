@@ -5,6 +5,7 @@ import { Col } from "react-bootstrap";
 
 import Card from "Component/Card";
 import BlogItem from "Page/Home/Blog/BlogItem";
+import { ReactComponent as IconSad } from "assets/icon/sad.svg";
 
 import { useFilterFromIndex } from "hook";
 
@@ -22,6 +23,7 @@ export default function CurrentPage({
   return (
     <>
       {!isBlog &&
+        products.length > 0 &&
         products.map((product) => (
           <Col className="col-6 col-md-4 col-xl-3" key={product.id}>
             <div className={cl("content__card")}>
@@ -29,6 +31,12 @@ export default function CurrentPage({
             </div>
           </Col>
         ))}
+      {!isBlog && products.length === 0 && (
+        <div className={cl("failed") + " flex"}>
+          <h3 className={cl("title")}>Dữ liệu món ăn đang được cập nhật...!</h3>
+          <IconSad fill="currentcolor" width={20} height={20} />
+        </div>
+      )}
       {isBlog &&
         blogs.map((blog) => (
           <Col className="col-6 col-md-4 col-xl-3" key={blog.id}>

@@ -28,16 +28,17 @@ export default function CountUps() {
           </h1>
         </div>
         <Row>
-          {restaurentInf.map((infItem) => (
-            <Col className="col-6 col-md-6 col-lg-3" key={infItem.id}>
-              <CountUpItem
-                title={infItem.type}
-                src={infItem.icon}
-                end={infItem.current}
-                duration={1.5}
-              />
-            </Col>
-          ))}
+          {restaurentInf &&
+            restaurentInf.map((infItem) => (
+              <Col className="col-6 col-md-6 col-lg-3" key={infItem.id}>
+                <CountUpItem
+                  title={infItem.type}
+                  src={infItem.icon}
+                  end={infItem.current}
+                  duration={1.5}
+                />
+              </Col>
+            ))}
         </Row>
       </Container>
     </section>

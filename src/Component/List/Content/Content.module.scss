@@ -2,4 +2,14 @@
 
 .content {
   margin-top: 32px;
+  padding-bottom: 40px;
+}
+
+.failed {
+  margin-top: 40px;
+  color: $color-text-desible;
+
+  h3.title {
+    padding-right: 8px;
+  }
 }

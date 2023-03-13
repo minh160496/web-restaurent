@@ -11,7 +11,6 @@ import Baner from "./Baner";
 import CountUps from "./CountUp";
 import Blog from "./Blog";
 import FeedBack from "./FeedBack";
-import BackTop from "Component/BackTop";
 
 import styles from "./Home.module.scss";
 
@@ -30,7 +29,6 @@ export default function Home() {
           <CountUps />
           <Blog />
           <FeedBack />
-          <BackTop />
         </main>
       </LayoutDefault>
     </div>

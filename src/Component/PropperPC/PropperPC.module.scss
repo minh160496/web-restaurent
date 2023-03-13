@@ -1,6 +1,7 @@
 @import "src/GlobalStyle/Variables.scss";
 
 .tippy-PC {
+  z-index: 100000;
   div[data-state] {
     border-radius: $br-rad-xl;
   }

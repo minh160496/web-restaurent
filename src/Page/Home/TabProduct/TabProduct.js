@@ -29,9 +29,9 @@ export default function TabProduct() {
     if (menuProducts && menuProducts[filterTypeID - 1]) {
       setIDsProduct(menuProducts[filterTypeID - 1].listIdProducts);
     }
-    const productsFilter = products.filter((item) =>
-      IDsProduct.includes(item.id)
-    );
+    const productsFilter = products
+      ? products.filter((item) => IDsProduct.includes(item.id))
+      : [];
     setProductsFilter(productsFilter);
   }, [filterTypeID, menuProducts, IDsProduct]);
 

@@ -144,7 +144,6 @@
     h3 {
       font-size: inherit;
       font-weight: 600;
-      white-space: nowrap;
     }
 
     a {
@@ -166,6 +165,18 @@
 @media (min-width: $breakpoint-lg) and (max-width: $breakpoint-xl) {
   .wrapper-navbarPC {
     width: 465px;
+    overflow-x: clip;
+    line-height: 100%;
+    ul {
+      width: 900px;
+      transition: margin ease 0.4s;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-xl) and (max-width: 1400px) {
+  .wrapper-navbarPC {
+    width: 580px;
     overflow-x: clip;
     line-height: 100%;
     ul {

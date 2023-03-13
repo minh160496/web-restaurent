@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import classnames from "classnames/bind";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Container, Row } from "react-bootstrap";
 
-import { listBodyItem } from "../OffCanvas";
 import Img from "Component/Img";
+
+import { listBodyItem } from "../OffCanvas";
 
 import styles from "./DropDown.module.scss";
 

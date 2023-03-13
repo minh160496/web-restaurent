@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, createContext } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 
@@ -13,11 +13,17 @@ import { BLOGS } from "CONST";
 import styles from "./List.module.scss";
 
 const cl = classNames.bind(styles);
+export const contextHasReRenderContent = createContext(null);
 export default function List({ path = "/list", isBlog = false }) {
   const products = useContext(contextProducts);
   const [productsCurrent, setProductsCurrent] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState(null);
+  const [hasReRenderContent, setHasReRenderContent] = useState(false);
+
+  const handleReRenderContent = () => {
+    setHasReRenderContent((prev) => !prev);
+  };
 
   useEffect(() => {
     if (!isBlog) {
@@ -50,16 +56,19 @@ export default function List({ path = "/list", isBlog = false }) {
   }, [products]);
 
   return (
-    <LayoutNavBar path={path} isBlog={isBlog}>
-      <div className={cl("list")}>
-        <Head title={title} isBlog={isBlog} />
-        <Content
-          setTitle={(title) => setTitle(title)}
-          products={productsCurrent}
-          blogs={blogs}
-        />
-      </div>
-    </LayoutNavBar>
+    <contextHasReRenderContent.Provider value={handleReRenderContent}>
+      <LayoutNavBar path={path} isBlog={isBlog}>
+        <div className={cl("list")}>
+          <Head title={title} isBlog={isBlog} />
+          <Content
+            setTitle={(title) => setTitle(title)}
+            products={productsCurrent}
+            blogs={blogs}
+            isReRender={hasReRenderContent}
+          />
+        </div>
+      </LayoutNavBar>
+    </contextHasReRenderContent.Provider>
   );
 }
 

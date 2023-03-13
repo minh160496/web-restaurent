@@ -16,7 +16,9 @@ export default function ProductNew() {
   const [productNews, setProductNews] = useState([]);
 
   useEffect(() => {
-    const productNews = products.filter((product) => product.isOutStanding);
+    const productNews = products
+      ? products.filter((product) => product.isOutStanding)
+      : [];
     setProductNews(productNews);
   }, [products]);
 

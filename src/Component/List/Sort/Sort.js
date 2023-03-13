@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Select from "react-select";
 import classNames from "classnames/bind";
 
 import { SORT_CODE, sortTypes } from "CONST";
+import { contextHasReRenderContent } from "../List";
 
 import styles from "./Sort.module.scss";
 
 const cl = classNames.bind(styles);
 export default function Sort() {
+  const handleReRenderContent = useContext(contextHasReRenderContent);
   const options = [];
   const [sortCode, setSortCode] = useState(() => {
     if (localStorage.getItem(SORT_CODE)) {
@@ -40,6 +42,7 @@ export default function Sort() {
     const code = sortTypes.find((item) => item.type === e.value.trim()).code;
     setSortCode(code);
     localStorage.setItem(SORT_CODE, code);
+    handleReRenderContent();
   };
 
   return (

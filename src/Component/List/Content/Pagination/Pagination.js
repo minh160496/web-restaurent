@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 
 import { CURRENT_PAGE } from "CONST";
+import { contextIsReRenderMain } from "Layout/Component/Main/Main";
 
 import styles from "./Pagination.module.scss";
 
@@ -17,6 +18,7 @@ export default function Pagination({
   const [numPageCur, setNumPageCur] = useState(1);
   const [hasIconNext, setHasIconNext] = useState(true);
   const mapArr = [];
+  const isReRenderMain = useContext(contextIsReRenderMain); //re-render main do truong loc o nav thay doi thi phai resetpagination ve currpage=1
 
   for (let i = 1; i <= numberPage; i++) {
     mapArr.push(i);
@@ -71,6 +73,13 @@ export default function Pagination({
     localStorage.setItem(CURRENT_PAGE, numPageCur);
     letSetCurrentPage();
   }, [numPageCur]);
+
+  useEffect(() => {
+    //moi khi render main do thay doi truong loc thi content hien thi trang thu nhat
+    setNumPageCur(1);
+    setHasIconNext(true);
+    setHasIconPrev(false);
+  }, [isReRenderMain]);
 
   return (
     <>

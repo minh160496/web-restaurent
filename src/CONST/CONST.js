@@ -46,9 +46,9 @@ export const conditionsFilterSmells = [
 ];
 
 export const conditionsFilterSizes = [
-  { id: 1, fiel: "Lớn" },
-  { id: 2, fiel: "Vừa" },
-  { id: 3, fiel: "Nhỏ" },
+  { id: 1, fiel: "lớn" },
+  { id: 2, fiel: "vừa" },
+  { id: 3, fiel: "nhỏ" },
 ];
 
 export const sortTypes = [

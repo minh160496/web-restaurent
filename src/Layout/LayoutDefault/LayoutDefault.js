@@ -6,6 +6,7 @@ import Footer from "Layout/Component/Footer";
 import Navigator from "Layout/Component/SubHeader";
 import Logo from "Layout/Component/Logo";
 import SubHeader from "Layout/Component/SubHeader";
+import BackTop from "Component/BackTop";
 
 export default function LayoutDefault({
   children,
@@ -21,6 +22,7 @@ export default function LayoutDefault({
       {navigator && <Navigator>detail</Navigator>}
       {children}
       <Footer />
+      <BackTop />
     </div>
   );
 }

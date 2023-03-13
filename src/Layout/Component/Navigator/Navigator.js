@@ -14,13 +14,14 @@ import { FILTER_FIEL, FILTER_SIZES, FILTER_SMELLS, RANGE_PRICE } from "CONST";
 import styles from "./Navigator.module.scss";
 
 const cl = classNames.bind(styles);
-export default function Navigator({ isBlog }) {
+export default function Navigator({ isBlog, onChangeFilterInNav = () => {} }) {
   const [hasRenderTotal, setHasRederTotal] = useState(false);
   const [isResetRangePrice, setIsResetRangePrice] = useState(false);
   const [isResetFilerSmells, setIsResetFilerSmells] = useState(false);
   const [isResetFilerSizes, setIsResetFilerSizes] = useState(false);
   const handleRenderTotal = () => {
     setHasRederTotal((prev) => !prev);
+    onChangeFilterInNav();
   };
 
   const handleResetFilterFiel = (filterFiel) => {
@@ -36,6 +37,7 @@ export default function Navigator({ isBlog }) {
     setIsResetRangePrice(true);
     setIsResetFilerSmells(true);
     setIsResetFilerSizes(true);
+    onChangeFilterInNav();
   };
 
   const handleSetIsResetFiel = (filterFiel, bool) => {
@@ -91,4 +93,5 @@ export default function Navigator({ isBlog }) {
 
 Navigator.propTypes = {
   isBlog: PropTypes.bool,
+  onChangeFilterInNav: PropTypes.func,
 };

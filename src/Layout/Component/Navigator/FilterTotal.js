@@ -22,7 +22,8 @@ export default function FilterTotal({
   handleResetFilterFiels = () => {},
 }) {
   const filterFiels = JSON.parse(localStorage.getItem(FILTER_FIEL));
-  const isFilterFiels = Object.keys(filterFiels).length > 0;
+  const filterFielsObj = filterFiels || {};
+  const isFilterFiels = Object.keys(filterFielsObj).length > 0;
 
   const ContentTotal = (filterFiel, index) => {
     if (filterFiel === RANGE_PRICE) {

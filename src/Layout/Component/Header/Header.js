@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import classnames from "classnames/bind";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -103,8 +103,16 @@ export default function Header({ isHomePage }) {
     }
   };
   const handleFadeRight = () => {
-    if (marginUl > -250) {
-      setMarginUl((prev) => prev - 102);
+    if (window.innerWidth <= 1200) {
+      if (marginUl > -250) {
+        setMarginUl((prev) => prev - 102);
+      }
+    }
+
+    if (window.innerWidth > 1200) {
+      if (marginUl > -150) {
+        setMarginUl((prev) => prev - 102);
+      }
     }
   };
 
@@ -151,7 +159,14 @@ export default function Header({ isHomePage }) {
                 <OffCanvas />
 
                 <div className={cl("header__navbar__item", "logo")}>
-                  <Img src={logo} width="100%" heigh="auto" minWidth="130px" />
+                  <Link to="/">
+                    <Img
+                      src={logo}
+                      width="100%"
+                      heigh="auto"
+                      minWidth="130px"
+                    />
+                  </Link>
                 </div>
                 <div
                   className={

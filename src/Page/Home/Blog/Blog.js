@@ -37,11 +37,12 @@ export default function Blog() {
             sliPerViewLg={2.5}
             sliPerViewXl={4}
           >
-            {blogs.map((blog) => (
-              <SwiperSlide key={blog.id} className="style-bottom-distance">
-                <BlogItem blog={blog} />
-              </SwiperSlide>
-            ))}
+            {blogs &&
+              blogs.map((blog) => (
+                <SwiperSlide key={blog.id} className="style-bottom-distance">
+                  <BlogItem blog={blog} />
+                </SwiperSlide>
+              ))}
           </Slide>
         </div>
       </Container>
