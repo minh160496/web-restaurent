@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 import { ReactComponent as IconPlus } from "@/assets/icon/plus.svg";
 import { ReactComponent as IconMinus } from "@/assets/icon/minus.svg";
@@ -24,7 +25,14 @@ export default function NavBarItemOfCanvas({ navBarItemObj }) {
             " flex justify-between"
           }
         >
-          <h2 className={cl("item__title")}>{navBarItemObj.fiel}</h2>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? cl("active", "nav-link") : cl("inactive", "nav-link")
+            }
+            to={navBarItemObj.path}
+          >
+            <h2 className={cl("item__title")}>{navBarItemObj.fiel}</h2>
+          </NavLink>
           {navBarItemObj.child && (
             <div className={cl("item__icon")} onClick={handleClickIcon}>
               {!childFade && (

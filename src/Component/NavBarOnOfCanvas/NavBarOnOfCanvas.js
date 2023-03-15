@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames/bind";
-import { NavLink } from "react-router-dom";
 
 import NavBarItemOfCanvas from "./NavBarItemOfCanvas";
 
@@ -15,14 +14,7 @@ export default function NavBarOnOfCanvas() {
       <ul>
         {listBodyItem.map((item, index) => (
           <li key={index}>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? cl("active") : cl('"inactive"')
-              }
-              to={item.path}
-            >
-              <NavBarItemOfCanvas navBarItemObj={item} />
-            </NavLink>
+            <NavBarItemOfCanvas navBarItemObj={item} />
           </li>
         ))}
       </ul>

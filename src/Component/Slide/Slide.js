@@ -11,6 +11,7 @@ import styles from "./Slide.module.scss";
 
 const cl = classnames.bind(styles);
 export default function Slide({
+  className = " ",
   children,
   sliPerViewSm = 1.5,
   sliPerViewMd = 2.5,
@@ -53,7 +54,7 @@ export default function Slide({
         scrollbar={{ draggable: true }}
         touchRatio={2}
         modules={[Pagination]}
-        className={cl("swiper")}
+        className={cl("swiper") + " " + className}
       >
         {children}
       </Swiper>
@@ -63,6 +64,7 @@ export default function Slide({
 
 Slide.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   sliPerViewSm: PropTypes.number,
   sliPerViewMd: PropTypes.number,
   sliPerViewLg: PropTypes.number,

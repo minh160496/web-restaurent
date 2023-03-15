@@ -6,6 +6,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import Img from "Component/Img";
 import LinkMore from "Component/LinkMore";
 
+import { pathObj } from "Routers";
+
 import styles from "./About.module.scss";
 
 const cl = classnames.bind(styles);
@@ -33,7 +35,7 @@ export default function About() {
                   ơn.
                 </span>
               </div>
-              <LinkMore />
+              <LinkMore link={pathObj.about.path} />
             </div>
           </Col>
           <Col className="col-12 col-lg-6">

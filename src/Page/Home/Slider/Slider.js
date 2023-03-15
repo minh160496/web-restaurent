@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import styles from "./Slider.module.scss";
 import Img from "Component/Img";
 import MyButton from "Component/MyButton";
+import { pathObj } from "Routers";
 
 const cl = classnames.bind(styles);
 export default function Slider() {
@@ -81,7 +82,9 @@ export default function Slider() {
             }}
           >
             <div className={cl("desc__button")}>
-              <MyButton className={cl("btn")}>Đặt món ngay</MyButton>
+              <MyButton className={cl("btn")} link={pathObj.list.path}>
+                Đặt món ngay
+              </MyButton>
             </div>
           </motion.div>
         </div>

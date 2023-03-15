@@ -1,0 +1,52 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.product-detail {
+  .main {
+    color: $color-text-primary;
+    padding-bottom: 60px;
+    .main__left {
+      padding-bottom: 32px;
+      img {
+        border-radius: $br-rad-xl;
+      }
+    }
+  }
+
+  .title {
+    h2 {
+      font-size: $font-max;
+      font-weight: 700;
+    }
+  }
+
+  .price {
+    padding-bottom: 28px;
+  }
+
+  .price-online {
+    font-size: $font-xl;
+    font-weight: 600;
+    color: $color-emphasize;
+    padding-bottom: 12px;
+  }
+
+  .price-save {
+    color: $color-emphasize;
+    font-size: $font-md;
+    font-weight: 500;
+  }
+
+  .num {
+    padding-bottom: 32px;
+  }
+
+  .num__title {
+    padding-bottom: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    height: 40px;
+    margin-top: 18px;
+  }
+}

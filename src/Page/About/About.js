@@ -1,16 +1,18 @@
 import React from "react";
 import classnames from "classnames/bind";
+import { Container } from "react-bootstrap";
 
 import LayoutDefault from "Layout/LayoutDefault";
 import Img from "Component/Img";
 
+import { pathObj } from "Routers";
+
 import styles from "./About.module.scss";
-import { Container } from "react-bootstrap";
 
 const cl = classnames.bind(styles);
 export default function About() {
   return (
-    <LayoutDefault path="about">
+    <LayoutDefault path={pathObj.about.path}>
       <main className={cl("about")}>
         <Container>
           <div className={cl("about__title")}>

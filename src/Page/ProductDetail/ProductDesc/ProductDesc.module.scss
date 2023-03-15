@@ -1,0 +1,55 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.product-desc {
+  padding-top: 48px;
+  color: $color-text-primary;
+}
+
+.heading {
+  border-bottom: 1px solid $color-text-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  position: relative;
+  padding-right: 12px;
+  padding-left: 12px;
+  cursor: pointer;
+  h2 {
+    text-transform: uppercase;
+    font-size: $font-md;
+    font-weight: 600;
+    transition: all ease 0.3s;
+    padding-bottom: 12px;
+    &:hover {
+      color: $color-primary;
+    }
+  }
+  &.actived {
+    color: $color-primary;
+    &::after {
+      position: absolute;
+      content: "";
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: $color-primary;
+      color: $color-primary;
+    }
+  }
+}
+
+.main {
+  font-size: $font-sm;
+  padding-top: 20px;
+}
+
+@media (min-width: $breakpoint-md) {
+  .title {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+}

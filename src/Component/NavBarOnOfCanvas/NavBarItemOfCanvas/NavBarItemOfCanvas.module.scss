@@ -20,6 +20,7 @@ div.actived {
   display: flex;
   align-items: center;
   justify-content: end;
+  cursor: pointer;
 }
 
 .child {
@@ -33,6 +34,20 @@ div.actived {
 .rotate-animation {
   animation: fadeIcon 0.3s forwards;
   transition: all ease 0.3s;
+}
+
+//navlink
+.nav-link {
+  display: block;
+  flex: 1;
+}
+
+.active {
+  color: $color-primary;
+  transition: color ease 0.3s;
+  & > div > div > div:nth-child(2) {
+    color: $color-text-primary;
+  }
 }
 
 //khi hover thẻ navlink set cho color thay đổi mình thằng cha thôi

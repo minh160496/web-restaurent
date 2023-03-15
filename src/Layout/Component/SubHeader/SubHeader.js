@@ -6,18 +6,12 @@ import { Container } from "react-bootstrap";
 
 import { ReactComponent as IconArrowRight } from "@/assets/icon/arrowRight.svg";
 
+import { pathObj } from "Routers";
+
 import styles from "./SubHeader.module.scss";
 
 const cl = classNames.bind(styles);
 export default function SubHeader({ path }) {
-  const pathObj = {
-    about: "Giới thiệu",
-    list: "Tất cả món ăn",
-    outStanding: "Món ăn nổi bật",
-    every: "Món ngon mỗi ngày",
-    blogs: "Tin tức",
-    contact: "Liên hệ",
-  };
   return (
     <nav className={cl("sub-header")}>
       {path !== "home" && (
@@ -44,9 +38,9 @@ export default function SubHeader({ path }) {
                       </div>
                     </li>
                     <li>
-                      <Link to={"/" + item}>
+                      <Link to={pathObj[item].path}>
                         <span className={cl("content__item")}>
-                          {pathObj[item]}
+                          {pathObj[item].title}
                         </span>
                       </Link>
                     </li>

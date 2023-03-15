@@ -15,6 +15,7 @@ const cl = classnames.bind(styles);
 export default function DropDown({ ID }) {
   const itemDropObj = listBodyItem[ID - 1];
   const [childItemID, setChildItemID] = useState(1);
+
   return (
     <motion.div
       className="box"
@@ -41,7 +42,7 @@ export default function DropDown({ ID }) {
                       >
                         <div className={cl("dropdown__item")}>
                           <div className={cl("item__title")}>
-                            <Link to="/">
+                            <Link to={item.path}>
                               <h3>{item.fiel}</h3>
                             </Link>
                           </div>
@@ -49,7 +50,7 @@ export default function DropDown({ ID }) {
                             <ul>
                               {item.child.map((item, index) => (
                                 <li key={index}>
-                                  <Link to="/">
+                                  <Link to={item.path}>
                                     <div className={cl("list-link")}>
                                       <span>{item.fiel}</span>
                                     </div>

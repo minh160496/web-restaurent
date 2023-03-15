@@ -118,6 +118,7 @@ export default function Content({ products, blogs, isReRender = false }) {
       }
     }
     setProductsAll(productsAfterFilter);
+    window.scroll(0, 0);
   }, [products, isReRenderMain, isReRender]);
 
   useEffect(() => {

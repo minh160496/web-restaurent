@@ -5,12 +5,17 @@ import PropTypes from "prop-types";
 
 import Img from "Component/Img";
 
+import { pathObj } from "Routers";
+
 import styles from "./Card.module.scss";
 
 const cl = classNames.bind(styles);
 export default function Card({ data }) {
+  const keys = Object.keys(pathObj);
+  const key = keys.find((key) => pathObj[key].title === data.title);
+
   return (
-    <Link to="/">
+    <Link to={key ? pathObj[key].path : pathObj.list.path}>
       <div className={cl("cart")}>
         <div className={cl("cart-wrapper")}>
           <div className={cl("cart__img")}>

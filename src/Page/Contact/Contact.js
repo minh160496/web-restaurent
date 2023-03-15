@@ -8,11 +8,12 @@ import FormContact from "./FormContact";
 import Map from "./Map";
 
 import styles from "./Contact.module.scss";
+import { pathObj } from "Routers";
 
 const cl = classNames.bind(styles);
 export default function Contact() {
   return (
-    <LayoutDefault path="/contact">
+    <LayoutDefault path={pathObj.contact.path}>
       <div className={cl("contact")}>
         <Container>
           <Row>

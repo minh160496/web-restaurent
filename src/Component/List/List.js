@@ -7,8 +7,8 @@ import Head from "./Head";
 import Content from "./Content";
 
 import { contextProducts } from "App";
-import { listBodyItem } from "Layout/Component/Header/OffCanvas";
 import { BLOGS } from "CONST";
+import { pathObj } from "Routers";
 
 import styles from "./List.module.scss";
 
@@ -27,29 +27,285 @@ export default function List({ path = "/list", isBlog = false }) {
 
   useEffect(() => {
     if (!isBlog) {
-      if (path === "/outStanding") {
+      if (path === pathObj.outStanding.path) {
         const productsCurrent = products
           ? products.filter((product) => product.isOutStanding)
           : [];
         setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.outStanding.title;
+        setTitle(newTitle);
       }
 
-      if (path === "/list") {
+      if (path === pathObj.list.path) {
         setProductsCurrent(products);
+        const newTitle = pathObj.list.title;
+        setTitle(newTitle);
       }
 
-      if (path === "/every") {
-        const productsCurrent = products.filter((product) => product.every);
+      if (path === pathObj.every.path) {
+        const productsCurrent = products
+          ? products.filter((product) => product.every)
+          : [];
         setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.every.title;
+        setTitle(newTitle);
       }
 
-      let title = listBodyItem.find((item) => item.path === path).fiel;
-      if (title === "Menu") title = "Tất cả món ăn";
-      setTitle(title);
+      if (path === pathObj.appetizers.path) {
+        const productsCurrent = products
+          ? products.filter((product) => product.category.includes("Khai vị"))
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.appetizers.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.mainDishes.path) {
+        const productsCurrent = products
+          ? products.filter((product) => product.category.includes("Món chính"))
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.mainDishes.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.soups.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.soups.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.soups.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.riceNoodles.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.riceNoodles.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.riceNoodles.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.cakeDesserts.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.cakeDesserts.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.cakeDesserts.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.drinks.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.drinks.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.drinks.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.salads.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.salads.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.salads.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.gois.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.gois.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.gois.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.beefs.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.beefs.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.beefs.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.kitchens.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.kitchens.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.kitchens.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.porks.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.porks.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.porks.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.fishs.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.fishs.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.fishs.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.canhs.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.canhs.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.canhs.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.tiems.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.tiems.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.tiems.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.sups.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.sups.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.sups.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.rices.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.rices.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.rices.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.noodles.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.noodles.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.noodles.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.porridges.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.porridges.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.porridges.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.dessertds.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.dessertds.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.dessertds.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.cakes.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.cakes.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.cakes.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.coffees.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.coffees.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.coffees.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.milkTeas.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.milkTeas.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.milkTeas.title;
+        setTitle(newTitle);
+      }
+
+      if (path === pathObj.milkTeas.path) {
+        const productsCurrent = products
+          ? products.filter((product) =>
+              product.category.includes(pathObj.milkTeas.title)
+            )
+          : [];
+        setProductsCurrent(productsCurrent);
+        const newTitle = pathObj.milkTeas.title;
+        setTitle(newTitle);
+      }
     }
+    if (title === "Menu") setTitle("Tất cả món ăn");
 
     if (isBlog) {
-      const blogsCurr = JSON.parse(localStorage.getItem(BLOGS));
+      const blogsCurr = localStorage.getItem(BLOGS)
+        ? JSON.parse(localStorage.getItem(BLOGS))
+        : [];
       setBlogs(blogsCurr);
       setTitle("Tin tức");
     }

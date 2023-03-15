@@ -5,6 +5,160 @@ import OutStanding from "Page/OutStanding";
 import Every from "Page/Every";
 import Blogs from "Page/Blogs";
 import Contact from "Page/Contact";
+import Appetizer from "Page/Appetizer";
+import MainDishes from "Page/MainDishea";
+import Soups from "Page/Coffee";
+import RiceNoodle from "Page/RiceNoodle";
+import CakeDessert from "Page/CakeDessert";
+import Drink from "Page/Drink";
+import Salad from "Page/Salad";
+import Goi from "Page/Goi";
+import Beef from "Page/Beef";
+import Kitchen from "Page/Kitchen";
+import Pork from "Page/Pork";
+import Fish from "Page/Fish";
+import Canh from "Page/Canh";
+import Tiem from "Page/Tiem";
+import Sup from "Page/Sup";
+import Rice from "Page/Rice";
+import Noodle from "Page/Noodle";
+import Porridge from "Page/Porridge";
+import Dessertd from "Page/Dessertd";
+import Cake from "Page/Cake";
+import Coffee from "Page/Coffee";
+import MilkTea from "Page/MilkTea";
+import ProductDetail from "Page/ProductDetail";
+
+export const pathObj = {
+  about: {
+    title: "Giới thiệu",
+    path: "/about",
+  },
+  list: {
+    title: "Menu",
+    path: "/list",
+  },
+  outStanding: {
+    title: "Món ăn nổi bật",
+    path: "/outStanding",
+  },
+  every: {
+    title: "Món ngon mỗi ngày",
+    path: "/every",
+  },
+  blogs: {
+    title: "Tin tức",
+    path: "/blogs",
+  },
+  contact: {
+    title: "Liên hệ",
+    path: "/contact",
+  },
+  appetizers: {
+    title: "Khai vị",
+    path: "/list/appetizers",
+  },
+  mainDishes: {
+    title: "Món chính",
+    path: "/list/mainDishes",
+  },
+  soups: {
+    title: "Canh - Tiềm - Súp",
+    path: "/list/soups",
+  },
+  riceNoodles: {
+    title: "Cơm - Mỳ - Cháo",
+    path: "/list/riceNoodles",
+  },
+  cakeDesserts: {
+    title: "Bánh và tráng miệng",
+    path: "/list/cakeDesserts",
+  },
+  drinks: {
+    title: "Đồ uống",
+    path: "/list/drinks",
+  },
+  salads: {
+    title: "Salad",
+    path: "/list/appetizers/salads",
+  },
+  gois: {
+    title: "Gỏi",
+    path: "/list/appetizers/gois",
+  },
+  beefs: {
+    title: "Món bò",
+    path: "/list/mainDishes/beefs",
+  },
+  kitchens: {
+    title: "Món gà",
+    path: "/list/mainDishes/kitchens",
+  },
+  porks: {
+    title: "Món heo",
+    path: "/list/mainDishes/porks",
+  },
+  fishs: {
+    title: "Món cá",
+    path: "/list/mainDishes/fishs",
+  },
+  canhs: {
+    title: "Canh",
+    path: "/list/soups/canhs",
+  },
+  tiems: {
+    title: "Tiềm",
+    path: "/list/soups/tiems",
+  },
+  sups: {
+    title: "Súp",
+    path: "/list/soups/sups",
+  },
+  rices: {
+    title: "Cơm",
+    path: "/list/riceNoodles/rices",
+  },
+  noodles: {
+    title: "Mỳ",
+    path: "/list/riceNoodles/noodles",
+  },
+  porridges: {
+    title: "Cháo",
+    path: "/list/riceNoodles/porridges",
+  },
+  dessertds: {
+    title: "Tráng miệng",
+    path: "/list/cakeDesserts/dessertds",
+  },
+  cakes: {
+    title: "Bánh",
+    path: "/list/cakeDesserts/cakes",
+  },
+  coffees: {
+    title: "Cà phê",
+    path: "/list/drinks/coffees",
+  },
+
+  milkTeas: {
+    title: "Trà sữa",
+    path: "/list/drinks/milkTeas",
+  },
+
+  productDetails: {
+    title: "Chi tiết sản phẩm",
+    path: "/list/productDetails",
+  },
+
+  logIn: {
+    title: "Đăng nhập",
+    path: "/logIn",
+  },
+
+  signIn: {
+    title: "Đăng nhập",
+    path: "/signIn",
+  },
+};
 
 export const routes = [
   {
@@ -12,27 +166,119 @@ export const routes = [
     element: Home,
   },
   {
-    path: "/list",
+    path: pathObj.list.path,
     element: AllProducts,
   },
   {
-    path: "/about",
+    path: pathObj.about.path,
     element: About,
   },
   {
-    path: "/outStanding",
+    path: pathObj.outStanding.path,
     element: OutStanding,
   },
   {
-    path: "/every",
+    path: pathObj.every.path,
     element: Every,
   },
   {
-    path: "/blogs",
+    path: pathObj.blogs.path,
     element: Blogs,
   },
   {
-    path: "/contact",
+    path: pathObj.contact.path,
     element: Contact,
+  },
+  {
+    path: pathObj.appetizers.path,
+    element: Appetizer,
+  },
+  {
+    path: pathObj.mainDishes.path,
+    element: MainDishes,
+  },
+  {
+    path: pathObj.soups.path,
+    element: Soups,
+  },
+  {
+    path: pathObj.riceNoodles.path,
+    element: RiceNoodle,
+  },
+  {
+    path: pathObj.cakeDesserts.path,
+    element: CakeDessert,
+  },
+  {
+    path: pathObj.drinks.path,
+    element: Drink,
+  },
+  {
+    path: pathObj.salads.path,
+    element: Salad,
+  },
+  {
+    path: pathObj.gois.path,
+    element: Goi,
+  },
+  {
+    path: pathObj.beefs.path,
+    element: Beef,
+  },
+  {
+    path: pathObj.kitchens.path,
+    element: Kitchen,
+  },
+  {
+    path: pathObj.porks.path,
+    element: Pork,
+  },
+  {
+    path: pathObj.fishs.path,
+    element: Fish,
+  },
+  {
+    path: pathObj.canhs.path,
+    element: Canh,
+  },
+  {
+    path: pathObj.tiems.path,
+    element: Tiem,
+  },
+  {
+    path: pathObj.sups.path,
+    element: Sup,
+  },
+  {
+    path: pathObj.rices.path,
+    element: Rice,
+  },
+  {
+    path: pathObj.noodles.path,
+    element: Noodle,
+  },
+  {
+    path: pathObj.porridges.path,
+    element: Porridge,
+  },
+  {
+    path: pathObj.dessertds.path,
+    element: Dessertd,
+  },
+  {
+    path: pathObj.cakes.path,
+    element: Cake,
+  },
+  {
+    path: pathObj.coffees.path,
+    element: Coffee,
+  },
+  {
+    path: pathObj.milkTeas.path,
+    element: MilkTea,
+  },
+  {
+    path: pathObj.productDetails.path,
+    element: ProductDetail,
   },
 ];

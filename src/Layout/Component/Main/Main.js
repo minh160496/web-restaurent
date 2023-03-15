@@ -63,14 +63,16 @@ export default function Main({
                   isBlog={isBlog}
                   onChangeFilterInNav={onChangeFilterInNav}
                 />
-                <div className={cl("icon")} onClick={handleClickIcon}>
-                  {!hasShowNavFixed && (
-                    <IconFilter fill="currentcolor" width={20} height={20} />
-                  )}
-                  {hasShowNavFixed && (
-                    <IconClose fill="currentcolor" width={25} height={25} />
-                  )}
-                </div>
+                {!isBlog && (
+                  <div className={cl("icon")} onClick={handleClickIcon}>
+                    {!hasShowNavFixed && (
+                      <IconFilter fill="currentcolor" width={20} height={20} />
+                    )}
+                    {hasShowNavFixed && (
+                      <IconClose fill="currentcolor" width={25} height={25} />
+                    )}
+                  </div>
+                )}
               </div>
               <div className={cl("content") + " col-12 col-lg-9"}>
                 {children}

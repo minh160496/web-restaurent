@@ -1,0 +1,29 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.choose-quanlity {
+  max-width: 140px;
+}
+
+.item {
+  width: 30%;
+  aspect-ratio: 1;
+  border-radius: $br-rad-md;
+  background-color: $color-primary;
+  color: $color-text-primary;
+  font-size: $font-md;
+  font-weight: 500;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: backgroundColor ease 0.4s;
+  &:hover {
+    background-color: $color-primary-bold;
+  }
+}
+
+.item.item-num {
+  background-color: $color-text-primary;
+  border: 1px solid $color-primary;
+  color: $color-text-dark;
+  cursor: unset;
+}

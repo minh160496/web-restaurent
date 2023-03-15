@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -11,13 +11,18 @@ import { ReactComponent as IconEye } from "assets/icon/eye.svg";
 import { ReactComponent as IconBag } from "assets/icon/bagFill.svg";
 import { ReactComponent as IconHeart } from "assets/icon/heart.svg";
 
+import { contextReRenderSame } from "Page/ProductDetail/ProductDetail";
+import { pathObj } from "Routers";
+
 import styles from "./Card.module.scss";
 
 const cl = classNames.bind(styles);
-export default function Card({ product }) {
+export default function Card({ product, isDetail }) {
+  const reRenderDetail = useContext(contextReRenderSame);
   const perSales = Math.floor(
     (1 - product.price / product.oldPrice).toFixed(2) * 100
   );
+  const pathParam = "/?&id=" + product.id;
   return (
     <div className={cl("cart-product")}>
       <div className={cl("cart-thumbnail")}>
@@ -67,7 +72,13 @@ export default function Card({ product }) {
       </div>
 
       <div className={cl("cart-button")}>
-        <MyButton className={cl("btn")}>Xem chi tiết</MyButton>
+        <MyButton
+          className={cl("btn")}
+          link={pathObj.productDetails.path + pathParam}
+          onClick={() => isDetail && reRenderDetail()}
+        >
+          Xem chi tiết
+        </MyButton>
       </div>
     </div>
   );
@@ -75,4 +86,5 @@ export default function Card({ product }) {
 
 Card.propTypes = {
   product: PropTypes.object,
+  isDetail: PropTypes.bool,
 };

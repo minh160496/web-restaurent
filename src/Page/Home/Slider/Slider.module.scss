@@ -53,6 +53,8 @@
   display: flex;
   justify-content: center;
   .btn {
+    font-size: $font-lg;
+    font-weight: 600;
     width: 120px;
     height: 30px;
     display: grid;

@@ -11,10 +11,15 @@
   font-weight: 500;
   border-radius: $br-rad-xl;
   transition: background-color ease 0.2s;
-  display: inline-block;
+  display: inline-grid;
+  place-content: center;
   &:hover {
     background-color: $color-primary-bold;
   }
+}
+
+a.link:hover {
+  color: $color-text-primary;
 }
 
 .btn.sizeXL {
