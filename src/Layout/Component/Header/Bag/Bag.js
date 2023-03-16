@@ -1,11 +1,14 @@
 import React from "react";
 import classnames from "classnames/bind";
+import { Link } from "react-router-dom";
 
 import BagNumber from "./BagNumber";
 import Toolip from "Component/Toolip";
 import PropperPC from "Component/PropperPC/PropperPC";
 import { ReactComponent as IconBag } from "@/assets/icon/bag.svg";
 import FormBag from "./FormBag";
+
+import { pathObj } from "Routers";
 
 import styles from "@/Layout/Component/Header/Bag/Bag.module.scss";
 
@@ -14,12 +17,14 @@ export default function Bag() {
   return (
     <PropperPC mouseOver isMobileHidden content={<FormBag />}>
       <Toolip content="Giỏ hàng" className={cl("hidden-on-PC")}>
-        <div className={cl("bag", "header__navbar__item") + " pos-relative"}>
-          <div className={cl("icon", "icon-bag")}>
-            <IconBag fill="currentcolor" width={20} height={20} />
+        <Link to={pathObj.shoppingCart.path}>
+          <div className={cl("bag", "header__navbar__item") + " pos-relative"}>
+            <div className={cl("icon", "icon-bag")}>
+              <IconBag fill="currentcolor" width={20} height={20} />
+            </div>
+            <BagNumber number={2} />
           </div>
-          <BagNumber number={2} />
-        </div>
+        </Link>
       </Toolip>
     </PropperPC>
   );

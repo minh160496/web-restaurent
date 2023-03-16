@@ -113,6 +113,11 @@ const pathObj = {
     path: "/list/drinks/milkTeas",
   },
 
+  shoppingCart: {
+    title: "Giỏ hàng",
+    path: "/shoppingCart",
+  },
+
   logIn: {
     title: "Đăng nhập",
     path: "/logIn",

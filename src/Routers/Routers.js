@@ -28,6 +28,7 @@ import Cake from "Page/Cake";
 import Coffee from "Page/Coffee";
 import MilkTea from "Page/MilkTea";
 import ProductDetail from "Page/ProductDetail";
+import ShoppingCart from "Component/ShoppingCart";
 
 export const pathObj = {
   about: {
@@ -147,6 +148,11 @@ export const pathObj = {
   productDetails: {
     title: "Chi tiết sản phẩm",
     path: "/list/productDetails",
+  },
+
+  shoppingCart: {
+    title: "Giỏ hàng",
+    path: "/shoppingCart",
   },
 
   logIn: {
@@ -280,5 +286,9 @@ export const routes = [
   {
     path: pathObj.productDetails.path,
     element: ProductDetail,
+  },
+  {
+    path: pathObj.shoppingCart.path,
+    element: ShoppingCart,
   },
 ];

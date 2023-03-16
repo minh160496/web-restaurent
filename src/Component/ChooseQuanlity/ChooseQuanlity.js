@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 
 import { CART_NUM } from "CONST";
+import { contextReRenderShoppingCart } from "Component/ShoppingCart/ShoppingCart";
 
 import styles from "./ChooseQuanlity.module.scss";
 
 const cl = classNames.bind(styles);
-export default function ChooseQuanlity({ id, up = () => {}, down = () => {} }) {
+export default function ChooseQuanlity({
+  id,
+  isToCart = true,
+  up = () => {},
+  down = () => {},
+}) {
+  const reReRenderShoppingCart = useContext(contextReRenderShoppingCart);
   const [cartNum, setCartNum] = useState(() => {
     const initJson = localStorage.getItem(CART_NUM);
     const init = initJson ? JSON.parse(initJson) : {};
@@ -22,7 +29,9 @@ export default function ChooseQuanlity({ id, up = () => {}, down = () => {} }) {
     };
     localStorage.setItem(CART_NUM, JSON.stringify(newCartNum));
     setCartNum(newCartNum);
-
+    if (typeof reReRenderShoppingCart === "function") {
+      reReRenderShoppingCart();
+    }
     down();
   };
 
@@ -35,7 +44,9 @@ export default function ChooseQuanlity({ id, up = () => {}, down = () => {} }) {
     };
     localStorage.setItem(CART_NUM, JSON.stringify(newCartNum));
     setCartNum(newCartNum);
-
+    if (typeof reReRenderShoppingCart === "function") {
+      reReRenderShoppingCart();
+    }
     up();
   };
   return (
@@ -55,6 +66,7 @@ export default function ChooseQuanlity({ id, up = () => {}, down = () => {} }) {
 
 ChooseQuanlity.propTypes = {
   id: PropTypes.number,
+  isToCart: PropTypes.bool,
   up: PropTypes.func,
   down: PropTypes.func,
 };
