@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
 import Header from "Layout/Component/Header";
@@ -8,22 +8,32 @@ import Logo from "Layout/Component/Logo";
 import SubHeader from "Layout/Component/SubHeader";
 import BackTop from "Component/BackTop";
 
+export const contextReRenderLayoutDefault = createContext(null);
+
 export default function LayoutDefault({
   children,
   navigator,
   homePage,
   path = "home",
 }) {
+  const [hasReRender, setHasReRender] = useState({ value: false });
+  const handleReRenderLayOutDefault = () => {
+    setHasReRender((prev) => ({ ...prev, value: true }));
+  };
   return (
-    <div>
-      <Logo />
-      <Header homePage={homePage} />
-      <SubHeader path={path} />
-      {navigator && <Navigator>detail</Navigator>}
-      {children}
-      <Footer />
-      <BackTop />
-    </div>
+    <contextReRenderLayoutDefault.Provider
+      value={{ func: handleReRenderLayOutDefault, value: hasReRender.value }}
+    >
+      <div>
+        <Logo />
+        <Header homePage={homePage} />
+        <SubHeader path={path} />
+        {navigator && <Navigator>detail</Navigator>}
+        {children}
+        <Footer />
+        <BackTop />
+      </div>
+    </contextReRenderLayoutDefault.Provider>
   );
 }
 

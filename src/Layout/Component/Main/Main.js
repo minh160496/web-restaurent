@@ -3,22 +3,21 @@ import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 import { Container, Row } from "react-bootstrap";
 
-import { LayoutContext } from "Layout/LayoutNavBar";
 import Navigator from "@/Layout/Component/Navigator";
 import { ReactComponent as IconClose } from "@/assets/icon/closeBold.svg";
 import { ReactComponent as IconFilter } from "@/assets/icon/filter.svg";
 
 import styles from "./Main.module.scss";
 
-const cl = classNames.bind(styles);
-
 export const contextIsReRenderMain = createContext(null);
+
+const cl = classNames.bind(styles);
 export default function Main({
+  navBarRight,
   children,
   isBlog = false,
   handleBlurContent = () => {},
 }) {
-  const navBarRight = useContext(LayoutContext);
   const [isReRenderMain, setIsReRenderMain] = useState(false);
   const [hasShowNavFixed, setHasShowNavFixed] = useState(false);
   const onChangeFilterInNav = () => {
@@ -88,5 +87,6 @@ export default function Main({
 Main.propTypes = {
   children: PropTypes.node,
   isBlog: PropTypes.bool,
+  navBarRight: PropTypes.bool,
   handleBlurContent: PropTypes.func,
 };

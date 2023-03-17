@@ -1,0 +1,100 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.main__container {
+  margin-top: 26px;
+}
+
+.cart-list-product,
+.cart-pay,
+.cart-total {
+  background-color: $bg-primary-blur;
+  border: 1px solid $color-primary;
+  .header {
+    border-bottom: 1px solid $color-primary;
+  }
+}
+
+.product__item {
+  border-bottom: 1px solid $color-primary;
+}
+
+.line-space {
+  border: 1px solid $color-primary;
+}
+
+.cart-total__content {
+  background-color: $bg-primary-blur;
+  color: $color-text-primary;
+  margin-bottom: 0;
+}
+
+.ship-expense {
+  border: none;
+  color: $color-emphasize;
+}
+
+.total {
+  color: $color-primary;
+  font-size: $font-lg;
+  font-weight: 600;
+}
+
+.btn {
+  width: 100%;
+  height: 40px;
+  font-size: $font-lg;
+  font-weight: 500;
+}
+
+.product-name {
+  font-size: $font-xl;
+  font-weight: 600;
+  margin-bottom: 16px;
+  @extend %limited-line-1;
+}
+
+.price-product {
+  color: $color-primary;
+  font-size: $font-md;
+  font-weight: 500;
+}
+
+.quanlity {
+  padding-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  & > div {
+    width: 100%;
+  }
+  .quanlity-main {
+    width: 400px;
+  }
+}
+
+.bag-empty {
+  color: $color-text-desible;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main.mini {
+  .cart-list-product {
+    background-color: $color-text-primary;
+  }
+
+  .product-name {
+    font-size: $font-md;
+    font-weight: 400;
+    margin-bottom: 0;
+    @extend %limited-line-1;
+  }
+
+  .price-product {
+    color: $color-primary;
+    font-size: $font-min;
+    font-weight: 500;
+  }
+}

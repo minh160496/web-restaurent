@@ -53,23 +53,29 @@ export default function Card({ product, isDetail }) {
             />
           </div>
         </Toolip>
-        <div className={cl("thumbnail-blur")}></div>
+        <Link
+          to={pathObj.productDetails.path + pathParam}
+          className={cl("thumbnail-blur")}
+        ></Link>
       </div>
 
-      <Link to="/" className={cl("cart-name")}>
+      <Link
+        to={pathObj.productDetails.path + pathParam}
+        className={cl("cart-name")}
+      >
         <h4>{product.name}</h4>
-      </Link>
 
-      <div className={cl("cart-price") + " flex align-center justify-around"}>
-        <div className={cl("current-price")}>
-          <span>{product.price + ".000"}</span>
-        </div>
-        {product.oldPrice && (
-          <div className={cl("old-price")}>
-            <span>{product.oldPrice + ".000"}</span>
+        <div className={cl("cart-price") + " flex align-center justify-around"}>
+          <div className={cl("current-price")}>
+            <span>{product.price + ".000"}</span>
           </div>
-        )}
-      </div>
+          {product.oldPrice && (
+            <div className={cl("old-price")}>
+              <span>{product.oldPrice + ".000"}</span>
+            </div>
+          )}
+        </div>
+      </Link>
 
       <div className={cl("cart-button")}>
         <MyButton

@@ -16,6 +16,11 @@
     h2 {
       font-size: $font-max;
       font-weight: 700;
+      @extend %limited-line-1;
+    }
+
+    .product-name {
+      @extend %limited-line-1;
     }
   }
 

@@ -1,1 +1,1 @@
-export { default } from "./LayoutDefault";
+export { default, contextReRenderLayoutDefault } from "./LayoutDefault";

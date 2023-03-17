@@ -10,8 +10,9 @@ import BackTop from "Component/BackTop";
 
 import styles from "./LayoutNavBar.mudule.scss";
 
+export const contextReRenderLayoutNavBar = createContext(null);
+
 const cl = classNames.bind(styles);
-export const LayoutContext = createContext();
 export default function LayoutNavBar({
   navBarRight,
   isBlog = false,
@@ -19,23 +20,33 @@ export default function LayoutNavBar({
   children,
 }) {
   const [hasBlurContent, setHasBlurContent] = useState(false);
+  const [hasReRender, setHasReRender] = useState({ value: false });
   const handleBlurContent = (bool) => {
     setHasBlurContent(bool);
   };
+  const handleReRenderLayoutNavBar = () => {
+    setHasReRender((prev) => ({ ...prev, value: true }));
+  };
 
   return (
-    <LayoutContext.Provider value={navBarRight}>
+    <contextReRenderLayoutNavBar.Provider
+      value={{ func: handleReRenderLayoutNavBar, value: hasReRender }}
+    >
       <div className={cl("layout-navbar")}>
         <Header />
         <SubHeader path={path} />
-        <Main isBlog={isBlog} handleBlurContent={handleBlurContent}>
+        <Main
+          isBlog={isBlog}
+          navBarRight={navBarRight}
+          handleBlurContent={handleBlurContent}
+        >
           {children}
         </Main>
         <Footer />
         {hasBlurContent && <div className={cl("blurContent")}></div>}
         <BackTop />
       </div>
-    </LayoutContext.Provider>
+    </contextReRenderLayoutNavBar.Provider>
   );
 }
 

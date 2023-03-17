@@ -1,1 +1,1 @@
-export { default, LayoutContext } from "./LayoutNavBar";
+export { default, contextReRenderLayoutNavBar } from "./LayoutNavBar";

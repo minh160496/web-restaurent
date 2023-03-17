@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { routes } from "Routers";
 
 import { getAPIProducts } from "apiServices/apiProducts";
+import { CART_NUM } from "CONST";
 
 import GlobalStyle from "GlobalStyle";
 import styles from "App.module.scss";
@@ -24,6 +25,20 @@ function App() {
 
     getProductsFromAPI();
   }, []);
+
+  //tạo ra cartNum ban đầu lưu vào storage
+  useEffect(() => {
+    if (
+      localStorage.getItem(CART_NUM) === "{}" ||
+      !localStorage.getItem(CART_NUM)
+    ) {
+      const cartNum = {};
+      products.forEach((product) => {
+        cartNum[product.id] = { value: 1, isToCart: false };
+      });
+      localStorage.setItem(CART_NUM, JSON.stringify(cartNum));
+    }
+  });
   return (
     <contextProducts.Provider value={products}>
       <GlobalStyle>

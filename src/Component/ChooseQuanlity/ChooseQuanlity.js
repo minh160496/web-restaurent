@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 
 import { CART_NUM } from "CONST";
-import { contextReRenderShoppingCart } from "Component/ShoppingCart/ShoppingCart";
+import { contextReRenderLayoutDefault } from "Layout/LayoutDefault";
+import { contextReRenderLayoutNavBar } from "Layout/LayoutNavBar";
 
 import styles from "./ChooseQuanlity.module.scss";
 
@@ -14,41 +15,66 @@ export default function ChooseQuanlity({
   up = () => {},
   down = () => {},
 }) {
-  const reReRenderShoppingCart = useContext(contextReRenderShoppingCart);
-  const [cartNum, setCartNum] = useState(() => {
+  const reRenderLayoutDefaultObj = useContext(contextReRenderLayoutDefault);
+  const handleReRenderLayOutDefault = reRenderLayoutDefaultObj
+    ? reRenderLayoutDefaultObj.func
+    : () => {};
+  const reRenderLayoutNavBarObj = useContext(contextReRenderLayoutNavBar);
+  const handleReRenderLayoutNavBar = reRenderLayoutNavBarObj
+    ? reRenderLayoutNavBarObj.func
+    : () => {};
+
+  const [cartNum, setCartNum] = useState({});
+
+  useEffect(() => {
     const initJson = localStorage.getItem(CART_NUM);
     const init = initJson ? JSON.parse(initJson) : {};
-    return init;
-  });
+    setCartNum(init);
+  }, [reRenderLayoutDefaultObj, reRenderLayoutNavBarObj]);
+
   const handleClickDown = () => {
     const oldCartNumJson = localStorage.getItem(CART_NUM);
     const oldCartNum = oldCartNumJson ? JSON.parse(oldCartNumJson) : {};
+    const valueOfNewCartNumChange =
+      (oldCartNum[id] &&
+        oldCartNum[id].value > 1 &&
+        oldCartNum[id].value - 1) ||
+      1;
     const newCartNum = {
       ...oldCartNum,
-      [id]: oldCartNum[id] ? oldCartNum[id] - 1 : 0,
+      [id]: {
+        value: valueOfNewCartNumChange,
+        isToCart,
+      },
     };
     localStorage.setItem(CART_NUM, JSON.stringify(newCartNum));
     setCartNum(newCartNum);
-    if (typeof reReRenderShoppingCart === "function") {
-      reReRenderShoppingCart();
-    }
+    //render cả layout vì có cả logic bag hover
+    handleReRenderLayOutDefault();
+    handleReRenderLayoutNavBar();
     down();
   };
 
   const handleClickUp = () => {
     const oldCartNumJson = localStorage.getItem(CART_NUM);
     const oldCartNum = oldCartNumJson ? JSON.parse(oldCartNumJson) : {};
+    const valueOfNewCartNumChange =
+      (oldCartNum[id] && oldCartNum[id].value && oldCartNum[id].value + 1) || 1;
     const newCartNum = {
       ...oldCartNum,
-      [id]: oldCartNum[id] ? oldCartNum[id] + 1 : 1,
+      [id]: {
+        value: valueOfNewCartNumChange,
+        isToCart,
+      },
     };
     localStorage.setItem(CART_NUM, JSON.stringify(newCartNum));
     setCartNum(newCartNum);
-    if (typeof reReRenderShoppingCart === "function") {
-      reReRenderShoppingCart();
-    }
+    //render cả layout vì có cả logic bag hover
+    handleReRenderLayOutDefault();
+    handleReRenderLayoutNavBar();
     up();
   };
+
   return (
     <div
       className={cl("choose-quanlity") + " flex align-center justify-between"}
@@ -56,7 +82,9 @@ export default function ChooseQuanlity({
       <div className={cl("item")} onClick={handleClickUp}>
         +
       </div>
-      <div className={cl("item", "item-num")}>{cartNum[id] || 0}</div>
+      <div className={cl("item", "item-num")}>
+        {(cartNum[id] && cartNum[id].value) || 0}
+      </div>
       <div className={cl("item")} onClick={handleClickDown}>
         -
       </div>

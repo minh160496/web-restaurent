@@ -1,7 +1,14 @@
+@import "src/GlobalStyle/Variables.scss";
+
 .btn-x {
   width: 40px;
   aspect-ratio: 1;
   &.mini {
-    width: 20px;
+    background-color: transparent;
+    color: $color-text-desible;
+    width: 25px;
+    svg {
+      width: 15px;
+    }
   }
 }

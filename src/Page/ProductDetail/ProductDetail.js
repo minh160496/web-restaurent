@@ -13,6 +13,7 @@ import { pathObj } from "Routers";
 import { contextProducts } from "App";
 
 import styles from "./ProductDetail.module.scss";
+import ButtonAdd from "./ButtonAdd";
 
 export const contextReRenderSame = createContext(null);
 
@@ -50,7 +51,9 @@ export default function ProductDetail() {
                   <div className={cl("main__right")}>
                     <Container className="p-0">
                       <div className={cl("title")}>
-                        <h2 className="stylized">{product.name}</h2>
+                        <h2 className={cl("product-name") + " " + "stylized"}>
+                          {product.name}
+                        </h2>
                       </div>
 
                       <div className={cl("price")}>
@@ -82,16 +85,14 @@ export default function ProductDetail() {
                           <span>Số lượng</span>
                         </div>
                         <div className={cl("num__content") + ""}>
-                          <ChooseQuanlity id={product.id} />
+                          <ChooseQuanlity id={product.id} isToCart={false} />
                         </div>
                       </div>
 
                       <div className={cl("order")}>
                         <Row>
                           <Col className="col-12 col-md-6">
-                            <MyButton className={cl("btn")}>
-                              Thêm vào giỏ hàng
-                            </MyButton>
+                            <ButtonAdd id={product.id} className={cl("btn")} />
                           </Col>
                           <Col className="col-12 col-md-6">
                             <MyButton className={cl("btn")}>
