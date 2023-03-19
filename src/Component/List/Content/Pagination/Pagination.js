@@ -72,6 +72,7 @@ export default function Pagination({
   useEffect(() => {
     localStorage.setItem(CURRENT_PAGE, numPageCur);
     letSetCurrentPage();
+    window.scroll(0, 0);
   }, [numPageCur]);
 
   useEffect(() => {

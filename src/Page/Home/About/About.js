@@ -23,7 +23,7 @@ export default function About() {
                   <span>Về Chúng Tôi</span>
                 </div>
                 <div className={cl("title")}>
-                  <h1 className="stylized">Dola Restaurant</h1>
+                  <h1 className="stylized">Dream Restaurant</h1>
                 </div>
               </div>
               <div className={cl("content")}>
@@ -31,7 +31,7 @@ export default function About() {
                   Nhà hàng chúng tôi luôn luôn đặt khách hàng lên hàng đầu, tận
                   tâm phục vụ, mang lại cho khách hàng những trãi nghiệm tuyệt
                   với nhất. Các món ăn với công thức độc quyền sẽ mang lại hương
-                  vị mới mẻ cho thực khách. Dola Restaurant xin chân thành cảm
+                  vị mới mẻ cho thực khách. Dream Restaurant xin chân thành cảm
                   ơn.
                 </span>
               </div>

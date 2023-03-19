@@ -20,7 +20,7 @@ export default function About() {
           </div>
           <div className={cl("about__desc")}>
             <span>
-              DOLA RESTAURANT - Nhà hàng ẩm thực hiện đại kết hợp với truyền
+              DREAM RESTAURANT - Nhà hàng ẩm thực hiện đại kết hợp với truyền
               thống, tạo nên tính mới lạ cho thực khách. Được ra đời vào năm
               2021 với tiêu chí "Khách hàng là trên hết" nên chúng tôi luôn tự
               hào về cách phục vụ cũng như các món ăn mà chúng tôi làm ra. Nhà
@@ -37,7 +37,7 @@ export default function About() {
               heigh="auto"
             />
             <div className={cl("img-alt")}>
-              <h2>HÃY ĐẾN DOLA RESTAURANT ĐỂ THƯỞNG THỨC NGAY BẠN NHÉ!</h2>
+              <h2>HÃY ĐẾN DREAM RESTAURANT ĐỂ THƯỞNG THỨC NGAY BẠN NHÉ!</h2>
             </div>
           </div>
         </Container>

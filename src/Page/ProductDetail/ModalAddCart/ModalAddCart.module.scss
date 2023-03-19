@@ -1,0 +1,51 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.modal {
+  color: $color-text-primary;
+  overflow: hidden;
+}
+
+.header {
+  color: $color-text-primary;
+  background-color: $color-primary;
+  border-color: $color-primary;
+}
+
+.icon {
+  padding-right: 12px;
+}
+
+.title {
+  h3 {
+    font-size: $font-sm;
+  }
+}
+
+.body {
+  background-color: $bg-primary-blur;
+}
+
+.image {
+  max-width: 100px;
+  padding-right: 12px;
+}
+
+.price {
+  font-size: $font-md;
+  color: $color-primary;
+  font-weight: 500;
+}
+
+.footer {
+  background-color: $bg-primary-blur;
+  border-color: $color-primary;
+  .cout-products-cart {
+    font-size: $font-sm;
+  }
+  .btn {
+    width: 100%;
+    height: 40px;
+    font-size: $font-md;
+    margin-top: 16px;
+  }
+}

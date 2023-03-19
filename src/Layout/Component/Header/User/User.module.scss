@@ -32,6 +32,15 @@
 .form-user {
   padding-top: 8px;
   padding-bottom: 10px;
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.btn-wrapper + .btn-wrapper {
+  padding-top: 12px;
 }
 
 .btn-user {

@@ -50,7 +50,7 @@ export default function Slider() {
             }}
           >
             <div className={cl("desc__title")}>
-              <h1>Dolar Restaurent</h1>
+              <h1>Dream Restaurant</h1>
             </div>
           </motion.div>
 

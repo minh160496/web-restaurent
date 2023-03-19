@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
+import PropTypes from "prop-types";
 
 import { useDebounce } from "hook";
 
@@ -11,6 +12,7 @@ export default function Form({
   classOfInput = "",
   classOfButton = "",
   valueButton = "Gửi",
+  buttonCenter = false,
   name,
   firstName,
   lastName,
@@ -42,6 +44,8 @@ export default function Form({
     confirmPassword: "",
     text: "",
   });
+
+  const [isSubmit, setIsSubmit] = useState({ value: false });
 
   const validateField = (fieldName, fieldValue) => {
     let error = "";
@@ -130,16 +134,20 @@ export default function Form({
   const handleDeboundErr = useDebounce((event) => {
     const { name, value } = event.target;
     const error = validateField(name, value);
-    setFormErrors((prevState) => ({ ...prevState, [name]: error }));
+    setFormErrors((prevState) => ({
+      ...prevState,
+      [name]: error ? error : "",
+    }));
   });
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
+    setFormData((prevState) => ({ ...prevState, [name]: value ? value : "" }));
     handleDeboundErr(event);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsSubmit({ value: true });
 
     const errors = {};
     Object.keys(formData).forEach((fieldName) => {
@@ -158,6 +166,19 @@ export default function Form({
     }
   };
 
+  useEffect(() => {
+    setFormData({
+      name: "",
+      firstName: "",
+      lastName: "",
+      tel: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      text: "",
+    });
+  }, [isSubmit]);
+
   return (
     <form onSubmit={handleSubmit}>
       {name && (
@@ -167,7 +188,7 @@ export default function Form({
             id="name"
             name="name"
             placeholder="Họ và tên"
-            value={formData.name}
+            value={formData.name ? formData.name : ""}
             onChange={handleInputChange}
           />
           {formErrors.name && (
@@ -184,7 +205,7 @@ export default function Form({
             id="firstName"
             name="firstName"
             placeholder="Họ"
-            value={formData.firstName}
+            value={formData.firstName ? formData.firstName : ""}
             onChange={handleInputChange}
           />
           {formErrors.firstName && (
@@ -202,7 +223,7 @@ export default function Form({
             id="lastName"
             name="lastName"
             placeholder="Tên"
-            value={formData.lastName}
+            value={formData.lastName ? formData.lastName : ""}
             onChange={handleInputChange}
           />
           {formErrors.lastName && (
@@ -220,7 +241,7 @@ export default function Form({
             id="tel"
             name="tel"
             placeholder="Số điện thoại"
-            value={formData.tel}
+            value={formData.tel ? formData.tel : ""}
             onChange={handleInputChange}
           />
           {formErrors.tel && (
@@ -237,7 +258,7 @@ export default function Form({
             id="email"
             name="email"
             placeholder="Email"
-            value={formData.email}
+            value={formData.email ? formData.email : ""}
             onChange={handleInputChange}
           />
           {formErrors.email && (
@@ -255,7 +276,7 @@ export default function Form({
             id="password"
             name="password"
             placeholder="Mật khẩu"
-            value={formData.password}
+            value={formData.password ? formData.password : ""}
             onChange={handleInputChange}
           />
           {formErrors.password && (
@@ -272,7 +293,7 @@ export default function Form({
             id="confirmPassword"
             name="confirmPassword"
             placeholder="Xác nhận mật khẩu"
-            value={formData.confirmPassword}
+            value={formData.confirmPassword ? formData.confirmPassword : ""}
             onChange={handleInputChange}
           />
           {formErrors.confirmPassword && (
@@ -289,14 +310,40 @@ export default function Form({
             rows="3"
             placeholder="Nhập thông tin"
             name="text"
-            value={formData.text}
+            value={formData.text ? formData.text : ""}
             onChange={handleInputChange}
           />
         </div>
       )}
-      <div className={classOfButton + " " + cl("button")}>
+      <div
+        className={
+          !buttonCenter
+            ? classOfButton + " " + cl("button")
+            : classOfButton +
+              " " +
+              cl("button") +
+              " flex align-center justify-center"
+        }
+      >
         <button type="submit">{valueButton}</button>
       </div>
     </form>
   );
 }
+
+Form.propTypes = {
+  classOfErr: PropTypes.string,
+  classOfInput: PropTypes.string,
+  classOfButton: PropTypes.string,
+  valueButton: PropTypes.string,
+  buttonCenter: PropTypes.bool,
+  name: PropTypes.bool,
+  firstName: PropTypes.bool,
+  lastName: PropTypes.bool,
+  tel: PropTypes.bool,
+  email: PropTypes.bool,
+  password: PropTypes.bool,
+  repassword: PropTypes.bool,
+  textArea: PropTypes.bool,
+  handleDataForm: PropTypes.func,
+};

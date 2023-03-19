@@ -22,7 +22,7 @@ export default function Bag() {
             <div className={cl("icon", "icon-bag")}>
               <IconBag fill="currentcolor" width={20} height={20} />
             </div>
-            <BagNumber number={2} />
+            <BagNumber />
           </div>
         </Link>
       </Toolip>

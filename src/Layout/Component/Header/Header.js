@@ -10,7 +10,7 @@ import Toolip from "Component/Toolip";
 import MyButton from "Component/MyButton";
 import OffCanvas from "./OffCanvas";
 import SearchMobile from "./SearchMobile";
-import logo from "@/assets/img/logo.webp";
+import logo from "@/assets/img/logo.jpg";
 import Img from "Component/Img";
 import SearchPC from "./SearchPC/SearchPC";
 import Bag from "./Bag";

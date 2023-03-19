@@ -124,8 +124,18 @@ const pathObj = {
   },
 
   signIn: {
-    title: "Đăng nhập",
+    title: "Đăng ký",
     path: "/signIn",
+  },
+
+  userInf: {
+    title: "Thông tin tài khoản",
+    path: "/userInfo",
+  },
+
+  logOut: {
+    title: "Đăng xuất",
+    path: "/",
   },
 };
 
@@ -274,7 +284,11 @@ export const listBodyItem = [
 ];
 
 export const listFootItem = [
-  { fiel: "Đăng Nhập", path: pathObj.logIn.title },
-  { fiel: "Đăng Ký", path: pathObj.signIn.title },
-  { fiel: "Món ăn yêu thích", path: "/favorite" },
+  { id: 1, fiel: pathObj.logIn.title, path: pathObj.logIn.path },
+  { id: 2, fiel: pathObj.signIn.title, path: pathObj.signIn.path },
+];
+
+export const listFootItemLogined = [
+  { id: 1, fiel: pathObj.userInf.title, path: pathObj.userInf.path },
+  { id: 2, fiel: pathObj.logOut.title, path: pathObj.logOut.path },
 ];

@@ -8,6 +8,7 @@ import Img from "Component/Img";
 import ChooseQuanlity from "Component/ChooseQuanlity";
 import ProductDesc from "./ProductDesc";
 import ProductSame from "./ProductSame";
+import ModalAddCart from "./ModalAddCart";
 
 import { pathObj } from "Routers";
 import { contextProducts } from "App";
@@ -19,6 +20,7 @@ export const contextReRenderSame = createContext(null);
 
 const cl = classNames.bind(styles);
 export default function ProductDetail() {
+  const [modalShow, setModalShow] = useState(false);
   const products = useContext(contextProducts);
   const [id, setId] = useState(() => {
     const id = new URLSearchParams(window.location.href).get("id");
@@ -92,7 +94,11 @@ export default function ProductDetail() {
                       <div className={cl("order")}>
                         <Row>
                           <Col className="col-12 col-md-6">
-                            <ButtonAdd id={product.id} className={cl("btn")} />
+                            <ButtonAdd
+                              id={product.id}
+                              className={cl("btn")}
+                              onClick={() => setModalShow(true)}
+                            />
                           </Col>
                           <Col className="col-12 col-md-6">
                             <MyButton className={cl("btn")}>
@@ -118,6 +124,11 @@ export default function ProductDetail() {
                 </div>
               </Row>
             </Container>
+            <ModalAddCart
+              product={product}
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
           </div>
         )}
       </LayoutNavBar>

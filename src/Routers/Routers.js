@@ -29,6 +29,8 @@ import Coffee from "Page/Coffee";
 import MilkTea from "Page/MilkTea";
 import ProductDetail from "Page/ProductDetail";
 import ShoppingCart from "Component/ShoppingCart";
+import Login from "Page/Login";
+import SignIn from "Page/SignIn";
 
 export const pathObj = {
   about: {
@@ -161,8 +163,18 @@ export const pathObj = {
   },
 
   signIn: {
-    title: "Đăng nhập",
+    title: "Đăng ký",
     path: "/signIn",
+  },
+
+  userInf: {
+    title: "Thông tin tài khoản",
+    path: "/userInfo",
+  },
+
+  logOut: {
+    title: "Đăng xuất",
+    path: "/",
   },
 };
 
@@ -290,5 +302,13 @@ export const routes = [
   {
     path: pathObj.shoppingCart.path,
     element: ShoppingCart,
+  },
+  {
+    path: pathObj.logIn.path,
+    element: Login,
+  },
+  {
+    path: pathObj.signIn.path,
+    element: SignIn,
   },
 ];

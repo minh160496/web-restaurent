@@ -1,19 +1,22 @@
 import { useContext } from "react";
 import { contextProducts } from "App";
 
-const handleUnitMoney = (string) => {
-  let output = "";
-  for (let i = string.length - 1, j = 0; i >= 0; i--, j++) {
-    output += string[i];
-    if ((j + 1) % 3 === 0 && j < string.length - 1) {
-      output += ".";
+export const handleUnitMoney = (string) => {
+  if (typeof string === "string") {
+    let output = "";
+    for (let i = string.length - 1, j = 0; i >= 0; i--, j++) {
+      output += string[i];
+      if ((j + 1) % 3 === 0 && j < string.length - 1) {
+        output += ".";
+      }
     }
+    return output.split("").reverse().join("") + "đ";
   }
-  return output.split("").reverse().join("") + "đ";
+  return "0";
 };
 
 const getTotal = (products, cartProducts) => {
-  if (products[0] && cartProducts.length > 0) {
+  if (products && products[0] && cartProducts.length > 0) {
     return Number(
       cartProducts.reduce((total, curr) => {
         return Number(total + products[curr.productId - 1].price * curr.num);

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import Img from "Component/Img";
 
+import { pathObj } from "Routers";
+
 import styles from "@/Layout/Component/Header/History/History.module.scss";
 
 const cl = classNames.bind(styles);
@@ -14,7 +16,11 @@ export default function History({ data }) {
       <h2 className={cl("history__title")}>Kết quả tìm kiếm:</h2>
       <div className={cl("history__body")}>
         {data.map((item) => (
-          <Link to="/" key={item.id} className="block width-full">
+          <Link
+            to={pathObj.productDetails.path + `?&id=${item.id}`}
+            key={item.id}
+            className="block width-full"
+          >
             <div className={cl("history__body__item") + " flex align-center"}>
               <div className={cl("item__img")}>
                 <Img
@@ -44,7 +50,11 @@ export default function History({ data }) {
         ))}
       </div>
       <div className={cl("history__foot")}>
-        {data.length > 0 && <span>Xem tất cả</span>}
+        {data.length > 0 && (
+          <Link to={pathObj.list.path}>
+            <span>Xem tất cả</span>
+          </Link>
+        )}
         {data.length === 0 && <span>Không có kết quả nào</span>}
       </div>
     </div>

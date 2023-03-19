@@ -23,7 +23,7 @@ import { ReactComponent as IconBag } from "assets/icon/bag.svg";
 import { PriceProducts, TotalAll } from "Component/CalculatorTotal";
 import { PriceTotalProduct } from "Component/CalculatorTotal";
 
-import { CART_NUM } from "CONST";
+import { CART_NUM, USER_LOGIN } from "CONST";
 import { contextProducts } from "App";
 import { contextReRenderLayoutDefault } from "Layout/LayoutDefault";
 import { contextReRenderLayoutNavBar } from "Layout/LayoutNavBar";
@@ -37,6 +37,7 @@ export default function MainShoppingCart({ isMini = false }) {
   const reRenderLayoutNavBarObj = useContext(contextReRenderLayoutNavBar);
 
   const [cartProducts, setCartProducts] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     const cartNumJson = localStorage.getItem(CART_NUM) || "";
     const cartNum = cartNumJson ? JSON.parse(cartNumJson) : {};
@@ -51,10 +52,12 @@ export default function MainShoppingCart({ isMini = false }) {
         });
       });
     setCartProducts(cartProducts);
+    const userLogin = localStorage.getItem(USER_LOGIN);
+    setIsLogin(!!userLogin);
   }, [reRenderLayoutDefault, reRenderLayoutNavBarObj]);
   return (
     <div className={cl("main", { mini: isMini })}>
-      {cartProducts && cartProducts.length > 0 && (
+      {isLogin && cartProducts && cartProducts.length > 0 && (
         <MDBContainer
           className={!isMini ? "py-5 h-100" : cl("main__container")}
         >
@@ -262,11 +265,11 @@ export default function MainShoppingCart({ isMini = false }) {
         </MDBContainer>
       )}
 
-      {cartProducts && cartProducts.length === 0 && (
+      {((cartProducts && cartProducts.length === 0) || !isLogin) && (
         <Container>
           <div className={cl("bag-empty")}>
             <h2>Giỏ hàng trống</h2>
-            <IconBag fill="currentcolor" width={150} height={150} />
+            <IconBag fill="currentcolor" width={90} height={90} />
           </div>
         </Container>
       )}

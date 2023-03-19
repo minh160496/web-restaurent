@@ -16,6 +16,10 @@ export const FILTER_SIZES = "filterSizes";
 
 export const CART_NUM = "cartNum";
 
+export const USER_SIGNIN = "userSignIn";
+
+export const USER_LOGIN = "userLogin";
+
 export const cardNumOfContent = [
   {
     id: 1,

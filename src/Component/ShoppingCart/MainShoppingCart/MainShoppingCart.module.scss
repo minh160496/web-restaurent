@@ -80,6 +80,12 @@
   align-items: center;
 }
 
+.mini {
+  .bag-empty {
+    min-height: 200px;
+  }
+}
+
 .main.mini {
   .cart-list-product {
     background-color: $color-text-primary;
