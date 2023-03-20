@@ -11,7 +11,7 @@ export default function BagNumber() {
   const cartProducts = cartProductsJson ? JSON.parse(cartProductsJson) : {};
   const countProductCarts = Object.keys(cartProducts)
     .filter((key) => cartProducts[key].isToCart)
-    .reduce((acc, curr) => acc + cartProducts[curr].value, 0);
+    .reduce((acc, curr) => acc + Number(cartProducts[curr].value), 0);
   const isLogin = !!localStorage.getItem(USER_LOGIN);
 
   return (

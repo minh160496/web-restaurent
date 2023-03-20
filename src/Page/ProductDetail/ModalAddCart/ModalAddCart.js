@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 import { Container, Row, Col, Modal } from "react-bootstrap";
@@ -11,11 +11,14 @@ import { ReactComponent as IconSucsess } from "assets/icon/sucsess.svg";
 import { handleUnitMoney } from "Component/CalculatorTotal";
 import { CART_NUM } from "CONST";
 import { pathObj } from "Routers";
+import { contextProducts } from "App";
 
 import styles from "./ModalAddCart.module.scss";
 
 const cl = classNames.bind(styles);
 export default function ModalAddCart(props) {
+  const products = useContext(contextProducts);
+  const product = products ? products[props.id - 1] : {};
   const [num, setNum] = useState(1);
   const [countProductCarts, setCountProductCarts] = useState(0);
   useEffect(() => {
@@ -25,12 +28,10 @@ export default function ModalAddCart(props) {
       .filter((key) => cartProducts[key].isToCart)
       .reduce((acc, curr) => acc + cartProducts[curr].value, 0);
     const newNum =
-      cartProducts && cartProducts[props.product.id]
-        ? cartProducts[props.product.id].value
-        : 1;
+      cartProducts && cartProducts[props.id] ? cartProducts[props.id].value : 1;
     setNum(newNum);
     setCountProductCarts(countProductCarts);
-  }, [props.product, props.onHide]);
+  }, [product, props.onHide]);
   return (
     <Modal
       {...props}
@@ -55,20 +56,14 @@ export default function ModalAddCart(props) {
       <Modal.Body className={cl("body")}>
         <div className={"flex align-center"}>
           <div className={cl("image")}>
-            <Img
-              src={props.product && props.product.src}
-              width={"100%"}
-              heigh={"auto"}
-            />
+            <Img src={product && product.src} width={"100%"} heigh={"auto"} />
           </div>
           <div className={cl("text")}>
             <div className={cl("name")}>
-              <span>{props.product && props.product.name}</span>
+              <span>{product && product.name}</span>
             </div>
             <div className={cl("price")}>
-              <span>
-                {handleUnitMoney(props.product && props.product.price + "000")}
-              </span>
+              <span>{handleUnitMoney(product && product.price + "000")}</span>
             </div>
           </div>
         </div>
@@ -81,7 +76,7 @@ export default function ModalAddCart(props) {
             </div>
           </Row>
           <Row>
-            <Col className="col-12 col-md-6">
+            <Col className="col-12 col-sm-6">
               <MyButton
                 className={cl("btn")}
                 onClick={props.onHide}
@@ -90,7 +85,7 @@ export default function ModalAddCart(props) {
                 Tiếp tục mua hàng
               </MyButton>
             </Col>
-            <Col className="col-12 col-md-6">
+            <Col className="col-12 col-sm-6">
               <MyButton
                 className={cl("btn")}
                 onClick={props.onHide}

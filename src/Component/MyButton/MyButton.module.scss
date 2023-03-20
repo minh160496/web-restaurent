@@ -7,7 +7,8 @@
   place-content: center;
   box-shadow: 0 3px #a37b44;
   color: $color-text-primary;
-  font-size: $font-sm;
+  font-size: $font-md;
+  height: min(45px, 100%);
   font-weight: 500;
   border-radius: $br-rad-xl;
   transition: background-color ease 0.2s;

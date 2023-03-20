@@ -1,0 +1,19 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.user-inf {
+  background-color: $bg-primary-blur;
+  color: $color-text-primary;
+}
+
+.main-inf {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.inf-email {
+  padding-bottom: 24px;
+}
+
+.user__btn {
+  max-width: 200px;
+}

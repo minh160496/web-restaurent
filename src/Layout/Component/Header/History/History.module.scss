@@ -36,6 +36,13 @@ $color-border: #e8e8e8;
   border-radius: 10px;
 }
 
+a.link:hover {
+  color: unset;
+  .inf__price {
+    color: $color-emphasize;
+  }
+}
+
 .history__body__item {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -83,7 +90,4 @@ $color-border: #e8e8e8;
   cursor: pointer;
   transition: color ease 0.2s;
   border-top: 0.5px solid $color-border;
-  &:hover {
-    color: $color-primary;
-  }
 }

@@ -44,3 +44,8 @@ ul {
 a:hover {
   color: $color-primary;
 }
+
+//background-modal
+div[role="dialog"][aria-labelledby].fade.modal {
+  background-color: #0000008b;
+}

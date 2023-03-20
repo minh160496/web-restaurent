@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     async function getProductsFromAPI() {
       const products = await getAPIProducts();
-      setProducts(products);
+      if (products) setProducts(products);
     }
 
     getProductsFromAPI();

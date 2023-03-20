@@ -8,6 +8,7 @@ export default function Toolip({
   content,
   children,
   place = "bottom-start",
+  offset,
   visible,
   className = "",
 }) {
@@ -19,6 +20,7 @@ export default function Toolip({
         visible={visible}
         interactive
         placement={place}
+        offset={offset}
         content={<span>{content}</span>}
         arrow={false}
         role="toolip"
@@ -37,4 +39,5 @@ Toolip.propTypes = {
   place: PropTypes.string,
   visible: PropTypes.bool,
   className: PropTypes.string,
+  offset: PropTypes.array,
 };

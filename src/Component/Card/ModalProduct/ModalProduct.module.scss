@@ -1,0 +1,45 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.modal {
+  color: $color-text-primary;
+}
+
+.header {
+  background-color: $bg-primary-blur;
+  border-color: $bg-primary-blur;
+}
+
+.title {
+  font-size: $font-md;
+  font-weight: 500;
+}
+
+.body {
+  background-color: $bg-primary-blur;
+}
+
+.name {
+  h2 {
+    font-weight: 600;
+    @extend %limited-line-2;
+  }
+}
+
+.price {
+  color: $color-emphasize;
+}
+
+.chosee-quanlity {
+  padding-bottom: 24px;
+  span {
+    padding-bottom: 6px;
+  }
+}
+
+.add-cart {
+  width: 100%;
+  .btn-add {
+    height: 45px;
+    width: min(200px, 100%);
+  }
+}

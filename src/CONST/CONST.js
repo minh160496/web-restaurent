@@ -20,6 +20,10 @@ export const USER_SIGNIN = "userSignIn";
 
 export const USER_LOGIN = "userLogin";
 
+export const PRODUCT_ID_SEARCHS = "productIdSearchs";
+
+export const PRODUCT_ID_FAVORITES = "productIdFavorites";
+
 export const cardNumOfContent = [
   {
     id: 1,

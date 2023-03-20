@@ -20,6 +20,7 @@ import MyButton from "Component/MyButton";
 import ChooseQuanlity from "Component/ChooseQuanlity";
 import DelProduct from "Component/DelProduct";
 import { ReactComponent as IconBag } from "assets/icon/bag.svg";
+import { ReactComponent as IconCash } from "assets/icon/cash.svg";
 import { PriceProducts, TotalAll } from "Component/CalculatorTotal";
 import { PriceTotalProduct } from "Component/CalculatorTotal";
 
@@ -75,7 +76,7 @@ export default function MainShoppingCart({ isMini = false }) {
                     </MDBTypography>
                   </MDBCardHeader>
                 )}
-                <MDBCardBody>
+                <MDBCardBody className={cl("body")}>
                   {cartProducts.length > 0 &&
                     cartProducts.map((cartProduct) => (
                       <div key={cartProduct.id}>
@@ -106,21 +107,27 @@ export default function MainShoppingCart({ isMini = false }) {
                             </MDBRipple>
                           </MDBCol>
 
-                          <MDBCol lg="5" md="6" className=" mb-4 mb-lg-0">
-                            <h2 className={cl("product-name")}>
-                              {products && products[cartProduct.productId - 1]
-                                ? products[cartProduct.productId - 1].name
-                                : ""}
-                            </h2>
-                            <p className={isMini ? "m-0" : ""}>
-                              {!isMini && "Giá sản phẩm:  "}
-                              <span className={cl("price-product")}>
-                                {products &&
-                                  products[cartProduct.productId - 1] &&
-                                  products[cartProduct.productId - 1].price +
-                                    ".000đ"}
-                              </span>
-                            </p>
+                          <MDBCol
+                            lg="5"
+                            md="6"
+                            className={cl("inf") + " mb-4 mb-lg-0"}
+                          >
+                            <div className={cl("inf-text")}>
+                              <h2 className={cl("product-name")}>
+                                {products && products[cartProduct.productId - 1]
+                                  ? products[cartProduct.productId - 1].name
+                                  : ""}
+                              </h2>
+                              <p className={isMini ? "m-0" : ""}>
+                                {!isMini && "Giá sản phẩm:  "}
+                                <span className={cl("price-product")}>
+                                  {products &&
+                                    products[cartProduct.productId - 1] &&
+                                    products[cartProduct.productId - 1].price +
+                                      ".000đ"}
+                                </span>
+                              </p>
+                            </div>
 
                             <div>
                               <DelProduct
@@ -137,9 +144,15 @@ export default function MainShoppingCart({ isMini = false }) {
                               <ChooseQuanlity id={+cartProduct.productId} />
                             </div>
 
-                            <p className="text-start text-md-center">
+                            <p className="text-start text-md-center flex align-center justify-content-center">
+                              <span style={{ marginRight: 8 }}>
+                                <IconCash
+                                  fill="currentcolor"
+                                  width={30}
+                                  height={30}
+                                />
+                              </span>
                               <strong>
-                                {" "}
                                 <PriceProducts
                                   id={cartProduct.productId}
                                   num={cartProduct.num}

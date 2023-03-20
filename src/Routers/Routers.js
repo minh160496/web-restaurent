@@ -31,6 +31,9 @@ import ProductDetail from "Page/ProductDetail";
 import ShoppingCart from "Component/ShoppingCart";
 import Login from "Page/Login";
 import SignIn from "Page/SignIn";
+import UserInf from "Page/UserInf";
+import ProductSearch from "Page/ProductSearch";
+import Favorite from "Page/Favorite";
 
 export const pathObj = {
   about: {
@@ -176,6 +179,21 @@ export const pathObj = {
     title: "Đăng xuất",
     path: "/",
   },
+
+  userInf: {
+    title: "Thông tin tài khoản",
+    path: "/userInf",
+  },
+
+  productSearchs: {
+    title: "Món ăn bạn tìm kiếm",
+    path: "/productSearchs",
+  },
+
+  favorites: {
+    title: "Món ăn yêu thích",
+    path: "/favorites",
+  },
 };
 
 export const routes = [
@@ -310,5 +328,18 @@ export const routes = [
   {
     path: pathObj.signIn.path,
     element: SignIn,
+  },
+  {
+    path: pathObj.userInf.path,
+    element: UserInf,
+  },
+  {
+    path: pathObj.productSearchs.path,
+    element: ProductSearch,
+  },
+
+  {
+    path: pathObj.favorites.path,
+    element: Favorite,
   },
 ];

@@ -60,29 +60,6 @@
   left: 100%;
 }
 
-.thumbnail__like {
-  width: 40%;
-  aspect-ratio: 1/1;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  background-color: $color-primary;
-  border-radius: 50%;
-  color: $color-text-primary;
-  cursor: pointer;
-  z-index: 1;
-
-  .icon-like {
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 20%;
-  }
-}
-
 .thumbnail-blur {
   position: absolute;
   top: 0;

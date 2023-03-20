@@ -17,11 +17,12 @@ export default function Blog() {
   useEffect(() => {
     async function getBlogsFromAPI() {
       const blogs = await getAPIBlogs();
-      const blogsJson = JSON.stringify(blogs);
-      localStorage.setItem(BLOGS, blogsJson);
-      setBlogs(blogs);
+      if (blogs) {
+        const blogsJson = JSON.stringify(blogs);
+        localStorage.setItem(BLOGS, blogsJson);
+        setBlogs(blogs);
+      }
     }
-
     getBlogsFromAPI();
   }, []);
   return (

@@ -7,14 +7,14 @@ import Head from "./Head";
 import Content from "./Content";
 
 import { contextProducts } from "App";
-import { BLOGS } from "CONST";
+import { BLOGS, PRODUCT_ID_FAVORITES, PRODUCT_ID_SEARCHS } from "CONST";
 import { pathObj } from "Routers";
 
 import styles from "./List.module.scss";
 
 const cl = classNames.bind(styles);
 export const contextHasReRenderContent = createContext(null);
-export default function List({ path = "/list", isBlog = false }) {
+export default function List({ path = pathObj.list.path, isBlog = false }) {
   const products = useContext(contextProducts);
   const [productsCurrent, setProductsCurrent] = useState([]);
   const [blogs, setBlogs] = useState([]);
@@ -300,6 +300,33 @@ export default function List({ path = "/list", isBlog = false }) {
         setTitle(newTitle);
       }
     }
+
+    if (path === pathObj.productSearchs.path) {
+      const productIdSearchJsons = localStorage.getItem(PRODUCT_ID_SEARCHS);
+      const productIdSearchs = productIdSearchJsons
+        ? JSON.parse(productIdSearchJsons)
+        : [];
+      const productSearchs = products
+        ? products.filter((product) => productIdSearchs.includes(product.id))
+        : [];
+      setProductsCurrent(productSearchs);
+      const newTitle = pathObj.productSearchs.title;
+      setTitle(newTitle);
+    }
+
+    if (path === pathObj.favorites.path) {
+      const productIdFavoriteJsons = localStorage.getItem(PRODUCT_ID_FAVORITES);
+      const productIdFavorites = productIdFavoriteJsons
+        ? JSON.parse(productIdFavoriteJsons)
+        : [];
+      const productFavorites = products
+        ? products.filter((product) => productIdFavorites.includes(product.id))
+        : [];
+      setProductsCurrent(productFavorites);
+      const newTitle = pathObj.favorites.title;
+      setTitle(newTitle);
+    }
+
     if (title === "Menu") setTitle("Tất cả món ăn");
 
     if (isBlog) {
@@ -309,7 +336,7 @@ export default function List({ path = "/list", isBlog = false }) {
       setBlogs(blogsCurr);
       setTitle("Tin tức");
     }
-  }, [products]);
+  }, [products, hasReRenderContent]);
 
   return (
     <contextHasReRenderContent.Provider value={handleReRenderContent}>
@@ -320,7 +347,7 @@ export default function List({ path = "/list", isBlog = false }) {
             setTitle={(title) => setTitle(title)}
             products={productsCurrent}
             blogs={blogs}
-            isReRender={hasReRenderContent}
+            isReRender={!!hasReRenderContent}
           />
         </div>
       </LayoutNavBar>

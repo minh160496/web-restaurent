@@ -12,7 +12,7 @@ export const handleUnitMoney = (string) => {
     }
     return output.split("").reverse().join("") + "đ";
   }
-  return "0";
+  return "0đ";
 };
 
 const getTotal = (products, cartProducts) => {

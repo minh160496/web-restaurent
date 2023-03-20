@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import LayoutDefault from "Layout/LayoutDefault";
 import Form from "Component/Form";
 import Loading from "Component/Animation/Loading";
-import ModalError from "./ModalError";
+import ModalAlert from "./ModalAlert";
 
 import { pathObj } from "Routers";
 import { USER_LOGIN, USER_SIGNIN } from "CONST";
@@ -18,7 +18,12 @@ const cl = classNames.bind(styles);
 export default function Login({ hasLogin = true }) {
   const [isLoginSucsess, setIsLoginSucsess] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
+  const [isSignInSucsess, setIsSignInSucsess] = useState(false);
+  const [isSignInDuplicateEmail, setIsSignInDuplicateEmail] = useState(false);
+  const [modalErrorLoginShow, setModalErrorLoginShow] = useState(false);
+  const [modalSignInSucsess, setModalSignInSucsess] = useState(false);
+  const [modalSignInDuplicateEmail, setModalSignInDuplicateEnail] =
+    useState(false);
   const [isWait, setIsWait] = useState(false);
   const userSignInsJson = localStorage.getItem(USER_SIGNIN);
   const userSignIns = userSignInsJson ? JSON.parse(userSignInsJson) : [];
@@ -44,20 +49,35 @@ export default function Login({ hasLogin = true }) {
         setIsWait(false);
         setIsLoginSucsess(false);
         setIsLoginError(true);
-        setModalShow(true);
+        setModalErrorLoginShow(true);
         window.clearTimeout(timeOut);
       }, 2500);
     }
   };
   const handleDataSingIn = (data) => {
-    userSignIns.push(data);
-    localStorage.setItem(USER_SIGNIN, JSON.stringify(userSignIns));
+    const userSignInsJson = localStorage.getItem(USER_SIGNIN);
+    const userSignInEds = userSignInsJson ? JSON.parse(userSignInsJson) : [];
+    const duplicateEmail = userSignInEds.find(
+      (userSignIn, index) => userSignIn.email === data.email
+    );
     setIsWait(true);
-    const timeOut = setTimeout(() => {
-      setIsWait(false);
-      alert("Đăng ký thành công");
-      window.clearTimeout(timeOut);
-    }, 2500);
+    if (!duplicateEmail) {
+      userSignIns.push(data);
+      localStorage.setItem(USER_SIGNIN, JSON.stringify(userSignIns));
+      const timeOut = setTimeout(() => {
+        setIsWait(false);
+        setIsSignInSucsess(true);
+        setModalSignInSucsess(true);
+        window.clearTimeout(timeOut);
+      }, 2500);
+    } else {
+      const timeOut = setTimeout(() => {
+        setIsWait(false);
+        setIsSignInDuplicateEmail(true);
+        setModalSignInDuplicateEnail(true);
+        window.clearTimeout(timeOut);
+      }, 2500);
+    }
   };
 
   useEffect(() => {
@@ -65,6 +85,10 @@ export default function Login({ hasLogin = true }) {
       anchorRef.current.click();
     }
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={cl("login")}>
@@ -138,9 +162,33 @@ export default function Login({ hasLogin = true }) {
 
               {!isWait && isLoginSucsess && <a href="/" ref={anchorRef}></a>}
               {isLoginError && (
-                <ModalError
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
+                <ModalAlert
+                  error
+                  title="Đăng nhập thất bại"
+                  content="Vui Lòng Kiểm tra lại email hoặc mật khẩu"
+                  valueButton="Xác nhận"
+                  show={modalErrorLoginShow}
+                  onHide={() => setModalErrorLoginShow(false)}
+                />
+              )}
+              {isSignInSucsess && (
+                <ModalAlert
+                  title="Đăng ký thành công"
+                  content="Chúc mừng bạn đã trở thành khách hàng của chúng tôi"
+                  valueButton="Đăng nhập"
+                  link={pathObj.logIn.path}
+                  show={modalSignInSucsess}
+                  onHide={() => setModalSignInSucsess(false)}
+                />
+              )}
+              {isSignInDuplicateEmail && (
+                <ModalAlert
+                  error
+                  title="Đăng ký thất bại"
+                  content="Có vẻ như email này đã đước đăng ký trước đó vui lòng chọn email khác"
+                  valueButton="Xác nhận"
+                  show={modalSignInDuplicateEmail}
+                  onHide={() => setModalSignInDuplicateEnail(false)}
                 />
               )}
             </div>

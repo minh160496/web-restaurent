@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -7,22 +7,27 @@ import Img from "Component/Img";
 import LaybelProduct from "./LaybelProduct";
 import Toolip from "Component/Toolip";
 import MyButton from "Component/MyButton";
+import ModalProduct from "./ModalProduct";
 import { ReactComponent as IconEye } from "assets/icon/eye.svg";
-import { ReactComponent as IconBag } from "assets/icon/bagFill.svg";
-import { ReactComponent as IconHeart } from "assets/icon/heart.svg";
 
 import { contextReRenderSame } from "Page/ProductDetail/ProductDetail";
 import { pathObj } from "Routers";
 
 import styles from "./Card.module.scss";
+import ButtonAdd from "Page/ProductDetail/ButtonAdd";
+import ThumbnailLike from "./ThumbnailLike";
 
 const cl = classNames.bind(styles);
 export default function Card({ product, isDetail }) {
+  const [modalProductShow, setModalProductShow] = useState(false);
   const reRenderDetail = useContext(contextReRenderSame);
   const perSales = Math.floor(
     (1 - product.price / product.oldPrice).toFixed(2) * 100
   );
   const pathParam = "/?&id=" + product.id;
+  const handleFastView = () => {
+    setModalProductShow(true);
+  };
   return (
     <div className={cl("cart-product")}>
       <div className={cl("cart-thumbnail")}>
@@ -34,23 +39,21 @@ export default function Card({ product, isDetail }) {
         )}
 
         <Toolip content="Xem nhanh">
-          <div className={cl("thumbnail__icon", "thumbnail__icon-view")}>
+          <div
+            className={cl("thumbnail__icon", "thumbnail__icon-view")}
+            onClick={handleFastView}
+          >
             <IconEye fill="currentcolor" width={20} height={20} />
           </div>
         </Toolip>
         <Toolip content="Đặt món">
           <div className={cl("thumbnail__icon", "thumbnail__icon-bag")}>
-            <IconBag fill="currentcolor" width={20} height={20} />
+            <ButtonAdd id={product.id} isIcon="true" />
           </div>
         </Toolip>
-        <Toolip content="Thêm vào yêu thích">
-          <div className={cl("thumbnail__like")}>
-            <IconHeart
-              className={cl("icon-like")}
-              fill="currentcolor"
-              width={24}
-              height={24}
-            />
+        <Toolip content="Thêm vào yêu thích" offset={[150, 40]}>
+          <div className={cl("thumbnail-like")}>
+            <ThumbnailLike id={product.id} />
           </div>
         </Toolip>
         <Link
@@ -86,6 +89,11 @@ export default function Card({ product, isDetail }) {
           Xem chi tiết
         </MyButton>
       </div>
+      <ModalProduct
+        product={product}
+        show={modalProductShow}
+        onHide={() => setModalProductShow(false)}
+      />
     </div>
   );
 }

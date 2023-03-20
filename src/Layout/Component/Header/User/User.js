@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import classnames from "classnames/bind";
+import { Link } from "react-router-dom";
 
 import Toolip from "Component/Toolip";
 import PropperPC from "Component/PropperPC/PropperPC";
+import FormUser from "./FormUser";
 import { ReactComponent as IconUser } from "@/assets/icon/user.svg";
 import { ReactComponent as IconLogin } from "@/assets/icon/login.svg";
-import FormUser from "./FormUser";
 
 import { contextReRenderLayoutDefault } from "Layout/LayoutDefault";
 import { contextReRenderLayoutNavBar } from "Layout/LayoutNavBar";
+import { pathObj } from "Routers";
 import { USER_LOGIN } from "CONST";
 
 import styles from "@/Layout/Component/Header/User/User.module.scss";
@@ -27,15 +29,21 @@ export default function User() {
       <div className={cl("hidden-on-PC")}>
         <Toolip content="Giỏ hàng">
           <div className={cl("bag", "header__navbar__item") + " pos-relative"}>
-            <div className={cl("icon", "icon-user")}>
-              {!isLogin && (
-                <IconLogin fill="currentcolor" width={21} height={21} />
-              )}
+            {!isLogin && (
+              <Link to={pathObj.logIn.path}>
+                <div className={cl("icon", "icon-user")}>
+                  <IconLogin fill="currentcolor" width={21} height={21} />
+                </div>
+              </Link>
+            )}
 
-              {isLogin && (
-                <IconUser fill="currentcolor" width={20} height={20} />
-              )}
-            </div>
+            {isLogin && (
+              <Link to={pathObj.userInf.path}>
+                <div className={cl("icon", "icon-user")}>
+                  <IconUser fill="currentcolor" width={20} height={20} />
+                </div>
+              </Link>
+            )}
           </div>
         </Toolip>
       </div>
