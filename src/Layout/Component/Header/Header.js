@@ -15,11 +15,13 @@ import Img from "Component/Img";
 import SearchPC from "./SearchPC/SearchPC";
 import Bag from "./Bag";
 import User from "./User";
+import Map from "./Map";
 import NavBarItemHasDrop from "./NavBarItemHasDropPC";
 import ScrollX from "./ScrollX";
 import DropDown from "./DropDown";
-import { ReactComponent as IconMap } from "assets/icon/map.svg";
+
 import { listBodyItem } from "./OffCanvas";
+import { pathObj } from "Routers";
 
 import "./Tippy.scss";
 
@@ -249,21 +251,19 @@ export default function Header({ isHomePage }) {
                 <div className={cl("item__user")}>
                   <User />
                 </div>
+                <div className={cl("item__map")}>
+                  <Map />
+                </div>
 
-                <Toolip content="Hệ thống cửa hàng">
-                  <div className={cl("map", "header__navbar__item")}>
-                    <div className={cl("icon")}>
-                      <IconMap fill="currentcolor" width={20} height={20} />
-                    </div>
-                  </div>
-                </Toolip>
                 <Toolip
                   content="Đặt bàn"
                   place="bottom-end"
                   className="toolip-order"
                 >
                   <div className={cl("header__button", "header__navbar__item")}>
-                    <MyButton sizeXL>Đặt bàn</MyButton>
+                    <MyButton link={pathObj.orderTable.path} sizeXL>
+                      Đặt bàn
+                    </MyButton>
                   </div>
                 </Toolip>
               </div>

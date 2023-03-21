@@ -8,6 +8,7 @@ import styles from "./Form.module.scss";
 
 const cl = classNames.bind(styles);
 export default function Form({
+  hasLabel = false,
   classOfErr = "",
   classOfInput = "",
   classOfButton = "",
@@ -20,6 +21,8 @@ export default function Form({
   email,
   password,
   repassword,
+  numPeoples,
+  date,
   textArea,
   handleDataForm = () => {},
 }) {
@@ -32,6 +35,8 @@ export default function Form({
     password: "",
     confirmPassword: "",
     text: "",
+    numPeoples: "",
+    date: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -43,6 +48,8 @@ export default function Form({
     password: "",
     confirmPassword: "",
     text: "",
+    numPeoples: "",
+    date: "",
   });
 
   const [isSubmit, setIsSubmit] = useState({ value: false });
@@ -128,6 +135,26 @@ export default function Form({
       }
     }
 
+    //numPeople
+    if (numPeoples) {
+      if (fieldName === "numPeoples") {
+        if (!fieldValue.trim()) {
+          error = "Vui lòng nhập số người sẽ đến";
+        } else if (!Number(fieldValue.trim())) {
+          error = "Số người đến phải là số lớn hơn 0";
+        }
+      }
+    }
+
+    //date
+    if (date) {
+      if (fieldName === "date") {
+        if (!fieldValue) {
+          error = "Vui lòng chọn ngày đặt bàn";
+        }
+      }
+    }
+
     return error;
   };
 
@@ -200,6 +227,7 @@ export default function Form({
       )}
       {firstName && (
         <div className={classOfInput + " " + cl("form__input")}>
+          {hasLabel && <label htmlFor="firstName">Họ của bạn</label>}
           <input
             type="text"
             id="firstName"
@@ -218,6 +246,7 @@ export default function Form({
 
       {lastName && (
         <div className={classOfInput + " " + cl("form__input")}>
+          {hasLabel && <label htmlFor="lastName">Tên của bạn</label>}
           <input
             type="text"
             id="lastName"
@@ -236,6 +265,7 @@ export default function Form({
 
       {tel && (
         <div className={classOfInput + " " + cl("form__input")}>
+          {hasLabel && <label htmlFor="tel">Số điện thoại của bạn</label>}
           <input
             type="tel"
             id="tel"
@@ -253,6 +283,7 @@ export default function Form({
       )}
       {email && (
         <div className={classOfInput + " " + cl("form__input")}>
+          {hasLabel && <label htmlFor="email">Email của bạn</label>}
           <input
             type="email"
             id="email"
@@ -271,6 +302,7 @@ export default function Form({
 
       {password && (
         <div className={classOfInput + " " + cl("form__input")}>
+          {hasLabel && <label htmlFor="password">Mật khẩu</label>}
           <input
             type="password"
             id="password"
@@ -288,6 +320,9 @@ export default function Form({
       )}
       {repassword && (
         <div className={classOfInput + " " + cl("form__input")}>
+          {hasLabel && (
+            <label htmlFor="confirmPassword">Xác nhận mật khẩu</label>
+          )}
           <input
             type="password"
             id="confirmPassword"
@@ -306,13 +341,52 @@ export default function Form({
 
       {textArea && (
         <div className={classOfInput + " " + cl("form__input")}>
+          {hasLabel && <label htmlFor="textarea">Phản hồi</label>}
           <textarea
             rows="3"
+            id="textarea"
             placeholder="Nhập thông tin"
             name="text"
             value={formData.text ? formData.text : ""}
             onChange={handleInputChange}
           />
+        </div>
+      )}
+
+      {numPeoples && (
+        <div className={classOfInput + " " + cl("form__input")}>
+          {hasLabel && <label htmlFor="numPeoples">Số người</label>}
+          <input
+            type="number"
+            id="numPeoples"
+            name="numPeoples"
+            placeholder="Chọn số người sẽ đến"
+            value={formData.numPeoples ? formData.numPeoples : ""}
+            onChange={handleInputChange}
+          />
+          {formErrors.numPeoples && (
+            <div className={classOfErr + " " + cl("form-err")}>
+              <span>{formErrors.numPeoples}</span>
+            </div>
+          )}
+        </div>
+      )}
+      {date && (
+        <div className={classOfInput + " " + cl("form__input")}>
+          {hasLabel && <label htmlFor="date">Ngày đặt</label>}
+          <input
+            type="date"
+            id="date"
+            name="date"
+            placeholder="Chọn số người sẽ đến"
+            value={formData.date ? formData.date : ""}
+            onChange={handleInputChange}
+          />
+          {formErrors.date && (
+            <div className={classOfErr + " " + cl("form-err")}>
+              <span>{formErrors.date}</span>
+            </div>
+          )}
         </div>
       )}
       <div
@@ -332,6 +406,7 @@ export default function Form({
 }
 
 Form.propTypes = {
+  hasLabel: PropTypes.bool,
   classOfErr: PropTypes.string,
   classOfInput: PropTypes.string,
   classOfButton: PropTypes.string,
@@ -344,6 +419,8 @@ Form.propTypes = {
   email: PropTypes.bool,
   password: PropTypes.bool,
   repassword: PropTypes.bool,
+  numPeoples: PropTypes.bool,
+  date: PropTypes.bool,
   textArea: PropTypes.bool,
   handleDataForm: PropTypes.func,
 };

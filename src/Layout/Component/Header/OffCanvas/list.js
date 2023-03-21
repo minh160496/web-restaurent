@@ -149,6 +149,14 @@ const pathObj = {
     title: "Món ăn yêu thích",
     path: "/favorites",
   },
+  system: {
+    title: "Hệ thống cửa hàng",
+    path: "/system",
+  },
+  orderTable: {
+    title: "Đặt bàn",
+    path: "/orderTable",
+  },
 };
 
 export const listBodyItem = [

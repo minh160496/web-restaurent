@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames/bind";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import BagNumber from "./BagNumber";
 import Toolip from "Component/Toolip";
@@ -17,14 +17,19 @@ export default function Bag() {
   return (
     <PropperPC mouseOver isMobileHidden content={<MainShoppingCart isMini />}>
       <Toolip content="Giỏ hàng" className={cl("hidden-on-PC")}>
-        <Link to={pathObj.shoppingCart.path}>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? cl("active") : cl('"inactive"')
+          }
+          to={pathObj.shoppingCart.path}
+        >
           <div className={cl("bag", "header__navbar__item") + " pos-relative"}>
             <div className={cl("icon", "icon-bag")}>
               <IconBag fill="currentcolor" width={20} height={20} />
             </div>
             <BagNumber />
           </div>
-        </Link>
+        </NavLink>
       </Toolip>
     </PropperPC>
   );

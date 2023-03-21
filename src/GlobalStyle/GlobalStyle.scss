@@ -48,4 +48,5 @@ a:hover {
 //background-modal
 div[role="dialog"][aria-labelledby].fade.modal {
   background-color: #0000008b;
+  --bs-modal-zindex: 100000000000;
 }

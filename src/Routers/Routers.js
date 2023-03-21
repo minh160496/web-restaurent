@@ -34,6 +34,8 @@ import SignIn from "Page/SignIn";
 import UserInf from "Page/UserInf";
 import ProductSearch from "Page/ProductSearch";
 import Favorite from "Page/Favorite";
+import System from "Page/System";
+import OrderTable from "Page/OrderTable";
 
 export const pathObj = {
   about: {
@@ -194,6 +196,16 @@ export const pathObj = {
     title: "Món ăn yêu thích",
     path: "/favorites",
   },
+
+  system: {
+    title: "Hệ thống cửa hàng",
+    path: "/system",
+  },
+
+  orderTable: {
+    title: "Đặt bàn",
+    path: "/orderTable",
+  },
 };
 
 export const routes = [
@@ -341,5 +353,15 @@ export const routes = [
   {
     path: pathObj.favorites.path,
     element: Favorite,
+  },
+
+  {
+    path: pathObj.system.path,
+    element: System,
+  },
+
+  {
+    path: pathObj.orderTable.path,
+    element: OrderTable,
   },
 ];

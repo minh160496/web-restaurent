@@ -15,5 +15,9 @@
 }
 
 .user__btn {
-  max-width: 200px;
+  max-width: 100%;
+  .btn {
+    height: 45px;
+    width: 100%;
+  }
 }

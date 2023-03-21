@@ -1,0 +1,32 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.order-table {
+  background-color: $bg-primary-blur;
+}
+
+.container-wrapper {
+  background-image: url("https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/datban.jpg?1677815705833");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: $br-rad-xl;
+}
+
+.main {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.form-wrapper {
+  background-color: $bg-primary-blur;
+  padding: 16px;
+  border-radius: $br-rad-xl;
+}
+
+.title {
+  text-align: center;
+  padding-bottom: 24px;
+}

@@ -4,6 +4,10 @@
   padding-left: 16px;
 }
 
+a.active .icon-bag {
+  color: $color-primary;
+}
+
 .bag-number {
   background-color: $color-primary;
   display: grid;

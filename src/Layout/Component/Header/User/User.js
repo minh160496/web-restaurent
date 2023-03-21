@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import classnames from "classnames/bind";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import Toolip from "Component/Toolip";
 import PropperPC from "Component/PropperPC/PropperPC";
@@ -30,19 +30,29 @@ export default function User() {
         <Toolip content="Giỏ hàng">
           <div className={cl("bag", "header__navbar__item") + " pos-relative"}>
             {!isLogin && (
-              <Link to={pathObj.logIn.path}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? cl("active") : cl('"inactive"')
+                }
+                to={pathObj.logIn.path}
+              >
                 <div className={cl("icon", "icon-user")}>
                   <IconLogin fill="currentcolor" width={21} height={21} />
                 </div>
-              </Link>
+              </NavLink>
             )}
 
             {isLogin && (
-              <Link to={pathObj.userInf.path}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? cl("active") : cl('"inactive"')
+                }
+                to={pathObj.userInf.path}
+              >
                 <div className={cl("icon", "icon-user")}>
                   <IconUser fill="currentcolor" width={20} height={20} />
                 </div>
-              </Link>
+              </NavLink>
             )}
           </div>
         </Toolip>

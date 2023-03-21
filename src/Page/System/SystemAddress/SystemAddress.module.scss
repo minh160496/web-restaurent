@@ -1,0 +1,78 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.address {
+  color: $color-text-primary;
+}
+
+.list {
+  margin-top: 40px;
+  background-color: $bg-primary;
+  border-radius: $br-rad-xl;
+  overflow: hidden;
+  border: 1px solid $color-text-primary;
+  li {
+    cursor: pointer;
+    border-radius: $br-rad-xl;
+    border: 1px solid $color-text-primary;
+    padding: 8px 8px;
+    transition: all ease 0.3s;
+    &:hover {
+      background-color: $bg-primary-blur-blur;
+    }
+  }
+
+  li + li {
+    margin-top: 14px;
+  }
+}
+
+.title {
+  background-color: $color-primary;
+  padding: 12px 6px;
+  text-align: center;
+  h2 {
+    font-size: $font-lg;
+    font-weight: 700;
+  }
+}
+
+.content {
+  padding: 12px 8px;
+  max-height: 500px;
+  overflow-y: auto;
+  /* Define the scrollbar track */
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $color-primary;
+    border-radius: 10px;
+  }
+}
+
+.item {
+  .name {
+    color: $color-primary;
+    font-weight: 600;
+    padding-bottom: 6px;
+  }
+  .hotLine {
+    padding-top: 6px;
+  }
+}
+
+.location {
+  font-size: $font-sm;
+}
+
+.map {
+  margin-top: 40px;
+  max-height: calc(100% - 40px);
+}

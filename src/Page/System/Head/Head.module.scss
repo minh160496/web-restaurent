@@ -1,0 +1,41 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.head {
+  border-radius: $br-rad-xl;
+  border: 1px solid $color-text-primary;
+  color: $color-text-primary;
+  padding-bottom: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: $bg-primary;
+}
+
+.head__item {
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.image {
+  max-width: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: $color-primary;
+  margin-right: 10px;
+  .image-wrapper {
+    max-width: 50%;
+  }
+}
+
+.text {
+  flex: 1;
+  h3 {
+    font-size: $font-sm;
+    font-weight: 500;
+  }
+}

@@ -64,7 +64,7 @@ export default function Card({ product, isDetail }) {
 
       <Link
         to={pathObj.productDetails.path + pathParam}
-        className={cl("cart-name")}
+        className={cl("cart-name") + " d-block"}
       >
         <h4>{product.name}</h4>
 

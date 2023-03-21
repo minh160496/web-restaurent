@@ -4,17 +4,8 @@
   padding-left: 16px;
 }
 
-.bag-number {
-  background-color: $color-primary;
-  display: grid;
-  place-content: center;
-  color: $color-text-primary;
-  font-size: $font-min;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  top: -3px;
-  left: 28px;
+a.active .icon-user {
+  color: $color-primary;
 }
 
 .icon {

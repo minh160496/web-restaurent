@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import LayoutDefault from "Layout/LayoutDefault";
 import ButtonLogOut from "Component/ButtonLogOut";
+import MyButton from "Component/MyButton";
 
 import { pathObj } from "Routers";
 import { USER_LOGIN } from "CONST";
@@ -28,9 +29,20 @@ export default function UserInf() {
             <div className={cl("inf-email") + " flex align-center"}>
               <span>Địa chỉ email: {email}</span>
             </div>
-            <div className={cl("user__btn")}>
-              <ButtonLogOut />
-            </div>
+            <Row>
+              <Col className="col-12 col-sm-6 col-md-3 col-lg-2">
+                <div className={cl("user__btn")}>
+                  <ButtonLogOut />
+                </div>
+              </Col>
+              <Col className="col-12 col-sm-6 col-md-3 col-lg-2">
+                <div className={cl("user__btn")}>
+                  <MyButton className={cl("btn")} link={pathObj.favorites.path}>
+                    Món ăn yêu thích
+                  </MyButton>
+                </div>
+              </Col>
+            </Row>
           </div>
         </Container>
       </LayoutDefault>
