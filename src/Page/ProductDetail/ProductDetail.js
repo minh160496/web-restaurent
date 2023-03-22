@@ -111,7 +111,10 @@ export default function ProductDetail() {
                               />
                             </Col>
                             <Col className="col-12 col-sm-6">
-                              <MyButton className={cl("btn")}>
+                              <MyButton
+                                className={cl("btn")}
+                                link={pathObj.orderTable.path}
+                              >
                                 Đặt bàn tại đây
                               </MyButton>
                             </Col>

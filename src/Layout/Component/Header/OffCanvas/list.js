@@ -157,6 +157,10 @@ const pathObj = {
     title: "Đặt bàn",
     path: "/orderTable",
   },
+  checkOut: {
+    title: "Thanh toán",
+    path: "/checkOut",
+  },
 };
 
 export const listBodyItem = [

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { useDebounce } from "hook";
 
@@ -9,6 +10,7 @@ import styles from "./Form.module.scss";
 const cl = classNames.bind(styles);
 export default function Form({
   hasLabel = false,
+  hasSaparate = false,
   classOfErr = "",
   classOfInput = "",
   classOfButton = "",
@@ -23,6 +25,7 @@ export default function Form({
   repassword,
   numPeoples,
   date,
+  time,
   textArea,
   handleDataForm = () => {},
 }) {
@@ -37,6 +40,7 @@ export default function Form({
     text: "",
     numPeoples: "",
     date: "",
+    time: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -50,6 +54,7 @@ export default function Form({
     text: "",
     numPeoples: "",
     date: "",
+    time: "",
   });
 
   const [isSubmit, setIsSubmit] = useState({ value: false });
@@ -151,6 +156,37 @@ export default function Form({
       if (fieldName === "date") {
         if (!fieldValue) {
           error = "Vui lòng chọn ngày đặt bàn";
+        } else {
+          const date = new Date();
+          const year = date.getFullYear();
+          const month = date.getMonth() + 1;
+          const dateNow = date.getDate();
+          const dateUserOrderArr = fieldValue.split("-");
+          const yearUserOrder = Number(dateUserOrderArr[0]);
+          const monthUserOrder = Number(dateUserOrderArr[1]);
+          const dateNumUserOrder = Number(dateUserOrderArr[2]);
+          if (
+            yearUserOrder < year ||
+            (yearUserOrder == year && monthUserOrder < month) ||
+            (yearUserOrder == year &&
+              monthUserOrder == month &&
+              dateNumUserOrder < dateNow)
+          ) {
+            error = "Ngày tháng phải là thời gian ở tương lai";
+          } else {
+            if (yearUserOrder - year > 1) {
+              error = "Thời gian đặt bàn không quá 1 năm so với hiện tại";
+            }
+          }
+        }
+      }
+    }
+
+    //time
+    if (time) {
+      if (fieldName === "time") {
+        if (!fieldValue) {
+          error = "Vui lòng chọn thời gian đến";
         }
       }
     }
@@ -203,192 +239,242 @@ export default function Form({
       password: "",
       confirmPassword: "",
       text: "",
+      numPeoples: "",
+      date: "",
+      time: "",
     });
   }, [isSubmit]);
 
   return (
     <form onSubmit={handleSubmit}>
-      {name && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Họ và tên"
-            value={formData.name ? formData.name : ""}
-            onChange={handleInputChange}
-          />
-          {formErrors.name && (
-            <div className={classOfErr + " " + cl("form-err")}>
-              <span>{formErrors.name}</span>
-            </div>
+      <Container className="p-0">
+        <Row>
+          {name && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && <label htmlFor="name">Họ và tên</label>}
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Họ và tên"
+                  value={formData.name ? formData.name : ""}
+                  onChange={handleInputChange}
+                />
+                {formErrors.name && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.name}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
           )}
-        </div>
-      )}
-      {firstName && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          {hasLabel && <label htmlFor="firstName">Họ của bạn</label>}
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            placeholder="Họ"
-            value={formData.firstName ? formData.firstName : ""}
-            onChange={handleInputChange}
-          />
-          {formErrors.firstName && (
-            <div className={classOfErr + " " + cl("form-err")}>
-              <span>{formErrors.firstName}</span>
-            </div>
+          {firstName && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && <label htmlFor="firstName">Họ</label>}
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="Họ"
+                  value={formData.firstName ? formData.firstName : ""}
+                  onChange={handleInputChange}
+                />
+                {formErrors.firstName && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.firstName}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
           )}
-        </div>
-      )}
 
-      {lastName && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          {hasLabel && <label htmlFor="lastName">Tên của bạn</label>}
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            placeholder="Tên"
-            value={formData.lastName ? formData.lastName : ""}
-            onChange={handleInputChange}
-          />
-          {formErrors.lastName && (
-            <div className={classOfErr + " " + cl("form-err")}>
-              <span>{formErrors.lastName}</span>
-            </div>
+          {lastName && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && <label htmlFor="lastName">Tên</label>}
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Tên"
+                  value={formData.lastName ? formData.lastName : ""}
+                  onChange={handleInputChange}
+                />
+                {formErrors.lastName && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.lastName}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
           )}
-        </div>
-      )}
 
-      {tel && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          {hasLabel && <label htmlFor="tel">Số điện thoại của bạn</label>}
-          <input
-            type="tel"
-            id="tel"
-            name="tel"
-            placeholder="Số điện thoại"
-            value={formData.tel ? formData.tel : ""}
-            onChange={handleInputChange}
-          />
-          {formErrors.tel && (
-            <div className={classOfErr + " " + cl("form-err")}>
-              <span>{formErrors.tel}</span>
-            </div>
+          {tel && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && <label htmlFor="tel">Số điện thoại</label>}
+                <input
+                  type="tel"
+                  id="tel"
+                  name="tel"
+                  placeholder="Số điện thoại"
+                  value={formData.tel ? formData.tel : ""}
+                  onChange={handleInputChange}
+                />
+                {formErrors.tel && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.tel}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
           )}
-        </div>
-      )}
-      {email && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          {hasLabel && <label htmlFor="email">Email của bạn</label>}
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email ? formData.email : ""}
-            onChange={handleInputChange}
-          />
-          {formErrors.email && (
-            <div className={classOfErr + " " + cl("form-err")}>
-              <span>{formErrors.email}</span>
-            </div>
+          {email && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && <label htmlFor="email">Email</label>}
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email ? formData.email : ""}
+                  onChange={handleInputChange}
+                />
+                {formErrors.email && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.email}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
           )}
-        </div>
-      )}
 
-      {password && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          {hasLabel && <label htmlFor="password">Mật khẩu</label>}
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Mật khẩu"
-            value={formData.password ? formData.password : ""}
-            onChange={handleInputChange}
-          />
-          {formErrors.password && (
-            <div className={classOfErr + " " + cl("form-err")}>
-              <span>{formErrors.password}</span>
-            </div>
+          {password && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && <label htmlFor="password">Mật khẩu</label>}
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Mật khẩu"
+                  value={formData.password ? formData.password : ""}
+                  onChange={handleInputChange}
+                />
+                {formErrors.password && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.password}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
           )}
-        </div>
-      )}
-      {repassword && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          {hasLabel && (
-            <label htmlFor="confirmPassword">Xác nhận mật khẩu</label>
+          {repassword && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && (
+                  <label htmlFor="confirmPassword">Xác nhận mật khẩu</label>
+                )}
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  placeholder="Xác nhận mật khẩu"
+                  value={
+                    formData.confirmPassword ? formData.confirmPassword : ""
+                  }
+                  onChange={handleInputChange}
+                />
+                {formErrors.confirmPassword && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.confirmPassword}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
           )}
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            placeholder="Xác nhận mật khẩu"
-            value={formData.confirmPassword ? formData.confirmPassword : ""}
-            onChange={handleInputChange}
-          />
-          {formErrors.confirmPassword && (
-            <div className={classOfErr + " " + cl("form-err")}>
-              <span>{formErrors.confirmPassword}</span>
-            </div>
-          )}
-        </div>
-      )}
 
-      {textArea && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          {hasLabel && <label htmlFor="textarea">Phản hồi</label>}
-          <textarea
-            rows="3"
-            id="textarea"
-            placeholder="Nhập thông tin"
-            name="text"
-            value={formData.text ? formData.text : ""}
-            onChange={handleInputChange}
-          />
-        </div>
-      )}
+          {textArea && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && <label htmlFor="textarea">Phản hồi</label>}
+                <textarea
+                  rows="3"
+                  id="textarea"
+                  placeholder="Nhập thông tin"
+                  name="text"
+                  value={formData.text ? formData.text : ""}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </Col>
+          )}
 
-      {numPeoples && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          {hasLabel && <label htmlFor="numPeoples">Số người</label>}
-          <input
-            type="number"
-            id="numPeoples"
-            name="numPeoples"
-            placeholder="Chọn số người sẽ đến"
-            value={formData.numPeoples ? formData.numPeoples : ""}
-            onChange={handleInputChange}
-          />
-          {formErrors.numPeoples && (
-            <div className={classOfErr + " " + cl("form-err")}>
-              <span>{formErrors.numPeoples}</span>
-            </div>
+          {numPeoples && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && <label htmlFor="numPeoples">Số người</label>}
+                <input
+                  type="number"
+                  id="numPeoples"
+                  name="numPeoples"
+                  placeholder="Chọn số người sẽ đến"
+                  value={formData.numPeoples ? formData.numPeoples : ""}
+                  onChange={handleInputChange}
+                />
+                {formErrors.numPeoples && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.numPeoples}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
           )}
-        </div>
-      )}
-      {date && (
-        <div className={classOfInput + " " + cl("form__input")}>
-          {hasLabel && <label htmlFor="date">Ngày đặt</label>}
-          <input
-            type="date"
-            id="date"
-            name="date"
-            placeholder="Chọn số người sẽ đến"
-            value={formData.date ? formData.date : ""}
-            onChange={handleInputChange}
-          />
-          {formErrors.date && (
-            <div className={classOfErr + " " + cl("form-err")}>
-              <span>{formErrors.date}</span>
-            </div>
+          {date && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input")}>
+                {hasLabel && <label htmlFor="date">Ngày đặt</label>}
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  placeholder="Chọn số người sẽ đến"
+                  value={formData.date ? formData.date : ""}
+                  onChange={handleInputChange}
+                />
+                {formErrors.date && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.date}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
           )}
-        </div>
-      )}
+          {time && (
+            <Col className={hasSaparate ? "col-12 col-lg-6" : "col-12"}>
+              <div className={classOfInput + " " + cl("form__input", "time")}>
+                {hasLabel && <label htmlFor="time">Giờ dự kiến</label>}
+                <input
+                  type="time"
+                  id="time"
+                  name="time"
+                  placeholder="Chọn số người sẽ đến"
+                  value={formData.time ? formData.time : ""}
+                  onChange={handleInputChange}
+                />
+                {formErrors.time && (
+                  <div className={classOfErr + " " + cl("form-err")}>
+                    <span>{formErrors.time}</span>
+                  </div>
+                )}
+              </div>
+            </Col>
+          )}
+        </Row>
+      </Container>
       <div
         className={
           !buttonCenter
@@ -407,6 +493,7 @@ export default function Form({
 
 Form.propTypes = {
   hasLabel: PropTypes.bool,
+  hasSaparate: PropTypes.bool,
   classOfErr: PropTypes.string,
   classOfInput: PropTypes.string,
   classOfButton: PropTypes.string,
@@ -421,6 +508,7 @@ Form.propTypes = {
   repassword: PropTypes.bool,
   numPeoples: PropTypes.bool,
   date: PropTypes.bool,
+  time: PropTypes.bool,
   textArea: PropTypes.bool,
   handleDataForm: PropTypes.func,
 };

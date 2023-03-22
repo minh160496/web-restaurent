@@ -39,7 +39,12 @@ export default function Login({ hasLogin = true }) {
       const timeOut = setTimeout(() => {
         setIsLoginSucsess(true);
         setIsLoginError(false);
-        const userLoginSave = { email: userLogin.email, isLogin: true };
+        const userLoginSave = {
+          email: userLogin.email,
+          firstName: userLogin.firstName,
+          lastName: userLogin.lastName,
+          isLogin: true,
+        };
         localStorage.setItem(USER_LOGIN, JSON.stringify(userLoginSave));
         setIsWait(false);
         window.clearTimeout(timeOut);

@@ -38,7 +38,7 @@ export default function LinkList() {
                 <ul>
                   {listPolicy.map((item, index) => (
                     <li key={index}>
-                      <Link to="/">{item.fiel}</Link>
+                      <Link to="#">{item.fiel}</Link>
                     </li>
                   ))}
                 </ul>

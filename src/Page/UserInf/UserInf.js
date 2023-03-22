@@ -14,11 +14,14 @@ import styles from "./UserInf.module.scss";
 const cl = classNames.bind(styles);
 export default function UserInf() {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState(null);
   useEffect(() => {
     const userInfJson = localStorage.getItem(USER_LOGIN);
     const userInf = userInfJson ? JSON.parse(userInfJson) : {};
     const email = userInf.email || "";
+    const name = userInf.firstName + " " + userInf.lastName;
     setEmail(email);
+    setName(name);
   }, []);
 
   return (
@@ -26,6 +29,9 @@ export default function UserInf() {
       <LayoutDefault path={pathObj.userInf.path}>
         <Container>
           <div className={cl("main-inf")}>
+            <div className={cl("inf-name") + " flex align-center"}>
+              <span>Họ và tên: {name}</span>
+            </div>
             <div className={cl("inf-email") + " flex align-center"}>
               <span>Địa chỉ email: {email}</span>
             </div>

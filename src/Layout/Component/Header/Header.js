@@ -101,19 +101,19 @@ export default function Header({ isHomePage }) {
   const [marginUl, setMarginUl] = useState(0);
   const handleFadeLeft = () => {
     if (marginUl < 0) {
-      setMarginUl((prev) => prev + 102);
+      setMarginUl((prev) => prev + 108);
     }
   };
   const handleFadeRight = () => {
     if (window.innerWidth <= 1200) {
-      if (marginUl > -250) {
-        setMarginUl((prev) => prev - 102);
+      if (marginUl > -360) {
+        setMarginUl((prev) => prev - 108);
       }
     }
 
     if (window.innerWidth > 1200) {
-      if (marginUl > -150) {
-        setMarginUl((prev) => prev - 102);
+      if (marginUl > -220) {
+        setMarginUl((prev) => prev - 108);
       }
     }
   };

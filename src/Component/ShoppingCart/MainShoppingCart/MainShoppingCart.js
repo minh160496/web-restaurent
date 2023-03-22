@@ -28,6 +28,7 @@ import { CART_NUM, USER_LOGIN } from "CONST";
 import { contextProducts } from "App";
 import { contextReRenderLayoutDefault } from "Layout/LayoutDefault";
 import { contextReRenderLayoutNavBar } from "Layout/LayoutNavBar";
+import { pathObj } from "Routers";
 
 import styles from "./MainShoppingCart.module.scss";
 
@@ -270,7 +271,9 @@ export default function MainShoppingCart({ isMini = false }) {
                     </MDBListGroupItem>
                   </MDBListGroup>
 
-                  <MyButton className={cl("btn")}>Thanh toán</MyButton>
+                  <MyButton className={cl("btn")} link={pathObj.checkOut.path}>
+                    Thanh toán
+                  </MyButton>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>

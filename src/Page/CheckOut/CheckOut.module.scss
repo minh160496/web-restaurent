@@ -1,0 +1,9 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.checkout {
+  background-color: $bg-primary-blur;
+  main {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+}

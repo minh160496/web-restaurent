@@ -23,11 +23,18 @@ $color-warning: #ff5400;
   }
 }
 
+.form__input.time {
+  input {
+    padding: 6px;
+  }
+}
+
 .form-err {
   color: $color-warning;
 }
 
 .button {
+  padding-top: 16px;
   button {
     border: none;
     outline: none;

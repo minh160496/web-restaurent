@@ -1,9 +1,11 @@
 import React from "react";
 import classnames from "classnames/bind";
-import { Link } from "react-router-dom";
+
+import MyButton from "Component/MyButton";
+
+import { pathObj } from "Routers";
 
 import styles from "./GroupAddress.module.scss";
-import MyButton from "Component/MyButton";
 
 const cl = classnames.bind(styles);
 export default function GroupAddress() {
@@ -33,9 +35,11 @@ export default function GroupAddress() {
           </span>
         </div>
       </div>
-      <Link to="/" className={cl("group-address__button") + " btn-hover"}>
-        <MyButton className={cl("btn")}>Hệ thống cửa hàng</MyButton>
-      </Link>
+      <div className={cl("group-address__button") + " btn-hover"}>
+        <MyButton className={cl("btn")} link={pathObj.system.path}>
+          Hệ thống cửa hàng
+        </MyButton>
+      </div>
     </div>
   );
 }

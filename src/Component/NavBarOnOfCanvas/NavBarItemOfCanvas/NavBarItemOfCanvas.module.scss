@@ -1,6 +1,8 @@
 @import "src/GlobalStyle/Variables.scss";
 
 .navbar-item-ofcanvas {
+  padding-top: 6px;
+  padding-bottom: 6px;
   h2 {
     font-size: $font-sm;
   }

@@ -43,7 +43,7 @@ export default function RangePrice({
     <NavigatorItemWrapper filterName="Mức giá">
       <ul>
         {conditionsFilterPrice.map((item, index) => (
-          <li className="filter__item" key={index}>
+          <li className={cl("filter__item")} key={index}>
             <div className="flex align-center">
               <div className={cl("check")}>
                 <input

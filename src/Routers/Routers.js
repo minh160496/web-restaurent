@@ -36,6 +36,7 @@ import ProductSearch from "Page/ProductSearch";
 import Favorite from "Page/Favorite";
 import System from "Page/System";
 import OrderTable from "Page/OrderTable";
+import CheckOut from "Page/CheckOut";
 
 export const pathObj = {
   about: {
@@ -206,6 +207,11 @@ export const pathObj = {
     title: "Đặt bàn",
     path: "/orderTable",
   },
+
+  checkOut: {
+    title: "Thanh toán",
+    path: "/checkOut",
+  },
 };
 
 export const routes = [
@@ -363,5 +369,10 @@ export const routes = [
   {
     path: pathObj.orderTable.path,
     element: OrderTable,
+  },
+
+  {
+    path: pathObj.checkOut.path,
+    element: CheckOut,
   },
 ];

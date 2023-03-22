@@ -18,7 +18,7 @@ export default function SocialPay() {
                 <h3>MẠNG XÃ HỘI</h3>
               </div>
               <div className={cl("social__body") + " flex"}>
-                <a href="#">
+                <a href="https://chat.zalo.me/" target="_blank">
                   <div className={cl("social__item", "item-zalo")}>
                     <Img
                       src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/zalo.svg?1677232264471"
@@ -27,7 +27,7 @@ export default function SocialPay() {
                     />
                   </div>
                 </a>
-                <a href="#">
+                <a href="https://www.facebook.com/" target="_blank">
                   <div className={cl("social__item", "item-fa")}>
                     <Img
                       src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/facebook.svg?1677232264471"
@@ -36,7 +36,7 @@ export default function SocialPay() {
                     />
                   </div>
                 </a>
-                <a href="#">
+                <a href="https://www.youtube.com/" target="_blank">
                   <div className={cl("social__item", "item-youtobe")}>
                     <Img
                       src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/youtube.svg?1677232264471"
@@ -54,33 +54,27 @@ export default function SocialPay() {
                 <h3>THANH TOÁN</h3>
               </div>
               <div className={cl("pay__body") + " flex"}>
-                <a href="#">
-                  <div className={cl("pay__item")}>
-                    <Img
-                      src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/payment_1.png?1677232264471"
-                      width="100%"
-                      heigh="auto"
-                    />
-                  </div>
-                </a>
-                <a href="#">
-                  <div className={cl("pay__item")}>
-                    <Img
-                      src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/payment_2.png?1677232264471"
-                      width="100%"
-                      heigh="auto"
-                    />
-                  </div>
-                </a>
-                <a href="#">
-                  <div className={cl("pay__item")}>
-                    <Img
-                      src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/payment_3.png?1677232264471"
-                      width="100%"
-                      heigh="auto"
-                    />
-                  </div>
-                </a>
+                <div className={cl("pay__item")}>
+                  <Img
+                    src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/payment_1.png?1677232264471"
+                    width="100%"
+                    heigh="auto"
+                  />
+                </div>
+                <div className={cl("pay__item")}>
+                  <Img
+                    src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/payment_2.png?1677232264471"
+                    width="100%"
+                    heigh="auto"
+                  />
+                </div>
+                <div className={cl("pay__item")}>
+                  <Img
+                    src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/payment_3.png?1677232264471"
+                    width="100%"
+                    heigh="auto"
+                  />
+                </div>
               </div>
             </div>
           </Col>
