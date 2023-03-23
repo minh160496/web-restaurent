@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 import { Container, Row, Col } from "react-bootstrap";
@@ -56,8 +56,6 @@ export default function Form({
     date: "",
     time: "",
   });
-
-  const [isSubmit, setIsSubmit] = useState({ value: false });
 
   const validateField = (fieldName, fieldValue) => {
     let error = "";
@@ -210,40 +208,16 @@ export default function Form({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsSubmit({ value: true });
-
     const errors = {};
-    Object.keys(formData).forEach((fieldName) => {
-      const error = validateField(fieldName, formData[fieldName]);
-
-      //không có thông tin thì xóa trường đó đi
-      if (!formData[fieldName]) delete formData[fieldName];
-      if (error) {
-        errors[fieldName] = error;
-      }
+    Object.keys(formData).forEach((fielName) => {
+      const error = validateField(fielName, formData[fielName]);
+      errors[fielName] = error ? error : "";
     });
     setFormErrors(errors);
-
-    if (Object.keys(errors).length === 0) {
+    if (!Object.keys(errors).some((name) => errors[name])) {
       handleDataForm(formData);
     }
   };
-
-  useEffect(() => {
-    setFormData({
-      name: "",
-      firstName: "",
-      lastName: "",
-      tel: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      text: "",
-      numPeoples: "",
-      date: "",
-      time: "",
-    });
-  }, [isSubmit]);
 
   return (
     <form onSubmit={handleSubmit}>

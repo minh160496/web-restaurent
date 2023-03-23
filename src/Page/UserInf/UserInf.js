@@ -38,14 +38,14 @@ export default function UserInf() {
             <Row>
               <Col className="col-12 col-sm-6 col-md-3 col-lg-2">
                 <div className={cl("user__btn")}>
-                  <ButtonLogOut />
+                  <MyButton className={cl("btn")} link={pathObj.favorites.path}>
+                    Món ăn yêu thích
+                  </MyButton>
                 </div>
               </Col>
               <Col className="col-12 col-sm-6 col-md-3 col-lg-2">
                 <div className={cl("user__btn")}>
-                  <MyButton className={cl("btn")} link={pathObj.favorites.path}>
-                    Món ăn yêu thích
-                  </MyButton>
+                  <ButtonLogOut />
                 </div>
               </Col>
             </Row>

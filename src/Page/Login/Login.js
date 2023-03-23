@@ -63,7 +63,7 @@ export default function Login({ hasLogin = true }) {
     const userSignInsJson = localStorage.getItem(USER_SIGNIN);
     const userSignInEds = userSignInsJson ? JSON.parse(userSignInsJson) : [];
     const duplicateEmail = userSignInEds.find(
-      (userSignIn, index) => userSignIn.email === data.email
+      (userSignIn) => userSignIn.email === data.email
     );
     setIsWait(true);
     if (!duplicateEmail) {
