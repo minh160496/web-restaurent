@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import classNames from "classnames/bind";
 import Select from "react-select";
 import PropTypes from "prop-types";
-import { Col, Container, Form, FormGroup, Row } from "react-bootstrap";
+import { Container, Row, Col, Form, FormGroup } from "react-bootstrap";
+
+import { ReactComponent as IconMoney } from "assets/icon/cash.svg";
 
 import { useDebounce } from "hook";
 import {
@@ -11,11 +13,24 @@ import {
   createOptionTowns,
 } from "./ultil/createOptionAddress";
 import { customClassNames } from "./ultil/customStylesSelect";
+import { SHIP_EXPENSE } from "CONST";
+import { contextReRenderCheckOut } from "../CheckOut";
 
 import styles from "./CheckOutForm.module.scss";
 
 const cl = classNames.bind(styles);
-export default function CheckOutForm({ handleFormCheckOutData = () => {} }) {
+export default function CheckOutForm({
+  isSubmit,
+  handleFormCheckOutData = () => {},
+}) {
+  const reRenderCheckOut = useContext(contextReRenderCheckOut);
+  const handleReRenderCheckout = reRenderCheckOut.func || (() => {});
+  const submitRef = useRef(null);
+  useEffect(() => {
+    if (isSubmit.value && submitRef.current) {
+      submitRef.current.click();
+    }
+  }, [isSubmit]);
   //logic validate form
   const [formData, setFormData] = useState({
     name: "",
@@ -24,6 +39,8 @@ export default function CheckOutForm({ handleFormCheckOutData = () => {} }) {
     district: "",
     town: "",
     comment: "",
+    shipType: "",
+    payType: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -33,11 +50,14 @@ export default function CheckOutForm({ handleFormCheckOutData = () => {} }) {
     district: "",
     town: "",
     comment: "",
+    shipType: "",
+    payType: "",
   });
 
   const [optionProvins, setOptionProvins] = useState(createOptionProvins());
   const [optionDistricts, setOptionDistricts] = useState(null);
   const [optionTowns, setOptionTowns] = useState(null);
+  const [shipExpense, setShipExpense] = useState(0);
 
   const validate = (fielName, fielValue) => {
     let error;
@@ -83,6 +103,19 @@ export default function CheckOutForm({ handleFormCheckOutData = () => {} }) {
         error = "Vui lòng chọn xã hoặc phường của bạn";
       }
     }
+
+    if (fielName === "shipType") {
+      if (!fielValue) {
+        error = "Vui lòng chọn hình thức vận chuyển";
+      }
+    }
+
+    if (fielName === "payType") {
+      if (!fielValue) {
+        error = "Vui lòng chọn phương thức thanh toán";
+      }
+    }
+
     return error;
   };
 
@@ -110,6 +143,8 @@ export default function CheckOutForm({ handleFormCheckOutData = () => {} }) {
       //khi chọn tỉnh thì huyện xã về null để disable
       setOptionDistricts(createOptionDistricts(value));
       setFormData((prev) => ({ ...prev, district: "", town: "" }));
+      //đưa phí ship về 0
+      setShipExpense(0);
     }
     if (name === "district" && value) {
       //khi chọn huyện thì xã null để disable
@@ -117,6 +152,11 @@ export default function CheckOutForm({ handleFormCheckOutData = () => {} }) {
       if (formData.provin && formData.provin.value) {
         setOptionTowns(createOptionTowns(formData.provin.value, value));
       }
+    }
+    //nếu chọn xã thì rennder phí sip
+    if (name === "town") {
+      const { shipExpense } = option;
+      setShipExpense(shipExpense);
     }
   };
 
@@ -132,6 +172,37 @@ export default function CheckOutForm({ handleFormCheckOutData = () => {} }) {
       handleFormCheckOutData(formData);
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem(SHIP_EXPENSE)) {
+      const shipExpenseObj = JSON.parse(localStorage.getItem(SHIP_EXPENSE));
+      const newShipExpenseObj = {
+        ...shipExpenseObj,
+        shipExpense,
+        isChoose: !!formData.shipType,
+      };
+      localStorage.setItem(SHIP_EXPENSE, JSON.stringify(newShipExpenseObj));
+    } else {
+      const shipExpenseObj = { shipExpense, isChoose: false };
+      localStorage.setItem(SHIP_EXPENSE, JSON.stringify(shipExpenseObj));
+    }
+  }, [shipExpense]);
+
+  //khi xã thay đổi khi phương thức vận chuyển đk chọn thì rerender
+  useEffect(() => {
+    const oldShipExpenseJson = localStorage.getItem(SHIP_EXPENSE);
+    const oldShipExpenseObj = oldShipExpenseJson
+      ? JSON.parse(oldShipExpenseJson)
+      : null;
+    if (formData.shipType) {
+      const newShipExpenseObj = {
+        ...oldShipExpenseObj,
+        isChoose: !!formData.shipType,
+      };
+      localStorage.setItem(SHIP_EXPENSE, JSON.stringify(newShipExpenseObj));
+    }
+    handleReRenderCheckout();
+  }, [formData.shipType, formData.town]);
 
   return (
     <div className={cl("container")}>
@@ -230,24 +301,53 @@ export default function CheckOutForm({ handleFormCheckOutData = () => {} }) {
               </Col>
               <Col className="col-12 col-md-5">
                 <FormGroup className={cl("form-group")}>
+                  {formErrors.shipType && (
+                    <span className={cl("error")}>{formErrors.shipType}</span>
+                  )}
                   <div className={cl("title")}>
                     <h2>Vận chuyển</h2>
                   </div>
                   <div className={cl("form__ship", "form__item")}>
-                    <input type="radio" id="ship" name="ship" />
-                    <label htmlFor="ship">Giao hàng tận nơi</label>
+                    <input
+                      type="radio"
+                      id="shipType"
+                      name="shipType"
+                      checked={!!formData.shipType}
+                      onChange={handleChangeInput}
+                    />
+                    <label htmlFor="shipType">Giao hàng tận nơi</label>
                   </div>
                 </FormGroup>
                 <FormGroup className={cl("form-group")}>
+                  {formErrors.payType && (
+                    <span className={cl("error")}>{formErrors.payType}</span>
+                  )}
                   <div className={cl("title")}>
                     <h2>Hình thức thanh toán</h2>
                   </div>
-                  <div className={cl("form__pay", "form__item")}>
-                    <input type="radio" id="pay" name="pay" />
-                    <label htmlFor="pay">Thanh toán khi nhận hàng</label>
+                  <div className={cl("form__pay", "form__item") + " flex"}>
+                    <input
+                      type="radio"
+                      id="payType"
+                      name="payType"
+                      onChange={handleChangeInput}
+                    />
+                    <label
+                      htmlFor="payType"
+                      className="w-100 flex align-center justify-between"
+                    >
+                      <span>Thanh toán khi nhận hàng(COD)</span>
+                      <IconMoney fill="currentcolor" width={25} height={25} />
+                    </label>
                   </div>
                 </FormGroup>
-                <button type="submit">Gửi</button>
+                <button
+                  ref={submitRef}
+                  type="submit"
+                  style={{ display: "none" }}
+                >
+                  Gửi
+                </button>
               </Col>
             </Row>
           </Container>
@@ -258,5 +358,6 @@ export default function CheckOutForm({ handleFormCheckOutData = () => {} }) {
 }
 
 CheckOutForm.propTypes = {
+  isSubmit: PropTypes.object,
   handleFormCheckOutData: PropTypes.func,
 };

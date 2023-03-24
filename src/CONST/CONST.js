@@ -24,6 +24,16 @@ export const PRODUCT_ID_SEARCHS = "productIdSearchs";
 
 export const PRODUCT_ID_FAVORITES = "productIdFavorites";
 
+export const DISCOUNT_CODE = "discountCode";
+
+export const discountCodes = [
+  { id: 1, code: "LUCKY10", discountValue: 10 / 100 },
+  { id: 2, code: "LUCKY20", discountValue: 20 / 100 },
+  { id: 3, code: "LUCKY50", discountValue: 50 / 100 },
+];
+
+export const SHIP_EXPENSE = "shipExpensive";
+
 export const cardNumOfContent = [
   {
     id: 1,

@@ -1,0 +1,128 @@
+@import "src/GlobalStyle/Variables.scss";
+
+.sidebar {
+  margin-top: 22px;
+  color: $color-text-primary;
+  background-color: $bg-primary-blur-blur;
+  padding: 12px;
+  border-radius: $br-rad-xl;
+}
+
+.title {
+  border-bottom: 1px solid $color-text-primary;
+  padding-bottom: 8px;
+  h1 {
+    margin: 0;
+    font-size: $font-xxl;
+    font-weight: 600;
+  }
+}
+
+.main {
+  padding-top: 22px;
+}
+
+.list {
+  padding-top: 12px;
+  max-height: 40vh;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $color-primary-bold;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.item + .item {
+  margin-top: 16px;
+}
+
+.product {
+  .image {
+    position: relative;
+    margin-right: 16px;
+    max-width: 50px;
+    img {
+      border-radius: $br-rad-xl;
+    }
+  }
+
+  .num-product {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: $color-primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-min;
+  }
+
+  .name {
+    font-size: $font-md;
+  }
+}
+
+.discount {
+  margin-top: 22px;
+
+  .discount__input {
+    min-width: 90px;
+    border: none;
+    outline: none;
+    border-radius: $br-rad-xl;
+    background-color: $color-text-primary;
+    height: 100%;
+    flex: 1;
+    margin-right: 12px;
+    padding: 10px 12px;
+  }
+}
+
+.btn {
+  height: 40px;
+  min-width: 100px;
+}
+
+.price {
+  margin-top: 22px;
+  border-top: 1px solid $color-text-primary;
+  padding-top: 12px;
+}
+
+.discount-price {
+  color: $color-emphasize;
+  font-weight: 500;
+}
+
+.total {
+  margin-top: 18px;
+  padding-top: 8px;
+  padding-bottom: 16px;
+  border-top: 1px solid $color-text-primary;
+  span {
+    font-weight: 600;
+  }
+  .price-total {
+    font-size: $font-lg;
+    color: $color-primary;
+  }
+}

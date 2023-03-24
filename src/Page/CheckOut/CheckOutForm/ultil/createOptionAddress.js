@@ -9,9 +9,9 @@ const provins = [
         name: "Hoàng Mai",
         codeName: "QHM",
         towns: [
-          { id: 1, name: "Hoàng Liệt", codeName: "PHL" },
-          { id: 2, name: "Giáp Bát", codeName: "PGB" },
-          { id: 3, name: "Đại Kim", codeName: "PĐK" },
+          { id: 1, name: "Hoàng Liệt", codeName: "PHL", shipExpense: 30 },
+          { id: 2, name: "Giáp Bát", codeName: "PGB", shipExpense: 33 },
+          { id: 3, name: "Đại Kim", codeName: "PĐK", shipExpense: 35 },
         ],
       },
       {
@@ -19,9 +19,9 @@ const provins = [
         name: "Cầu Giấy",
         codeName: "QCG",
         towns: [
-          { id: 1, name: "Dịch Vọng", codeName: "PDV" },
-          { id: 2, name: "Dịch Vọng Hậu", codeName: "PDVH" },
-          { id: 3, name: "Mai Dich", codeName: "PMG" },
+          { id: 1, name: "Dịch Vọng", codeName: "PDV", shipExpense: 45 },
+          { id: 2, name: "Dịch Vọng Hậu", codeName: "PDVH", shipExpense: 40 },
+          { id: 3, name: "Mai Dich", codeName: "PMG", shipExpense: 42 },
         ],
       },
       {
@@ -29,9 +29,9 @@ const provins = [
         name: "Nam Từ Liêm",
         codeName: "QNTL",
         towns: [
-          { id: 1, name: "Cầu Diễn", codeName: "PCD" },
-          { id: 2, name: "Mễ Trì", codeName: "PMT" },
-          { id: 3, name: "Đại Mỗ", codeName: "PDM" },
+          { id: 1, name: "Cầu Diễn", codeName: "PCD", shipExpense: 25 },
+          { id: 2, name: "Mễ Trì", codeName: "PMT", shipExpense: 27 },
+          { id: 3, name: "Đại Mỗ", codeName: "PDM", shipExpense: 29 },
         ],
       },
     ],
@@ -46,9 +46,9 @@ const provins = [
         name: "Bình Thạnh",
         codeName: "QBT",
         towns: [
-          { id: 1, name: "Phường 1", codeName: "P1" },
-          { id: 2, name: "Phường 2", codeName: "P2" },
-          { id: 3, name: "Phường 3", codeName: "P3" },
+          { id: 1, name: "Phường 1", codeName: "P1", shipExpense: 55 },
+          { id: 2, name: "Phường 2", codeName: "P2", shipExpense: 48 },
+          { id: 3, name: "Phường 3", codeName: "P3", shipExpense: 53 },
         ],
       },
       {
@@ -56,9 +56,9 @@ const provins = [
         name: "Bình Tân",
         codeName: "QBT",
         towns: [
-          { id: 1, name: "Bình Hưng Hòa", codeName: "PBHH" },
-          { id: 2, name: "Bình Trị Đông", codeName: "PBTD" },
-          { id: 3, name: "Tân Tạo", codeName: "PTT" },
+          { id: 1, name: "Bình Hưng Hòa", codeName: "PBHH", shipExpense: 48 },
+          { id: 2, name: "Bình Trị Đông", codeName: "PBTD", shipExpense: 42 },
+          { id: 3, name: "Tân Tạo", codeName: "PTT", shipExpense: 41 },
         ],
       },
       {
@@ -66,9 +66,9 @@ const provins = [
         name: "Vò Gấp",
         codeName: "QGV",
         towns: [
-          { id: 1, name: "Phường 1", codeName: "P1" },
-          { id: 2, name: "Phường 2", codeName: "P2" },
-          { id: 3, name: "Phường 3", codeName: "P3" },
+          { id: 1, name: "Phường 1", codeName: "P1", shipExpense: 47 },
+          { id: 2, name: "Phường 2", codeName: "P2", shipExpense: 43 },
+          { id: 3, name: "Phường 3", codeName: "P3", shipExpense: 41 },
         ],
       },
     ],
@@ -123,12 +123,13 @@ export const createOptionTowns = (codeNameProvin, codeNameDistrict) => {
     const townOptions = [];
     for (let i in townList) {
       if (townList[i]) {
-        const districtOption = {
+        const towns = {
           value: townList[i].codeName,
           label: townList[i].name,
           name: "town",
+          shipExpense: townList[i].shipExpense,
         };
-        townOptions.push(districtOption);
+        townOptions.push(towns);
       }
     }
     return townOptions;

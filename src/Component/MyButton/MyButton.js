@@ -15,12 +15,14 @@ export default function MyButton({
   floatLeft,
   children,
   link = "",
+  type = "",
   onClick = () => {},
 }) {
   return (
     <>
       {!link && (
-        <div
+        <button
+          type={type}
           className={
             cl("btn", {
               sizeXL: !!sizeXL,
@@ -34,7 +36,7 @@ export default function MyButton({
           onClick={onClick}
         >
           {children}
-        </div>
+        </button>
       )}
 
       {link && (
@@ -69,5 +71,6 @@ MyButton.propTypes = {
   className: PropTypes.string,
   link: PropTypes.string,
   floatLeft: PropTypes.bool,
+  type: PropTypes.string,
   onclick: PropTypes.func,
 };

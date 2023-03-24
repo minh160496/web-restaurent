@@ -2,6 +2,8 @@
 
 .btn {
   cursor: pointer;
+  border: none;
+  outline: none;
   background-color: $color-primary;
   display: grid;
   place-content: center;

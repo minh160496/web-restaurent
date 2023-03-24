@@ -38,8 +38,15 @@ export function PriceTotalProduct({ products, cartProducts }) {
   return handleUnitMoney(String(res));
 }
 
-export function TotalAll({ products, cartProducts, ship = 0 }) {
-  const res =
-    Number(Number(getTotal(products, cartProducts)) + Number(ship)) + "000";
+export const getDiscountMoney = (discount, ship, products, cartProducts) => {
+  const price = Number(getTotal(products, cartProducts)) + ship;
+  const discountMoney = Math.round(Number(price * discount));
+  return handleUnitMoney(discountMoney + "000");
+};
+
+export function TotalAll({ products, cartProducts, ship = 0, discount = 0 }) {
+  const price = Number(Number(getTotal(products, cartProducts)) + Number(ship));
+  const discountMoney = Math.round(Number(price * discount));
+  const res = price - discountMoney + "000";
   return handleUnitMoney(String(res));
 }
