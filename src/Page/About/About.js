@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classnames from "classnames/bind";
 import { Container } from "react-bootstrap";
 
@@ -11,6 +11,9 @@ import styles from "./About.module.scss";
 
 const cl = classnames.bind(styles);
 export default function About() {
+  useEffect(() => {
+    document.title = pathObj.about.title;
+  }, []);
   return (
     <LayoutDefault path={pathObj.about.path}>
       <main className={cl("about")}>

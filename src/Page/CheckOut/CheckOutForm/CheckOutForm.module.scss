@@ -9,8 +9,12 @@
 }
 
 .title {
-  text-align: center;
-  padding-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  .logo {
+    display: block;
+    max-width: 160px;
+  }
 }
 
 .form {

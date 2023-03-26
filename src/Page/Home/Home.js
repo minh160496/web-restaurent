@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames/bind";
 
 import LayoutDefault from "Layout/LayoutDefault";
@@ -16,6 +16,9 @@ import styles from "./Home.module.scss";
 
 const cl = classNames.bind(styles);
 export default function Home() {
+  useEffect(() => {
+    document.title = "Trang chủ";
+  }, []);
   return (
     <div className={cl("home")}>
       <LayoutDefault isHomePage>

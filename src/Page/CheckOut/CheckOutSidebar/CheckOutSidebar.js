@@ -9,37 +9,45 @@ import Img from "Component/Img";
 import ModalAlert from "Page/Login/ModalAlert";
 import { ReactComponent as IconArrow } from "assets/icon/arrowLeft.svg";
 
+import { handleUnitMoney } from "Component/CalculatorTotal";
+import { pathObj } from "Routers";
+import { contextProducts } from "App";
 import {
   getDiscountMoney,
   PriceTotalProduct,
   TotalAll,
 } from "Component/CalculatorTotal";
-
-import { pathObj } from "Routers";
-import { contextProducts } from "App";
-import { CART_NUM, DISCOUNT_CODE, discountCodes, SHIP_EXPENSE } from "CONST";
-import { handleUnitMoney } from "Component/CalculatorTotal";
+import {
+  CART_NUM,
+  DISCOUNT_CODE,
+  discountCodes,
+  SHIP_EXPENSE,
+  DISCOUNT_USER,
+} from "CONST";
 
 import styles from "./CheckOutSidebar.module.scss";
 
 const cl = classNames.bind(styles);
 export default function CheckOutSidebar({ onClickSubmit }) {
-  const cartProducts = [];
   const products = useContext(contextProducts);
-  const cartNumJson = localStorage.getItem(CART_NUM);
-  const cartNum = cartNumJson ? JSON.parse(cartNumJson) : {};
-  const listIds = Object.keys(cartNum).filter((id) => cartNum[id].isToCart);
-  let idNew = 1;
-  listIds.map((id) => {
-    const cartProduct = {
-      id: idNew,
-      productId: id,
-      num: cartNum[id].value,
-    };
-    cartProducts.push(cartProduct);
-    idNew++;
-  });
-
+  function getCartProducts() {
+    const cartProducts = [];
+    const cartNumJson = localStorage.getItem(CART_NUM);
+    const cartNum = cartNumJson ? JSON.parse(cartNumJson) : {};
+    const listIds = Object.keys(cartNum).filter((id) => cartNum[id].isToCart);
+    let idNew = 1;
+    listIds.map((id) => {
+      const cartProduct = {
+        id: idNew,
+        productId: id,
+        num: cartNum[id].value,
+      };
+      cartProducts.push(cartProduct);
+      idNew++;
+    });
+    return cartProducts;
+  }
+  const cartProducts = getCartProducts();
   //logic lấy ra phí ship
   const shipExpenseObjJson = localStorage.getItem(SHIP_EXPENSE);
   const shipExpenseObj = shipExpenseObjJson
@@ -65,6 +73,7 @@ export default function CheckOutSidebar({ onClickSubmit }) {
       (discountCode) => discountCode.code === valuePromt.trim()
     );
     if (discountCodeUserPromt) {
+      localStorage.setItem(DISCOUNT_USER, discountCodeUserPromt.discountValue);
       setDiscountUser(discountCodeUserPromt.discountValue);
       setIsModalShow(true);
     } else {
@@ -159,14 +168,6 @@ export default function CheckOutSidebar({ onClickSubmit }) {
                   />
                 </span>
               </div>
-              {shipExpense > 0 && (
-                <div
-                  className={cl("ship") + " flex align-center justify-between"}
-                >
-                  <span>Phí vận chuyển: </span>
-                  <span>{shipExpenseMoney}</span>
-                </div>
-              )}
               {!!disCountUser && (
                 <div
                   className={
@@ -175,13 +176,17 @@ export default function CheckOutSidebar({ onClickSubmit }) {
                 >
                   <span>Giảm giá: </span>
                   <span>
-                    {getDiscountMoney(
-                      disCountUser,
-                      shipExpense,
-                      products,
-                      cartProducts
-                    )}
+                    {"-" +
+                      getDiscountMoney(disCountUser, products, cartProducts)}
                   </span>
+                </div>
+              )}
+              {shipExpense > 0 && (
+                <div
+                  className={cl("ship") + " flex align-center justify-between"}
+                >
+                  <span>Phí vận chuyển: </span>
+                  <span>{shipExpenseMoney}</span>
                 </div>
               )}
               <div

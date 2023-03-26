@@ -95,6 +95,10 @@ export default function Login({ hasLogin = true }) {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    document.title = pathObj.logIn.title;
+  }, []);
+
   return (
     <div className={cl("login")}>
       <LayoutDefault path={hasLogin ? pathObj.logIn.path : pathObj.signIn.path}>

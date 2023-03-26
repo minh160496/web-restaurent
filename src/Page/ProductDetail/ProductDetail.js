@@ -45,6 +45,10 @@ export default function ProductDetail() {
     window.scroll(0, 0);
   }, [id]);
 
+  useEffect(() => {
+    document.title = pathObj.productDetails.title;
+  }, []);
+
   return (
     <contextReRenderPageDetail.Provider
       value={{ func: handleReRenderDetailPage, value: reRender }}

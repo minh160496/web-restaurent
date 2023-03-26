@@ -37,6 +37,7 @@ import Favorite from "Page/Favorite";
 import System from "Page/System";
 import OrderTable from "Page/OrderTable";
 import CheckOut from "Page/CheckOut";
+import StatusOrder from "Page/StatusOrder";
 
 export const pathObj = {
   about: {
@@ -212,6 +213,11 @@ export const pathObj = {
     title: "Thanh toán",
     path: "/checkOut",
   },
+
+  statusOrder: {
+    title: "Lịch sử mua hàng",
+    path: "/statusOrder",
+  },
 };
 
 export const routes = [
@@ -374,5 +380,10 @@ export const routes = [
   {
     path: pathObj.checkOut.path,
     element: CheckOut,
+  },
+
+  {
+    path: pathObj.statusOrder.path,
+    element: StatusOrder,
   },
 ];

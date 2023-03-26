@@ -102,10 +102,6 @@
     height: 83px;
   }
 
-  .header.opacityPC {
-    background-color: #143b368f;
-  }
-
   .header.relative-z2-PC {
     position: relative;
     z-index: 2;
@@ -159,6 +155,12 @@
 
   .header__navbar__item.menu-list-pc {
     position: relative;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .header.opacityPC {
+    background-color: $bg-opacity;
   }
 }
 

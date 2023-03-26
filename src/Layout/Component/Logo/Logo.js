@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 
 import Img from "Component/Img";
-import logo from "src/assets/img/logo.jpg";
+import logo from "src/assets/img/logo.png";
 
 import styles from "./Logo.module.scss";
 

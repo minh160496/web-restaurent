@@ -13,7 +13,7 @@ export const contextReRenderLayoutDefault = createContext(null);
 export default function LayoutDefault({
   children,
   navigator,
-  homePage,
+  isHomePage,
   path = "home",
 }) {
   const [hasReRender, setHasReRender] = useState({ value: false });
@@ -26,7 +26,7 @@ export default function LayoutDefault({
     >
       <div>
         <Logo />
-        <Header homePage={homePage} />
+        <Header isHomePage={isHomePage} />
         <SubHeader path={path} />
         {navigator && <Navigator>detail</Navigator>}
         {children}
@@ -40,6 +40,6 @@ export default function LayoutDefault({
 Navigator.propTypes = {
   children: PropTypes.node,
   navigator: PropTypes.bool,
-  homePage: PropTypes.bool,
+  isHomePage: PropTypes.bool,
   path: PropTypes.string,
 };

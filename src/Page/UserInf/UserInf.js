@@ -7,7 +7,7 @@ import ButtonLogOut from "Component/ButtonLogOut";
 import MyButton from "Component/MyButton";
 
 import { pathObj } from "Routers";
-import { USER_LOGIN } from "CONST";
+import { USER_LOGIN, USER_ORDERS } from "CONST";
 
 import styles from "./UserInf.module.scss";
 
@@ -15,6 +15,7 @@ const cl = classNames.bind(styles);
 export default function UserInf() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState(null);
+  const [orders, setOrders] = useState(0);
   useEffect(() => {
     const userInfJson = localStorage.getItem(USER_LOGIN);
     const userInf = userInfJson ? JSON.parse(userInfJson) : {};
@@ -22,6 +23,19 @@ export default function UserInf() {
     const name = userInf.firstName + " " + userInf.lastName;
     setEmail(email);
     setName(name);
+    function getOrdersFromStorage() {
+      const userOrdersJson = localStorage.getItem(USER_ORDERS);
+      const userOrdersArr = userOrdersJson ? JSON.parse(userOrdersJson) : null;
+      if (userOrdersArr) {
+        const orders = userOrdersArr.length;
+        setOrders(orders);
+      }
+    }
+    getOrdersFromStorage();
+  }, []);
+
+  useEffect(() => {
+    document.title = pathObj.userInf.title;
   }, []);
 
   return (
@@ -35,6 +49,12 @@ export default function UserInf() {
             <div className={cl("inf-email") + " flex align-center"}>
               <span>Địa chỉ email: {email}</span>
             </div>
+            <div className={cl("inf-rank") + " flex align-center"}>
+              <span>Xếp hạng thành viên: Hạng đồng</span>
+            </div>
+            <div className={cl("inf-order") + " flex align-center"}>
+              <span>Số đơn hàng đã phát sinh: {orders} đơn hàng</span>
+            </div>
             <Row>
               <Col className="col-12 col-sm-6 col-md-3 col-lg-2">
                 <div className={cl("user__btn")}>
@@ -43,6 +63,18 @@ export default function UserInf() {
                   </MyButton>
                 </div>
               </Col>
+              <Col className="col-12 col-sm-6 col-md-3 col-lg-2">
+                <div className={cl("user__btn")}>
+                  <MyButton
+                    className={cl("btn")}
+                    link={pathObj.statusOrder.path}
+                  >
+                    {pathObj.statusOrder.title}
+                  </MyButton>
+                </div>
+              </Col>
+            </Row>
+            <Row>
               <Col className="col-12 col-sm-6 col-md-3 col-lg-2">
                 <div className={cl("user__btn")}>
                   <ButtonLogOut />

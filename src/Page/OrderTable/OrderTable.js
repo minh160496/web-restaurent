@@ -35,6 +35,10 @@ export default function OrderTable() {
     const numPeoples = dataUser.numPeoples ? dataUser.numPeoples : 0;
     setNumPeoples(numPeoples);
   }, [dataUser]);
+
+  useEffect(() => {
+    document.title = pathObj.orderTable.title;
+  }, []);
   return (
     <div className={cl("order-table")}>
       <LayoutDefault path={pathObj.orderTable.path}>

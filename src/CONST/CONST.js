@@ -26,6 +26,10 @@ export const PRODUCT_ID_FAVORITES = "productIdFavorites";
 
 export const DISCOUNT_CODE = "discountCode";
 
+export const DISCOUNT_USER = "discountUser";
+
+export const USER_ORDERS = "userOrders";
+
 export const discountCodes = [
   { id: 1, code: "LUCKY10", discountValue: 10 / 100 },
   { id: 2, code: "LUCKY20", discountValue: 20 / 100 },

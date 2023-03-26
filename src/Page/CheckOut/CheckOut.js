@@ -9,7 +9,7 @@ import Loading from "Component/Animation/Loading";
 import MyButton from "Component/MyButton";
 
 import { pathObj } from "Routers";
-import { CART_NUM } from "CONST";
+import { CART_NUM, DISCOUNT_USER, SHIP_EXPENSE, USER_ORDERS } from "CONST";
 import { contextProducts } from "App";
 
 import styles from "./CheckOut.module.scss";
@@ -27,6 +27,50 @@ export default function CheckOut() {
     setIsLoading(true);
     const timeOut = setTimeout(() => {
       setIsLoading(false);
+      function createNewOrder() {
+        const userOrdersJson = localStorage.getItem(USER_ORDERS);
+        const oldUserOrders = userOrdersJson ? JSON.parse(userOrdersJson) : [];
+        const cartProducts = [];
+        const cartNumJson = localStorage.getItem(CART_NUM);
+        const cartNum = cartNumJson ? JSON.parse(cartNumJson) : {};
+        const listIds = Object.keys(cartNum).filter(
+          (id) => cartNum[id].isToCart
+        );
+        let idNew = 1;
+        listIds.map((id) => {
+          const cartProduct = {
+            id: idNew,
+            productId: id,
+            num: cartNum[id].value,
+          };
+          cartProducts.push(cartProduct);
+          idNew++;
+        });
+        function getShipExpense() {
+          const shipExpenseJson = localStorage.getItem(SHIP_EXPENSE);
+          const shipExpenseObj = shipExpenseJson
+            ? JSON.parse(shipExpenseJson)
+            : null;
+          const shipExpenseThisOrder = shipExpenseObj.isChoose
+            ? shipExpenseObj.shipExpense
+            : null;
+          return shipExpenseThisOrder;
+        }
+        const shipExpense = getShipExpense();
+        function getDiscount() {
+          const discountJson = localStorage.getItem(DISCOUNT_USER);
+          const discount = discountJson ? JSON.parse(discountJson) : null;
+          return discount;
+        }
+        const discount = getDiscount();
+        const idNow = oldUserOrders.length + 1;
+        const newUserOrders = [
+          ...oldUserOrders,
+          { id: idNow, orders: cartProducts, shipExpense, discount },
+        ];
+        localStorage.setItem(USER_ORDERS, JSON.stringify(newUserOrders));
+      }
+      createNewOrder();
       setIsShowModal(true);
     }, 2000);
   };
@@ -54,6 +98,10 @@ export default function CheckOut() {
       setIsEmtyCart(isEmtyCart);
     }
   }, [isShowModal]);
+
+  useEffect(() => {
+    document.title = pathObj.checkOut.title;
+  }, []);
   return (
     <contextReRenderCheckOut.Provider
       value={{

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
 
 import MyButton from "Component/MyButton";
-import logo from "src/assets/img/logo.jpg";
+import logo from "src/assets/img/logo.png";
 import Img from "Component/Img";
 import NavBarOnOfCanvas from "Component/NavBarOnOfCanvas";
 import { ReactComponent as IconMenu } from "assets/icon/menu.svg";

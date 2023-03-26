@@ -3,8 +3,11 @@ import classNames from "classnames/bind";
 import Select from "react-select";
 import PropTypes from "prop-types";
 import { Container, Row, Col, Form, FormGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { ReactComponent as IconMoney } from "assets/icon/cash.svg";
+import Img from "Component/Img";
+import Logo from "assets/img/logo.png";
 
 import { useDebounce } from "hook";
 import {
@@ -207,7 +210,9 @@ export default function CheckOutForm({
   return (
     <div className={cl("container")}>
       <div className={cl("title")}>
-        <h1 className="stylized stylized-after title-big">Dream Restaurant</h1>
+        <Link className={cl("logo")} to="/">
+          <Img src={Logo} width="100%" heigh="auto" />
+        </Link>
       </div>
       <Form className={cl("form")} onSubmit={handleSubmit}>
         <div className={cl("form__main")}>

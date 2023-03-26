@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames/bind";
 import { Container } from "react-bootstrap";
 
@@ -12,6 +12,9 @@ import styles from "./System.module.scss";
 
 const cl = classNames.bind(styles);
 export default function System() {
+  useEffect(() => {
+    document.title = pathObj.system.title;
+  }, []);
   return (
     <div className={cl("system")}>
       <LayoutDefault path={pathObj.system.path}>
