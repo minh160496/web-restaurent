@@ -5,6 +5,7 @@ import { SwiperSlide } from "swiper/react";
 
 import Card from "./Card";
 import Slide from "Component/Slide";
+import Loading from "Component/Animation/Loading";
 
 import getAPICategory from "apiServices/apiCategory";
 
@@ -12,7 +13,8 @@ import styles from "./Category.module.scss";
 
 const cl = classnames.bind(styles);
 export default function Category() {
-  const [data, setData] = useState([]);
+  const [hasLoading, setHasLoading] = useState(true);
+  const [data, setData] = useState(null);
   useEffect(() => {
     async function getAPI() {
       const data = await getAPICategory();
@@ -20,6 +22,12 @@ export default function Category() {
     }
     getAPI();
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      setHasLoading(false);
+    }
+  }, [data]);
 
   return (
     <section className={cl("section-category")}>
@@ -33,17 +41,24 @@ export default function Category() {
             </div>
 
             <div className={cl("category__content")}>
-              <Slide>
-                {data &&
-                  data.map((categoryItem) => (
-                    <SwiperSlide
-                      key={categoryItem.id}
-                      className="style-bottom-distance"
-                    >
-                      <Card data={categoryItem} />
-                    </SwiperSlide>
-                  ))}
-              </Slide>
+              {!hasLoading && (
+                <Slide>
+                  {data &&
+                    data.map((categoryItem) => (
+                      <SwiperSlide
+                        key={categoryItem.id}
+                        className="style-bottom-distance"
+                      >
+                        <Card data={categoryItem} />
+                      </SwiperSlide>
+                    ))}
+                </Slide>
+              )}
+              {hasLoading && (
+                <div className={cl("loading")}>
+                  <Loading />
+                </div>
+              )}
             </div>
           </Col>
         </Row>

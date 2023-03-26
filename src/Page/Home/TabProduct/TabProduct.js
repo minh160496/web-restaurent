@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Card from "Component/Card/index";
+import Loading from "Component/Animation/Loading";
 
 import { getAPIMenu } from "apiServices/apiMenu";
 import { contextProducts } from "App";
@@ -16,6 +17,7 @@ export default function TabProduct() {
   const [IDsProduct, setIDsProduct] = useState([]);
   const [productsFilter, setProductsFilter] = useState([]);
   const [filterTypeID, setFilterTypeID] = useState(1);
+  const [hasLoading, setHasLoading] = useState(true);
 
   useEffect(() => {
     async function getMenuListFromAPI() {
@@ -35,43 +37,60 @@ export default function TabProduct() {
     setProductsFilter(productsFilter);
   }, [filterTypeID, menuProducts, IDsProduct]);
 
+  useEffect(() => {
+    if (products && products.length > 0) {
+      setHasLoading(false);
+    }
+  }, [products]);
+
   return (
     <section className={cl("tab-product")}>
       <Container>
-        <div className={cl("tab-product__title")}>
-          <h1 className="stylized title-big stylized-after ">
-            Thực đơn của chúng tôi
-          </h1>
-        </div>
-        <div className={cl("tab-product__filter")}>
-          {menuProducts &&
-            menuProducts.map((currentMenuProduct) => (
-              <div
-                className={cl("filter__item", {
-                  active: filterTypeID === currentMenuProduct.id,
-                })}
-                key={currentMenuProduct.id}
-                onClick={() => setFilterTypeID(currentMenuProduct.id)}
-              >
-                <span>{currentMenuProduct.type}</span>
+        <div className={cl("wrapper")}>
+          <div className={cl("tab-product__title")}>
+            <h1 className="stylized title-big stylized-after ">
+              Thực đơn của chúng tôi
+            </h1>
+          </div>
+          {!hasLoading && (
+            <>
+              <div className={cl("tab-product__filter")}>
+                {menuProducts &&
+                  menuProducts.map((currentMenuProduct) => (
+                    <div
+                      className={cl("filter__item", {
+                        active: filterTypeID === currentMenuProduct.id,
+                      })}
+                      key={currentMenuProduct.id}
+                      onClick={() => setFilterTypeID(currentMenuProduct.id)}
+                    >
+                      <span>{currentMenuProduct.type}</span>
+                    </div>
+                  ))}
               </div>
-            ))}
-        </div>
+              <div className={cl("tab-product__content")}>
+                <Row>
+                  {productsFilter &&
+                    productsFilter.map((product) => (
+                      <Col
+                        className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2"
+                        key={product.id}
+                      >
+                        <div className={cl("cart-wrapper")}>
+                          <Card product={product} />
+                        </div>
+                      </Col>
+                    ))}
+                </Row>
+              </div>
+            </>
+          )}
 
-        <div className={cl("tab-product__content")}>
-          <Row>
-            {productsFilter &&
-              productsFilter.map((product) => (
-                <Col
-                  className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2"
-                  key={product.id}
-                >
-                  <div className={cl("cart-wrapper")}>
-                    <Card product={product} />
-                  </div>
-                </Col>
-              ))}
-          </Row>
+          {hasLoading && (
+            <div className={cl("loading")}>
+              <Loading />
+            </div>
+          )}
         </div>
       </Container>
     </section>

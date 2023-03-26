@@ -7,6 +7,7 @@ import Navigator from "Layout/Component/SubHeader";
 import Logo from "Layout/Component/Logo";
 import SubHeader from "Layout/Component/SubHeader";
 import BackTop from "Component/BackTop";
+import ContactFix from "Component/ContactFix";
 
 export const contextReRenderLayoutDefault = createContext(null);
 
@@ -32,6 +33,7 @@ export default function LayoutDefault({
         {children}
         <Footer />
         <BackTop />
+        <ContactFix />
       </div>
     </contextReRenderLayoutDefault.Provider>
   );

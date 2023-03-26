@@ -62,6 +62,10 @@ export default function ButtonAdd(props) {
       handleReRenderLayoutDefault();
       handleReRenderLayoutNavBar();
       setModalShow(true);
+    } else {
+      if (anchorRef && anchorRef.current) {
+        anchorRef.current.click();
+      }
     }
   };
   return (
@@ -71,19 +75,18 @@ export default function ButtonAdd(props) {
           <MyButton {...props} onClick={handleClickAddToCart}>
             Thêm vào giỏ hàng
           </MyButton>
-          <a
-            href={pathObj.logIn.path}
-            ref={anchorRef}
-            style={{ width: 0, height: 0 }}
-          ></a>
         </>
       )}
-
       {props.isIcon && (
         <div className={cl("icon-cart")} onClick={handleClickAddToCartFast}>
           <IconBag fill="currentcolor" width={20} height={20} />
         </div>
       )}
+      <a
+        href={pathObj.logIn.path}
+        ref={anchorRef}
+        style={{ display: "none" }}
+      ></a>
       <ModalAddCart
         id={props.id}
         show={modalShow}

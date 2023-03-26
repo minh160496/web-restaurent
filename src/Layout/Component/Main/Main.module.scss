@@ -15,8 +15,8 @@
   transform: translateX(100%);
   .icon {
     display: block;
-    height: 40px;
-    width: 50px;
+    height: 55px;
+    width: 65px;
     position: absolute;
     top: 50%;
     right: 100%;
@@ -29,6 +29,9 @@
     display: grid;
     place-content: center;
     cursor: pointer;
+    svg {
+      animation: AnimateRotate ease 0.4s 0.4s infinite;
+    }
   }
   &.translateX {
     transform: translateX(0);
@@ -60,5 +63,19 @@
 
   .main-fixed {
     display: none;
+  }
+}
+
+@keyframes AnimateRotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(-10deg);
   }
 }

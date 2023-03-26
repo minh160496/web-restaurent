@@ -48,7 +48,7 @@
 
 .inf {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
@@ -68,7 +68,7 @@
 .quanlity {
   padding-bottom: 12px;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   & > div {
     width: 100%;
   }
@@ -84,6 +84,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .image {
+    max-width: 200px;
+    opacity: 0.8;
+  }
 }
 
 .mini {

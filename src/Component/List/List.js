@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import LayoutNavBar from "Layout/LayoutNavBar";
 import Head from "./Head";
 import Content from "./Content";
+import Loading from "Component/Animation/Loading";
 
 import { contextProducts } from "App";
 import { BLOGS, PRODUCT_ID_FAVORITES, PRODUCT_ID_SEARCHS } from "CONST";
@@ -20,6 +21,7 @@ export default function List({ path = pathObj.list.path, isBlog = false }) {
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState(null);
   const [hasReRenderContent, setHasReRenderContent] = useState(false);
+  const [hasLoading, setHasLoading] = useState(true);
 
   const handleReRenderContent = () => {
     setHasReRenderContent((prev) => !prev);
@@ -38,8 +40,7 @@ export default function List({ path = pathObj.list.path, isBlog = false }) {
 
       if (path === pathObj.list.path) {
         setProductsCurrent(products);
-        const newTitle = pathObj.list.title;
-        setTitle(newTitle);
+        setTitle("Tất cả món ăn");
       }
 
       if (path === pathObj.every.path) {
@@ -334,21 +335,37 @@ export default function List({ path = pathObj.list.path, isBlog = false }) {
         ? JSON.parse(localStorage.getItem(BLOGS))
         : [];
       setBlogs(blogsCurr);
-      setTitle("Tin tức");
+      const newTitle = pathObj.blogs.title;
+      setTitle(newTitle);
     }
-  }, [products, hasReRenderContent]);
+  }, [products, hasReRenderContent, path, isBlog]);
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      setHasLoading(false);
+    }
+  }, [products, blogs, hasReRenderContent, path, isBlog]);
 
   return (
     <contextHasReRenderContent.Provider value={handleReRenderContent}>
       <LayoutNavBar path={path} isBlog={isBlog}>
         <div className={cl("list")}>
-          <Head title={title} isBlog={isBlog} />
-          <Content
-            setTitle={(title) => setTitle(title)}
-            products={productsCurrent}
-            blogs={blogs}
-            isReRender={!!hasReRenderContent}
-          />
+          {!hasLoading && (
+            <>
+              <Head title={title} isBlog={isBlog} />
+              <Content
+                setTitle={(title) => setTitle(title)}
+                products={productsCurrent}
+                blogs={blogs}
+                isReRender={!!hasReRenderContent}
+              />
+            </>
+          )}
+          {hasLoading && (
+            <div className={cl("loading")}>
+              <Loading />
+            </div>
+          )}
         </div>
       </LayoutNavBar>
     </contextHasReRenderContent.Provider>

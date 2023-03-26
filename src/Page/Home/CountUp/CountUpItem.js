@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import CountUp from "react-countup";
 import classnames from "classnames/bind";
 import PropTypes from "prop-types";
@@ -13,18 +13,18 @@ export default function CountUpItem({
   start = 0,
   end,
   duration = 1,
-  windowScrollY = 3266,
+  windowScrollY = 2763,
 }) {
   const [isStart, setIsStart] = useState(false);
-  const handleStartCount = () => {
+  const handleStartCount = useCallback(() => {
     if (window.scrollY > windowScrollY) {
       setIsStart(true);
     }
-  };
+  }, [windowScrollY]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleStartCount);
-  }, []);
+  }, [isStart, handleStartCount]);
 
   return (
     <div className={cl("count__item")}>

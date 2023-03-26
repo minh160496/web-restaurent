@@ -174,7 +174,7 @@ export default function Login({ hasLogin = true }) {
                 <ModalAlert
                   error
                   title="Đăng nhập thất bại"
-                  content="Vui Lòng Kiểm tra lại email hoặc mật khẩu"
+                  content="Vui Lòng Kiểm tra lại email, mật khẩu. Nếu chưa đăng ký hãy đăng ký để trở thành khách hàng của chúng tôi!"
                   valueButton="Xác nhận"
                   show={modalErrorLoginShow}
                   onHide={() => setModalErrorLoginShow(false)}

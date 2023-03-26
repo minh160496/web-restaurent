@@ -79,14 +79,14 @@ export default function ChooseQuanlity({
     <div
       className={cl("choose-quanlity") + " flex align-center justify-between"}
     >
-      <div className={cl("item")} onClick={handleClickUp}>
-        +
+      <div className={cl("item")} onClick={handleClickDown}>
+        -
       </div>
       <div className={cl("item", "item-num")}>
         {(cartNum[id] && cartNum[id].value) || 0}
       </div>
-      <div className={cl("item")} onClick={handleClickDown}>
-        -
+      <div className={cl("item")} onClick={handleClickUp}>
+        +
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ const cl = classNames.bind(styles);
 export default function Contact() {
   useEffect(() => {
     document.title = pathObj.contact.title;
+    window.scrollTo(0, 0);
   }, []);
   return (
     <LayoutDefault path={pathObj.contact.path}>

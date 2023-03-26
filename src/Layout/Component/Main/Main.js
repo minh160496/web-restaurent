@@ -1,4 +1,4 @@
-import React, { useContext, useState, createContext, useEffect } from "react";
+import React, { useState, createContext, useEffect, useCallback } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 import { Container, Row } from "react-bootstrap";
@@ -30,10 +30,10 @@ export default function Main({
     handleBlurContent(!hasShowNavFixed);
   };
 
-  const handleHiddenNavFixed = () => {
+  const handleHiddenNavFixed = useCallback(() => {
     setHasShowNavFixed(false);
     handleBlurContent(false);
-  };
+  }, [handleBlurContent]);
 
   const handleStopPropagation = (e) => e.stopPropagation();
 
@@ -41,7 +41,7 @@ export default function Main({
     document.body.addEventListener("click", handleHiddenNavFixed);
     return () =>
       document.body.removeEventListener("click", handleHiddenNavFixed);
-  }, [hasShowNavFixed]);
+  }, [hasShowNavFixed, handleHiddenNavFixed]);
 
   return (
     <contextIsReRenderMain.Provider value={isReRenderMain}>
@@ -65,10 +65,10 @@ export default function Main({
                 {!isBlog && (
                   <div className={cl("icon")} onClick={handleClickIcon}>
                     {!hasShowNavFixed && (
-                      <IconFilter fill="currentcolor" width={20} height={20} />
+                      <IconFilter fill="currentcolor" width={25} height={25} />
                     )}
                     {hasShowNavFixed && (
-                      <IconClose fill="currentcolor" width={25} height={25} />
+                      <IconClose fill="currentcolor" width={30} height={30} />
                     )}
                   </div>
                 )}

@@ -18,6 +18,8 @@
     .body {
       .image {
         max-width: 120px;
+        margin-right: auto;
+        margin-left: auto;
         img {
           border-radius: $br-rad-xl;
         }
@@ -63,5 +65,31 @@
     height: 45px;
     padding-right: 20px;
     padding-left: 20px;
+  }
+}
+
+.not-login {
+  background-color: $bg-primary-blur;
+  color: $color-text-desible;
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    .btn {
+      height: 45px;
+      min-width: 150px;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .status-order {
+    .body {
+      .image {
+        margin-left: 0 !important;
+      }
+    }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames/bind";
 import { Container, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
@@ -6,18 +6,23 @@ import { NavLink } from "react-router-dom";
 import NavigatorItemWrapper from "./NavigatorItemWrapper";
 import Img from "Component/Img";
 
-import { BLOGS } from "CONST";
+import { BLOGS, midPath } from "CONST";
+import { pathObj } from "Routers";
 
 import styles from "./Navigator.module.scss";
 const cl = classNames.bind(styles);
 export default function Blogs() {
-  const [blogs, setBlogs] = useState(() => {
+  const getBlogsFromStorage = () => {
     if (localStorage.getItem(BLOGS)) {
       const blogs = JSON.parse(localStorage.getItem(BLOGS));
       return blogs;
     }
     return [];
-  });
+  };
+  const blogs = getBlogsFromStorage();
+  const conectPath = (pathFrom, pathLast) => {
+    return pathFrom + midPath + pathLast;
+  };
   return (
     <>
       {blogs.length > 0 && (
@@ -25,7 +30,10 @@ export default function Blogs() {
           <div className={cl("blogs__content")}>
             <Container className="p-0">
               {blogs.map((blog) => (
-                <NavLink to={blog.path} key={blog.id}>
+                <NavLink
+                  to={conectPath(pathObj.blogDetail.path, blog.id)}
+                  key={blog.id}
+                >
                   <div className={cl("item") + " flex align-center"}>
                     <Row>
                       <div className={cl("item__img") + " col-6"}>

@@ -30,6 +30,13 @@ export const DISCOUNT_USER = "discountUser";
 
 export const USER_ORDERS = "userOrders";
 
+export const myPhone = "0356 553 013";
+
+export const linkProfile =
+  "https://www.facebook.com/profile.php?id=100009988841813";
+
+export const midPath = "?&id=";
+
 export const discountCodes = [
   { id: 1, code: "LUCKY10", discountValue: 10 / 100 },
   { id: 2, code: "LUCKY20", discountValue: 20 / 100 },

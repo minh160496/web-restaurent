@@ -147,9 +147,12 @@ export default function CheckOut() {
         {isEmtyCart && (
           <div className={cl("emty")}>
             <div className={cl("emty-content")}>
-              <h2>Bạn chưa mua sản phẩm nào!</h2>
+              <h2>Giỏ hàng của bạn hiện trống!</h2>
               <MyButton link={pathObj.list.path} className={cl("btn")}>
                 Mua hàng
+              </MyButton>
+              <MyButton link={pathObj.statusOrder.path} className={cl("btn")}>
+                Xem lịch sử đơn hàng
               </MyButton>
             </div>
           </div>

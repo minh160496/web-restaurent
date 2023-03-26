@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import Img from "Component/Img";
 import LaybelProduct from "./LaybelProduct";
@@ -10,12 +10,14 @@ import MyButton from "Component/MyButton";
 import ModalProduct from "./ModalProduct";
 import { ReactComponent as IconEye } from "assets/icon/eye.svg";
 
-import { contextReRenderSame } from "Page/ProductDetail/ProductDetail";
-import { pathObj } from "Routers";
-
-import styles from "./Card.module.scss";
 import ButtonAdd from "Page/ProductDetail/ButtonAdd";
 import ThumbnailLike from "./ThumbnailLike";
+
+import { contextReRenderSame } from "Page/ProductDetail/ProductDetail";
+import { pathObj } from "Routers";
+import { midPath } from "CONST";
+
+import styles from "./Card.module.scss";
 
 const cl = classNames.bind(styles);
 export default function Card({ product, isDetail }) {
@@ -24,7 +26,7 @@ export default function Card({ product, isDetail }) {
   const perSales = Math.floor(
     (1 - product.price / product.oldPrice).toFixed(2) * 100
   );
-  const pathParam = "/?&id=" + product.id;
+  const pathParam = midPath + product.id;
   const handleFastView = () => {
     setModalProductShow(true);
   };
@@ -51,35 +53,39 @@ export default function Card({ product, isDetail }) {
             <ButtonAdd id={product.id} isIcon="true" />
           </div>
         </Toolip>
-        <Toolip content="Thêm vào yêu thích" offset={[150, 40]}>
+        <Toolip content="Yêu thích" offset={[150, 40]}>
           <div className={cl("thumbnail-like")}>
             <ThumbnailLike id={product.id} />
           </div>
         </Toolip>
+        <div onClick={() => isDetail && reRenderDetail()}>
+          <Link
+            to={pathObj.productDetails.path + pathParam}
+            className={cl("thumbnail-blur")}
+          ></Link>
+        </div>
+      </div>
+      <div onClick={() => isDetail && reRenderDetail()}>
         <Link
           to={pathObj.productDetails.path + pathParam}
-          className={cl("thumbnail-blur")}
-        ></Link>
-      </div>
+          className={cl("cart-name") + " d-block"}
+        >
+          <h4>{product.name}</h4>
 
-      <Link
-        to={pathObj.productDetails.path + pathParam}
-        className={cl("cart-name") + " d-block"}
-      >
-        <h4>{product.name}</h4>
-
-        <div className={cl("cart-price") + " flex align-center justify-around"}>
-          <div className={cl("current-price")}>
-            <span>{product.price + ".000"}</span>
-          </div>
-          {product.oldPrice && (
-            <div className={cl("old-price")}>
-              <span>{product.oldPrice + ".000"}</span>
+          <div
+            className={cl("cart-price") + " flex align-center justify-around"}
+          >
+            <div className={cl("current-price")}>
+              <span>{product.price + ".000"}</span>
             </div>
-          )}
-        </div>
-      </Link>
-
+            {product.oldPrice && (
+              <div className={cl("old-price")}>
+                <span>{product.oldPrice + ".000"}</span>
+              </div>
+            )}
+          </div>
+        </Link>
+      </div>
       <div className={cl("cart-button")}>
         <MyButton
           className={cl("btn")}

@@ -165,6 +165,10 @@ const pathObj = {
     title: "Lịch sử mua hàng",
     path: "/statusOrder",
   },
+  blogDetail: {
+    title: "Đọc bài viết",
+    path: "/blogDetail",
+  },
 };
 
 export const listBodyItem = [

@@ -18,7 +18,11 @@ export default function SocialPay() {
                 <h3>MẠNG XÃ HỘI</h3>
               </div>
               <div className={cl("social__body") + " flex"}>
-                <a href="https://chat.zalo.me/" target="_blank">
+                <a
+                  href="https://chat.zalo.me/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <div className={cl("social__item", "item-zalo")}>
                     <Img
                       src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/zalo.svg?1677232264471"
@@ -27,7 +31,11 @@ export default function SocialPay() {
                     />
                   </div>
                 </a>
-                <a href="https://www.facebook.com/" target="_blank">
+                <a
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <div className={cl("social__item", "item-fa")}>
                     <Img
                       src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/facebook.svg?1677232264471"
@@ -36,7 +44,11 @@ export default function SocialPay() {
                     />
                   </div>
                 </a>
-                <a href="https://www.youtube.com/" target="_blank">
+                <a
+                  href="https://www.youtube.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <div className={cl("social__item", "item-youtobe")}>
                     <Img
                       src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/youtube.svg?1677232264471"

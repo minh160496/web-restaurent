@@ -19,7 +19,7 @@ import {
 import MyButton from "Component/MyButton";
 import ChooseQuanlity from "Component/ChooseQuanlity";
 import DelProduct from "Component/DelProduct";
-import { ReactComponent as IconBag } from "assets/icon/bag.svg";
+import CartEmty from "assets/img/cartEmpty.png";
 import { ReactComponent as IconCash } from "assets/icon/cash.svg";
 import { PriceProducts, TotalAll } from "Component/CalculatorTotal";
 import { PriceTotalProduct } from "Component/CalculatorTotal";
@@ -31,6 +31,7 @@ import { contextReRenderLayoutNavBar } from "Layout/LayoutNavBar";
 import { pathObj } from "Routers";
 
 import styles from "./MainShoppingCart.module.scss";
+import Img from "Component/Img";
 
 const cl = classNames.bind(styles);
 export default function MainShoppingCart({ isMini = false }) {
@@ -285,7 +286,9 @@ export default function MainShoppingCart({ isMini = false }) {
         <Container>
           <div className={cl("bag-empty")}>
             <h2>Giỏ hàng trống</h2>
-            <IconBag fill="currentcolor" width={90} height={90} />
+            <div className={cl("image")}>
+              <Img src={CartEmty} width="100%" heigh="100%" />
+            </div>
           </div>
         </Container>
       )}
