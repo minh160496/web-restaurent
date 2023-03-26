@@ -175,11 +175,6 @@ export const pathObj = {
     path: "/signIn",
   },
 
-  userInf: {
-    title: "Thông tin tài khoản",
-    path: "/userInfo",
-  },
-
   logOut: {
     title: "Đăng xuất",
     path: "/",
@@ -216,7 +211,7 @@ export const pathObj = {
   },
 
   statusOrder: {
-    title: "Lịch sử mua hàng",
+    title: "Trạng thái đơn hàng",
     path: "/statusOrder",
   },
 

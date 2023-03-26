@@ -37,7 +37,7 @@ export default function CheckOut() {
           (id) => cartNum[id].isToCart
         );
         let idNew = 1;
-        listIds.map((id) => {
+        listIds.forEach((id) => {
           const cartProduct = {
             id: idNew,
             productId: id,
@@ -71,7 +71,9 @@ export default function CheckOut() {
         localStorage.setItem(USER_ORDERS, JSON.stringify(newUserOrders));
       }
       createNewOrder();
+      localStorage.removeItem(DISCOUNT_USER);
       setIsShowModal(true);
+      window.clearTimeout(timeOut);
     }, 2000);
   };
   const handleReRenderCheckout = () => {
@@ -152,7 +154,7 @@ export default function CheckOut() {
                 Mua hàng
               </MyButton>
               <MyButton link={pathObj.statusOrder.path} className={cl("btn")}>
-                Xem lịch sử đơn hàng
+                {pathObj.statusOrder.title}
               </MyButton>
             </div>
           </div>

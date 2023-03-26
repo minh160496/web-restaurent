@@ -127,12 +127,6 @@ const pathObj = {
     title: "Đăng ký",
     path: "/signIn",
   },
-
-  userInf: {
-    title: "Thông tin tài khoản",
-    path: "/userInfo",
-  },
-
   logOut: {
     title: "Đăng xuất",
     path: "/",
@@ -162,7 +156,7 @@ const pathObj = {
     path: "/checkOut",
   },
   statusOrder: {
-    title: "Lịch sử mua hàng",
+    title: "Trạng thái đơn hàng",
     path: "/statusOrder",
   },
   blogDetail: {

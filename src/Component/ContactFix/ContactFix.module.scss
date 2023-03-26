@@ -3,28 +3,24 @@
 .contact-fixed {
   position: fixed;
   z-index: 500;
-  left: 10px;
-  bottom: 10px;
+  left: 21px;
+  bottom: 33px;
   width: 70px;
   .item {
     display: flex;
     align-items: center;
-    font-size: $font-md;
+    font-size: $font-sm;
     font-weight: 700;
     color: $color-red;
     padding-top: 6px;
     padding-bottom: 6px;
     .gif {
-      width: 35px;
+      width: 55px;
       padding: 4px;
       aspect-ratio: 1;
       border-radius: 50%;
       overflow: hidden;
     }
-  }
-
-  .item.mes {
-    color: #007fff;
   }
 }
 
@@ -34,7 +30,7 @@ span.detail {
 
 .close {
   position: absolute;
-  top: -30px;
+  top: -16px;
   right: 0;
   color: $color-red;
   cursor: pointer;
@@ -51,7 +47,7 @@ span.detail {
 
 @media (min-width: 1750px) {
   .contact-fixed {
-    width: 140px;
+    width: 160px;
   }
 
   span.detail {
