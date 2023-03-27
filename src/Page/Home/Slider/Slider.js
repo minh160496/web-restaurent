@@ -2,10 +2,13 @@ import React from "react";
 import classnames from "classnames/bind";
 import { motion } from "framer-motion";
 
-import styles from "./Slider.module.scss";
 import Img from "Component/Img";
 import MyButton from "Component/MyButton";
+import Baner from "assets/img/banner.jpg";
+
 import { pathObj } from "Routers";
+
+import styles from "./Slider.module.scss";
 
 const cl = classnames.bind(styles);
 export default function Slider() {
@@ -29,11 +32,7 @@ export default function Slider() {
         }}
       >
         <div className={cl("slider__img")}>
-          <Img
-            src="https://bizweb.dktcdn.net/100/469/097/themes/882205/assets/slider_mb_1.jpg?1677232264471"
-            width="100%"
-            heigh="auto"
-          />
+          <Img src={Baner} width="100%" heigh="auto" />
         </div>
       </motion.div>
       <div className={cl("slider__desc") + " pos-absolute"}>

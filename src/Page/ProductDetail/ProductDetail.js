@@ -59,16 +59,21 @@ export default function ProductDetail() {
             <div className={cl("main")}>
               <Container className="p-0">
                 <Row>
-                  <Col className="col-12 col-md-6">
+                  <Col className={"col-12 col-md-5 col-xl-4"}>
                     <div className={cl("main__left")}>
-                      <Img src={product.src} width="100%" heigh="auto" />
+                      <Img
+                        className={cl("image")}
+                        src={product.src}
+                        width="100%"
+                        heigh="auto"
+                      />
                     </div>
                   </Col>
-                  <Col className="col-12 col-md-6">
+                  <Col className="col-12 col-md-7 col-xl-8">
                     <div className={cl("main__right")}>
                       <Container className="p-0">
                         <div className={cl("title")}>
-                          <h2 className={cl("product-name") + " " + "stylized"}>
+                          <h2 className={cl("product-name") + " stylized"}>
                             {product.name}
                           </h2>
                         </div>
@@ -81,8 +86,7 @@ export default function ProductDetail() {
                             <>
                               <div className={cl("price-offline")}>
                                 <span>Giá tại cửa hàng: </span>
-                                {"  "}{" "}
-                                <span>{product.oldPrice + ".000" + "đ"}</span>
+                                {"  "} <span>{product.oldPrice + ".000đ"}</span>
                               </div>
                               <div className={cl("price-save")}>
                                 <span>Tiết kiệm: </span>{" "}
@@ -101,7 +105,7 @@ export default function ProductDetail() {
                           <div className={cl("num__title")}>
                             <span>Số lượng</span>
                           </div>
-                          <div className={cl("num__content") + ""}>
+                          <div className={cl("num__content")}>
                             <ChooseQuanlity id={product.id} isToCart={false} />
                           </div>
                         </div>

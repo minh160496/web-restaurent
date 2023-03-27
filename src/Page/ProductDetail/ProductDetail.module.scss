@@ -5,11 +5,18 @@
     color: $color-text-primary;
     padding-bottom: 60px;
     .main__left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding-bottom: 32px;
       img {
         border-radius: $br-rad-xl;
       }
     }
+  }
+
+  .image {
+    max-width: 250px;
   }
 
   .title {
@@ -25,24 +32,20 @@
   }
 
   .price {
-    padding-bottom: 28px;
+    padding-bottom: 8px;
   }
 
   .price-online {
     font-size: $font-xl;
     font-weight: 600;
     color: $color-emphasize;
-    padding-bottom: 12px;
+    padding-bottom: 6px;
   }
 
   .price-save {
     color: $color-emphasize;
     font-size: $font-md;
     font-weight: 500;
-  }
-
-  .num {
-    padding-bottom: 32px;
   }
 
   .num__title {
@@ -53,5 +56,18 @@
     width: 100%;
     height: 40px;
     margin-top: 18px;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .product-detail {
+    .main {
+      div.main__left {
+        display: block;
+      }
+    }
+    .image {
+      max-width: unset;
+    }
   }
 }
