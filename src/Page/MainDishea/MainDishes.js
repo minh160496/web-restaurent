@@ -1,5 +1,5 @@
-import React from "react";
-import classNames, { useEffect } from "classnames/bind";
+import React, { useEffect } from "react";
+import classNames from "classnames/bind";
 
 import List from "Component/List";
 
